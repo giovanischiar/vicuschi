@@ -2,10 +2,6 @@ grammar VicuschiLex;
 
 r : IF NUMBER BOOLEAN;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 //reserved words
 IF : 'if';
 ENDIF : 'endif';
@@ -38,17 +34,12 @@ ATTRIBUTION : '=';
 INCREMENT : '++';
 DECREMENT : '--';
 
-<<<<<<< HEAD
 LOGICAL_AND : '&&';
 LOGICAL_OR : '|';
 
 SEMICOLON : ';';
 
 
-
-=======
-SEMICOLON : ';';
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 INDEX : '[' ID ']' | '[' DIGIT+ ']';
 EACH : ':'; 
 
@@ -67,16 +58,9 @@ fragment VAR : BOOLEAN | NUMBER | ID;
 
 fragment LETTER : [a-zA-Z];
 fragment DIGIT : [0-9];
-<<<<<<< HEAD
 fragment SYMBOL : '_' | '!' | '-' | '&' | '+' | '[' | ']' | '{' | '}' | '(' | ')' | '<' | '>' | '=' | '|' | '.' | ',' | ';' | ':' | '/' ; 
 ID : LETTER (DIGIT | LETTER)*;
 
 S_COMMENTARY : '//' (NUMBER | LETTER | [ \t\r] | SYMBOL)* '\n' -> skip;
 M_COMMENTARY : '/*' (NUMBER | LETTER | WS | SYMBOL)* '*/' -> skip;
 WS : [ \t\r\n]+ -> skip;
-
-=======
-fragment SYMBOL : '_' | '!' | '-' | '&' | '+' | '[' | ']' | '{' | '}' | '(' | ')' | '<' | '>' | '\'' | '\'' | '=' | '|' | '.' | ',' | ';' | ':'; 
-ID : LETTER (DIGIT | LETTER)*;
-WS : [ \t\r\n]+ -> skip;
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf

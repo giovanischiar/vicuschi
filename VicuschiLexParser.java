@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Generated from VicuschiLex.g4 by ANTLR 4.7.1
-=======
-// Generated from VicuschiLex.g4 by ANTLR 4.5.1
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -14,11 +10,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class VicuschiLexParser extends Parser {
-<<<<<<< HEAD
 	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
-=======
-	static { RuntimeMetaData.checkVersion("4.5.1", RuntimeMetaData.VERSION); }
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -27,15 +19,9 @@ public class VicuschiLexParser extends Parser {
 		IF=1, ENDIF=2, FOR=3, ENDFOR=4, CASE=5, WHEN=6, WHILE=7, ENDWHILE=8, ENDCASE=9, 
 		CONTINUE=10, ENDF=11, RETURN=12, INT=13, FLOAT=14, STRING=15, BOOLEAN=16, 
 		NOT_ID=17, MAJOR=18, MINOR=19, EQUALS=20, MAJOR_EQUALS=21, MINOR_EQUALS=22, 
-<<<<<<< HEAD
 		DIFFERENT=23, ATTRIBUTION=24, INCREMENT=25, DECREMENT=26, LOGICAL_AND=27, 
 		LOGICAL_OR=28, SEMICOLON=29, INDEX=30, EACH=31, BOOL=32, NUMBER=33, WORD=34, 
 		ARRAY=35, INTERVAL=36, ID=37, S_COMMENTARY=38, M_COMMENTARY=39, WS=40;
-=======
-		DIFFERENT=23, ATTRIBUTION=24, INCREMENT=25, DECREMENT=26, SEMICOLON=27, 
-		INDEX=28, EACH=29, BOOL=30, NUMBER=31, WORD=32, ARRAY=33, INTERVAL=34, 
-		ID=35, WS=36;
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 	public static final int
 		RULE_r = 0;
 	public static final String[] ruleNames = {
@@ -46,24 +32,15 @@ public class VicuschiLexParser extends Parser {
 		null, "'if'", "'endif'", "'for'", "'endfor'", "'case'", "'when'", "'while'", 
 		"'endwhile'", "'endcase'", "'continue'", "'endf'", "'return'", "'int'", 
 		"'float'", "'string'", "'boolean'", null, "'>'", "'<'", "'=='", "'>='", 
-<<<<<<< HEAD
 		"'<='", "'!='", "'='", "'++'", "'--'", "'&&'", "'|'", "';'", null, "':'"
-=======
-		"'<='", "'!='", "'='", "'++'", "'--'", "';'", null, "':'"
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "IF", "ENDIF", "FOR", "ENDFOR", "CASE", "WHEN", "WHILE", "ENDWHILE", 
 		"ENDCASE", "CONTINUE", "ENDF", "RETURN", "INT", "FLOAT", "STRING", "BOOLEAN", 
 		"NOT_ID", "MAJOR", "MINOR", "EQUALS", "MAJOR_EQUALS", "MINOR_EQUALS", 
-<<<<<<< HEAD
 		"DIFFERENT", "ATTRIBUTION", "INCREMENT", "DECREMENT", "LOGICAL_AND", "LOGICAL_OR", 
 		"SEMICOLON", "INDEX", "EACH", "BOOL", "NUMBER", "WORD", "ARRAY", "INTERVAL", 
 		"ID", "S_COMMENTARY", "M_COMMENTARY", "WS"
-=======
-		"DIFFERENT", "ATTRIBUTION", "INCREMENT", "DECREMENT", "SEMICOLON", "INDEX", 
-		"EACH", "BOOL", "NUMBER", "WORD", "ARRAY", "INTERVAL", "ID", "WS"
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -158,15 +135,9 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-<<<<<<< HEAD
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3*\t\4\2\t\2\3\2\3"+
 		"\2\3\2\3\2\3\2\2\2\3\2\2\2\2\7\2\4\3\2\2\2\4\5\7\3\2\2\5\6\7#\2\2\6\7"+
 		"\7\22\2\2\7\3\3\2\2\2\2";
-=======
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3&\t\4\2\t\2\3\2\3"+
-		"\2\3\2\3\2\3\2\2\2\3\2\2\2\7\2\4\3\2\2\2\4\5\7\3\2\2\5\6\7!\2\2\6\7\7"+
-		"\22\2\2\7\3\3\2\2\2\2";
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

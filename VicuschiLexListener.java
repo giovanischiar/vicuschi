@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Generated from VicuschiLex.g4 by ANTLR 4.7.1
-=======
-// Generated from VicuschiLex.g4 by ANTLR 4.5.1
->>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
