@@ -46,4 +46,8 @@ public class Main {
 		}
 		return everything;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3336c29dc7c50ef6c49cbcfb7f2a54f8012850bf
