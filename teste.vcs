@@ -1,0 +1,10 @@
+boolean caixas[20] = {no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no,};
+int clientes = 36;
+while cliente > 0
+    for i : [0, 19]
+        if !caixa[i]
+            cliente--;
+            caixa[i] = yes;
+        endif;
+    endfor;
+endwhile;
