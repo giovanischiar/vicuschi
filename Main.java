@@ -9,9 +9,14 @@ import java.io.FileNotFoundException;
 public class Main {
 
 	public static void main(String[] args) {
+		if(args.length == 0) {
+			System.out.println("Sem arquivo de entrada!");
+			return; 
+		}
+
 		CharStream stream = new ANTLRInputStream(readFile(args[0]));
 		VicuschiLexLexer lexer = new VicuschiLexLexer(stream);
-		System.out.print("\n");
+		System.out.printf("\n");
 
 		Token t = lexer.nextToken();
 		

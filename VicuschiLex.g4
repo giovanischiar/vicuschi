@@ -2,6 +2,7 @@ grammar VicuschiLex;
 
 r : IF NUMBER BOOLEAN;
 
+//lex
 //reserved words
 IF : 'if';
 ENDIF : 'endif';
@@ -64,3 +65,15 @@ ID : LETTER (DIGIT | LETTER)*;
 S_COMMENTARY : '//' (NUMBER | LETTER | [ \t\r] | SYMBOL)* '\n' -> skip;
 M_COMMENTARY : '/*' (NUMBER | LETTER | WS | SYMBOL)* '*/' -> skip;
 WS : [ \t\r\n]+ -> skip;
+
+
+
+
+
+
+
+
+
+
+
+

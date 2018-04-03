@@ -2,7 +2,9 @@
 	de
 	muitas linhas
 */
-boolean caixas[20] = {no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no};
+boolean caixas[20] = {no, no, no, no, no, no, no, no,
+                      no, no, no, no, no, no, no, no,
+                      no, no, no, no};
 // coment   ario li nha unica
 int clientes = 36;
 while cliente > 0
