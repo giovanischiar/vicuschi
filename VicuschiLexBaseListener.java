@@ -51,6 +51,138 @@ public class VicuschiLexBaseListener implements VicuschiLexListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArith_expr(VicuschiLexParser.Arith_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArith_expr(VicuschiLexParser.Arith_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArith_expr_1(VicuschiLexParser.Arith_expr_1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArith_expr_1(VicuschiLexParser.Arith_expr_1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTerm(VicuschiLexParser.TermContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTerm(VicuschiLexParser.TermContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTerm_a(VicuschiLexParser.Term_aContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTerm_a(VicuschiLexParser.Term_aContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFactor(VicuschiLexParser.FactorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFactor(VicuschiLexParser.FactorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunction_call(VicuschiLexParser.Function_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction_call(VicuschiLexParser.Function_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunction_declaration(VicuschiLexParser.Function_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction_declaration(VicuschiLexParser.Function_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaration_params(VicuschiLexParser.Declaration_paramsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaration_params(VicuschiLexParser.Declaration_paramsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParams(VicuschiLexParser.ParamsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParams(VicuschiLexParser.ParamsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAttributed(VicuschiLexParser.AttributedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAttributed(VicuschiLexParser.AttributedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAttribution(VicuschiLexParser.AttributionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAttribution(VicuschiLexParser.AttributionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterUnary_expression(VicuschiLexParser.Unary_expressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -315,13 +447,13 @@ public class VicuschiLexBaseListener implements VicuschiLexListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGeneric_attribuition(VicuschiLexParser.Generic_attribuitionContext ctx) { }
+	@Override public void enterGeneric_attribution(VicuschiLexParser.Generic_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGeneric_attribuition(VicuschiLexParser.Generic_attribuitionContext ctx) { }
+	@Override public void exitGeneric_attribution(VicuschiLexParser.Generic_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -37,6 +37,116 @@ public interface VicuschiLexListener extends ParseTreeListener {
 	 */
 	void exitSimple_stmt(VicuschiLexParser.Simple_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#arith_expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterArith_expr(VicuschiLexParser.Arith_exprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#arith_expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitArith_expr(VicuschiLexParser.Arith_exprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#arith_expr_1}.
+	 * @param ctx the parse tree
+	 */
+	void enterArith_expr_1(VicuschiLexParser.Arith_expr_1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#arith_expr_1}.
+	 * @param ctx the parse tree
+	 */
+	void exitArith_expr_1(VicuschiLexParser.Arith_expr_1Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void enterTerm(VicuschiLexParser.TermContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void exitTerm(VicuschiLexParser.TermContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#term_a}.
+	 * @param ctx the parse tree
+	 */
+	void enterTerm_a(VicuschiLexParser.Term_aContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#term_a}.
+	 * @param ctx the parse tree
+	 */
+	void exitTerm_a(VicuschiLexParser.Term_aContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void enterFactor(VicuschiLexParser.FactorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void exitFactor(VicuschiLexParser.FactorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_call(VicuschiLexParser.Function_callContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_call(VicuschiLexParser.Function_callContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#function_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_declaration(VicuschiLexParser.Function_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#function_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_declaration(VicuschiLexParser.Function_declarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#declaration_params}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaration_params(VicuschiLexParser.Declaration_paramsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#declaration_params}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaration_params(VicuschiLexParser.Declaration_paramsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#params}.
+	 * @param ctx the parse tree
+	 */
+	void enterParams(VicuschiLexParser.ParamsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#params}.
+	 * @param ctx the parse tree
+	 */
+	void exitParams(VicuschiLexParser.ParamsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#attributed}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttributed(VicuschiLexParser.AttributedContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#attributed}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttributed(VicuschiLexParser.AttributedContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#attribution}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttribution(VicuschiLexParser.AttributionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#attribution}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttribution(VicuschiLexParser.AttributionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link VicuschiLexParser#unary_expression}.
 	 * @param ctx the parse tree
 	 */
@@ -257,15 +367,15 @@ public interface VicuschiLexListener extends ParseTreeListener {
 	 */
 	void exitGeneric_array_declaration(VicuschiLexParser.Generic_array_declarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link VicuschiLexParser#generic_attribuition}.
+	 * Enter a parse tree produced by {@link VicuschiLexParser#generic_attribution}.
 	 * @param ctx the parse tree
 	 */
-	void enterGeneric_attribuition(VicuschiLexParser.Generic_attribuitionContext ctx);
+	void enterGeneric_attribution(VicuschiLexParser.Generic_attributionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link VicuschiLexParser#generic_attribuition}.
+	 * Exit a parse tree produced by {@link VicuschiLexParser#generic_attribution}.
 	 * @param ctx the parse tree
 	 */
-	void exitGeneric_attribuition(VicuschiLexParser.Generic_attribuitionContext ctx);
+	void exitGeneric_attribution(VicuschiLexParser.Generic_attributionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link VicuschiLexParser#literal}.
 	 * @param ctx the parse tree

@@ -13,7 +13,49 @@ simple_stmt
 	| for_declaration
 	| if_declaration
 	| generic_declaration
-	| unary_expression;
+	| unary_expression
+	| generic_attribution
+	| function_declaration
+	| function_call;
+
+
+arith_expr
+	: term arith_expr_1;
+
+arith_expr_1
+	: (('+' | '-') term arith_expr_1)*;
+
+term
+	: factor 
+	| term_a ('*' | '/') factor;
+
+term_a
+	: factor 
+	| term_a '^' factor;
+
+factor
+	: NUMBER 
+	| ID 
+	| '(' arith_expr ')'
+	;
+	
+function_call
+	: ID '(' params? ')';
+
+function_declaration
+	: generic_declaration '(' declaration_params? ')' WS? stmt ENDF;
+
+declaration_params
+	: generic_declaration (',' WS? generic_declaration)*;
+
+params
+	: attributed (',' WS? attributed)*;
+
+attributed
+	: (literal | unary_expression | logic_expr | function_call | arith_expr);
+
+attribution
+	: ATTRIBUTION attributed;
 
 unary_expression 
 	: decrement
@@ -63,7 +105,7 @@ boolean_declaration
 	: BOOLEAN ID;
 
 declaration_attribution 
-	: generic_declaration ATTRIBUTION literal;
+	: generic_declaration attribution;
 
 integer_array_declaration 
 	: INT generic_array;
@@ -92,8 +134,8 @@ generic_array_declaration
   	| string_array_declaration
   	| boolean_array_declaration;
 
-generic_attribuition 
-	: (ID | generic_array) ATTRIBUTION literal;
+generic_attribution 
+	: (ID | generic_array) attribution;
 
 literal 
 	: ARRAY 
@@ -147,7 +189,7 @@ LOGICAL_OR : '|';
 
 SEMICOLON : ';';
 
-INDEX : '[' ID ']' | '[' DIGIT+ ']';
+INDEX : '[' ID ']' | '[' DIGIT+ ']' | '[]';
 EACH : ':';
 
 //literals;
@@ -163,11 +205,19 @@ fragment VAR : BOOLEAN | NUMBER | ID;
 
 fragment LETTER : [a-zA-Z];
 fragment DIGIT : [0-9];
-fragment SYMBOL : '_' | '!' | '-' | '&' | '+' | '[' | ']' | '{' | '}' | '(' | ')' | '<' | '>' | '=' | '|' | '.' | ',' | ';' | ':' | '/' ;
+fragment SYMBOL : '_' | '!' | '-' | '&' | '+' | '[' | ']' | '{' | '}' | '(' | ')' | '<' | '>' | '=' | '|' | '.' | ',' | ';' | ':' | '/' | 'ˆ' | '*';
 ID : LETTER (DIGIT | LETTER)*;
 
-S_COMMENTARY : '//' (NUMBER | LETTER | [ \t\r] | SYMBOL)* '\n' -> skip;
-M_COMMENTARY : '/*' (NUMBER | LETTER | WS | SYMBOL)* '*/' -> skip;
+// S_COMMENTARY : '//' (NUMBER | LETTER | [ \t\r] | SYMBOL)* '\n' -> skip;
+S_COMMENTARY
+	:'//' ~[\r\n]*
+	 -> skip;
+
+// M_COMMENTARY : '/*' (NUMBER | LETTER | WS | SYMBOL)* '*/' -> skip;
+M_COMMENTARY
+    :   '/*' .*? '*/'
+        -> skip;
+
 WS : [ \t\r\n]+ -> skip;
 
 
