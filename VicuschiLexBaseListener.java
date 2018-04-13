@@ -111,6 +111,30 @@ public class VicuschiLexBaseListener implements VicuschiLexListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFactor_a(VicuschiLexParser.Factor_aContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFactor_a(VicuschiLexParser.Factor_aContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterR_arith(VicuschiLexParser.R_arithContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitR_arith(VicuschiLexParser.R_arithContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction_call(VicuschiLexParser.Function_callContext ctx) { }
 	/**
 	 * {@inheritDoc}

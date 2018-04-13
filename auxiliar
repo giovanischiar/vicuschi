@@ -1,0 +1,34 @@
+arith_expr
+	: (ID | NUMBER) (('+' | '-' | '*' | '/' | '^') (ID | NUMBER))+;
+
+E -> TE'
+E' -> (+ E)?
+
+T -> FT'
+T' -> (* T)?
+
+F -> RF'
+F' -> (^ F)?
+
+R -> (E) | id
+
+arith_expr
+	: term arith_expr_1;
+
+arith_expr_1
+	: (('+' | '-') term arith_expr_1)*;
+
+term
+	: factor 
+	| term_a ('*' | '/') factor;
+
+term_a
+	: factor 
+	| term_a '^' factor;
+
+factor
+	: NUMBER 
+	| ID 
+	| '(' arith_expr ')'
+	;
+	

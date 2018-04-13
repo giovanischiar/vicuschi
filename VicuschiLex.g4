@@ -18,27 +18,29 @@ simple_stmt
 	| function_declaration
 	| function_call;
 
-
 arith_expr
 	: term arith_expr_1;
 
 arith_expr_1
-	: (('+' | '-') term arith_expr_1)*;
+	: (('+' | '-') arith_expr)?;
 
 term
-	: factor 
-	| term_a ('*' | '/') factor;
+	: factor term_a;
 
 term_a
-	: factor 
-	| term_a '^' factor;
+	: (('*' | '/') term)?;
 
 factor
-	: NUMBER 
+	: r_arith factor_a;
+
+factor_a
+	: ('^' factor)?;
+
+r_arith
+	: '(' arith_expr ')' 
 	| ID 
-	| '(' arith_expr ')'
-	;
-	
+	| NUMBER;
+
 function_call
 	: ID '(' params? ')';
 

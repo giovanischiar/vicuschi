@@ -87,6 +87,26 @@ public interface VicuschiLexListener extends ParseTreeListener {
 	 */
 	void exitFactor(VicuschiLexParser.FactorContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#factor_a}.
+	 * @param ctx the parse tree
+	 */
+	void enterFactor_a(VicuschiLexParser.Factor_aContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#factor_a}.
+	 * @param ctx the parse tree
+	 */
+	void exitFactor_a(VicuschiLexParser.Factor_aContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#r_arith}.
+	 * @param ctx the parse tree
+	 */
+	void enterR_arith(VicuschiLexParser.R_arithContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#r_arith}.
+	 * @param ctx the parse tree
+	 */
+	void exitR_arith(VicuschiLexParser.R_arithContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link VicuschiLexParser#function_call}.
 	 * @param ctx the parse tree
 	 */
