@@ -51,6 +51,18 @@ public class VicuschiLexBaseListener implements VicuschiLexListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterImport_declaration(VicuschiLexParser.Import_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImport_declaration(VicuschiLexParser.Import_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterArith_expr(VicuschiLexParser.Arith_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -291,25 +303,49 @@ public class VicuschiLexBaseListener implements VicuschiLexListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogic_factor(VicuschiLexParser.Logic_factorContext ctx) { }
+	@Override public void enterLogic_expr_1(VicuschiLexParser.Logic_expr_1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogic_factor(VicuschiLexParser.Logic_factorContext ctx) { }
+	@Override public void exitLogic_expr_1(VicuschiLexParser.Logic_expr_1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogic_factor_1(VicuschiLexParser.Logic_factor_1Context ctx) { }
+	@Override public void enterLogic_term(VicuschiLexParser.Logic_termContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogic_factor_1(VicuschiLexParser.Logic_factor_1Context ctx) { }
+	@Override public void exitLogic_term(VicuschiLexParser.Logic_termContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLogic_term_a(VicuschiLexParser.Logic_term_aContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLogic_term_a(VicuschiLexParser.Logic_term_aContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterR_logic(VicuschiLexParser.R_logicContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitR_logic(VicuschiLexParser.R_logicContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -31,4 +31,23 @@ factor
 	| ID 
 	| '(' arith_expr ')'
 	;
-	
+
+
+logic_expr
+	: term logic_expr_1;
+
+logic_expr_1
+	: (LOGICAL_OR logic_expr)?;
+
+logic_term
+	: r_logic logic_term_a;
+
+logic_term_a
+	: (LOGICAL_AND logic_term)?;
+
+r_logic
+	: '(' logic_expr ')' 
+	| ID 
+	| NUMBER
+	| BOOL
+	| not_id;

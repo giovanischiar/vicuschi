@@ -1,3 +1,4 @@
+import "lalala";
 /* um comentario qualquer 
 	de
 	muitas linhas
@@ -11,12 +12,12 @@ calcClients(caixas, 36, foo(23, lala, oi, yes, tudobem, {1, 2, 3, 4, 5, 6, 7}));
 
 int calcClients(boolean caixas[], int numClientes)
   int clientes = numClientes;
-  while cliente > 0
+  while (cliente > 0) & cliente | yes & !(lala | not) | yes & (oi & b)
       for i : [0, 19]
           if !caixa[i]
               cliente--;
               caixa[i] = yes;
-              lalala = 2 + (3 ^  (5 - 4)) / cliente *((2 + -5)/3)^5;
+              lalala = 2 + (3 ^ (5 - 4)) / cliente *((2 * 5)/3)^5;
           endif;
       endfor;
   endwhile;

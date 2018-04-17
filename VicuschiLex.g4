@@ -16,7 +16,11 @@ simple_stmt
 	| unary_expression
 	| generic_attribution
 	| function_declaration
-	| function_call;
+	| function_call
+	| import_declaration;
+
+import_declaration
+	: IMPORT WORD;
 
 arith_expr
 	: term arith_expr_1;
@@ -78,19 +82,26 @@ while_declaration
 for_declaration
 	: FOR ID? ':' INTERVAL stmt ENDFOR;
 
-logic_expr 
-	: logic_factor 
-	| logic_expr ('&&' | '||') logic_factor;
+logic_expr
+	: logic_term logic_expr_1;
 
-logic_factor 
-	: NUMBER logic_factor_1
-	| ID logic_factor_1
-	| '(' logic_expr ')' logic_factor_1
-	| BOOL logic_factor_1
-	| not_id logic_factor_1;
+logic_expr_1
+	: (LOGICAL_OR logic_expr)?;
 
-logic_factor_1
-	: (comparator logic_factor logic_factor_1?)*;
+logic_term
+	: r_logic logic_term_a;
+
+logic_term_a
+	: (LOGICAL_AND logic_term)?;
+
+r_logic
+	: '(' logic_expr ')' 
+	| '!' logic_expr
+	| ID 
+	| NUMBER
+	| BOOL
+	| not_id
+	| (ID | NUMBER) comparator (ID | NUMBER);
 
 not_id : '!' (ID | generic_array);
 
@@ -168,6 +179,7 @@ ENDCASE : 'endcase';
 CONTINUE : 'continue';
 ENDF : 'endf';
 RETURN : 'return';
+IMPORT : 'import';
 
 //primitive types;
 INT : 'int';
@@ -185,8 +197,9 @@ DIFFERENT : '!=';
 ATTRIBUTION : '=';
 INCREMENT : '++';
 DECREMENT : '--';
+THEN : '->';
 
-LOGICAL_AND : '&&';
+LOGICAL_AND : '&';
 LOGICAL_OR : '|';
 
 SEMICOLON : ';';

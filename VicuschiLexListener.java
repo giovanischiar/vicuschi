@@ -37,6 +37,16 @@ public interface VicuschiLexListener extends ParseTreeListener {
 	 */
 	void exitSimple_stmt(VicuschiLexParser.Simple_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#import_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterImport_declaration(VicuschiLexParser.Import_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#import_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitImport_declaration(VicuschiLexParser.Import_declarationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link VicuschiLexParser#arith_expr}.
 	 * @param ctx the parse tree
 	 */
@@ -237,25 +247,45 @@ public interface VicuschiLexListener extends ParseTreeListener {
 	 */
 	void exitLogic_expr(VicuschiLexParser.Logic_exprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link VicuschiLexParser#logic_factor}.
+	 * Enter a parse tree produced by {@link VicuschiLexParser#logic_expr_1}.
 	 * @param ctx the parse tree
 	 */
-	void enterLogic_factor(VicuschiLexParser.Logic_factorContext ctx);
+	void enterLogic_expr_1(VicuschiLexParser.Logic_expr_1Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link VicuschiLexParser#logic_factor}.
+	 * Exit a parse tree produced by {@link VicuschiLexParser#logic_expr_1}.
 	 * @param ctx the parse tree
 	 */
-	void exitLogic_factor(VicuschiLexParser.Logic_factorContext ctx);
+	void exitLogic_expr_1(VicuschiLexParser.Logic_expr_1Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link VicuschiLexParser#logic_factor_1}.
+	 * Enter a parse tree produced by {@link VicuschiLexParser#logic_term}.
 	 * @param ctx the parse tree
 	 */
-	void enterLogic_factor_1(VicuschiLexParser.Logic_factor_1Context ctx);
+	void enterLogic_term(VicuschiLexParser.Logic_termContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link VicuschiLexParser#logic_factor_1}.
+	 * Exit a parse tree produced by {@link VicuschiLexParser#logic_term}.
 	 * @param ctx the parse tree
 	 */
-	void exitLogic_factor_1(VicuschiLexParser.Logic_factor_1Context ctx);
+	void exitLogic_term(VicuschiLexParser.Logic_termContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#logic_term_a}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogic_term_a(VicuschiLexParser.Logic_term_aContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#logic_term_a}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogic_term_a(VicuschiLexParser.Logic_term_aContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiLexParser#r_logic}.
+	 * @param ctx the parse tree
+	 */
+	void enterR_logic(VicuschiLexParser.R_logicContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiLexParser#r_logic}.
+	 * @param ctx the parse tree
+	 */
+	void exitR_logic(VicuschiLexParser.R_logicContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link VicuschiLexParser#not_id}.
 	 * @param ctx the parse tree
