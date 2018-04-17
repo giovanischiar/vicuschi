@@ -42,8 +42,15 @@ factor_a
 
 r_arith
 	: '(' arith_expr ')' 
-	| ID 
-	| NUMBER;
+	| arith_id 
+	| arith_number;
+
+arith_id
+	: (UNARY_PLUS | UNARY_MINUS)? ID;
+
+arith_number
+	: (UNARY_PLUS | UNARY_MINUS)? NUMBER;
+
 
 function_call
 	: ID '(' params? ')';
@@ -97,8 +104,8 @@ logic_term_a
 r_logic
 	: '(' logic_expr ')' 
 	| '!' logic_expr
-	| ID 
-	| NUMBER
+	| arith_id 
+	| arith_number
 	| BOOL
 	| not_id
 	| (ID | NUMBER) comparator (ID | NUMBER);
@@ -199,6 +206,9 @@ INCREMENT : '++';
 DECREMENT : '--';
 THEN : '->';
 
+UNARY_PLUS: '+';
+UNARY_MINUS: '-';
+
 LOGICAL_AND : '&';
 LOGICAL_OR : '|';
 
@@ -209,7 +219,7 @@ EACH : ':';
 
 //literals;
 BOOL : 'yes' | 'no';
-NUMBER : ('+' | '-')? NUMBERTYPE;
+NUMBER : NUMBERTYPE;
 fragment NUMBERTYPE : '.' (DIGIT)+ | (DIGIT)+ '.' (DIGIT)* | DIGIT+;
 WORD: '"' (NUMBER | LETTER | WS | SYMBOL)* '"';
 ARRAY: '{' VAR (',' WS? VAR)* '}';

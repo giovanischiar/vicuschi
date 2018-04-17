@@ -147,6 +147,30 @@ public class VicuschiLexBaseListener implements VicuschiLexListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArith_id(VicuschiLexParser.Arith_idContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArith_id(VicuschiLexParser.Arith_idContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArith_number(VicuschiLexParser.Arith_numberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArith_number(VicuschiLexParser.Arith_numberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction_call(VicuschiLexParser.Function_callContext ctx) { }
 	/**
 	 * {@inheritDoc}

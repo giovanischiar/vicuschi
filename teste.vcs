@@ -17,7 +17,7 @@ int calcClients(boolean caixas[], int numClientes)
           if !caixa[i]
               cliente--;
               caixa[i] = yes;
-              lalala = 2 + (3 ^ (5 - 4)) / cliente *((2 * 5)/3)^5;
+              lalala = 2 + (3 ^ (5 - 4)) / cliente *((-2 - +5)/3)^5;
           endif;
       endfor;
   endwhile;
