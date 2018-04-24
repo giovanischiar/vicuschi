@@ -1,4 +1,4 @@
-// Generated from VicuschiLex.g4 by ANTLR 4.7.1
+// Generated from Vicuschi.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class VicuschiLexParser extends Parser {
+public class VicuschiParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -103,7 +103,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "VicuschiLex.g4"; }
+	public String getGrammarFileName() { return "Vicuschi.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -114,7 +114,7 @@ public class VicuschiLexParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public VicuschiLexParser(TokenStream input) {
+	public VicuschiParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -128,11 +128,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_r; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterR(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterR(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitR(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitR(this);
 		}
 	}
 
@@ -170,11 +170,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_stmt; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterStmt(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterStmt(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitStmt(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitStmt(this);
 		}
 	}
 
@@ -251,11 +251,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_simple_stmt; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterSimple_stmt(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterSimple_stmt(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitSimple_stmt(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitSimple_stmt(this);
 		}
 	}
 
@@ -350,19 +350,19 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Import_declarationContext extends ParserRuleContext {
-		public TerminalNode IMPORT() { return getToken(VicuschiLexParser.IMPORT, 0); }
-		public TerminalNode WORD() { return getToken(VicuschiLexParser.WORD, 0); }
+		public TerminalNode IMPORT() { return getToken(VicuschiParser.IMPORT, 0); }
+		public TerminalNode WORD() { return getToken(VicuschiParser.WORD, 0); }
 		public Import_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_import_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterImport_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterImport_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitImport_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitImport_declaration(this);
 		}
 	}
 
@@ -402,11 +402,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_arith_expr; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterArith_expr(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterArith_expr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitArith_expr(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_expr(this);
 		}
 	}
 
@@ -443,11 +443,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_arith_expr_1; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterArith_expr_1(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterArith_expr_1(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitArith_expr_1(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_expr_1(this);
 		}
 	}
 
@@ -504,11 +504,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_term; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterTerm(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterTerm(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitTerm(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitTerm(this);
 		}
 	}
 
@@ -545,11 +545,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_term_a; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterTerm_a(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterTerm_a(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitTerm_a(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitTerm_a(this);
 		}
 	}
 
@@ -606,11 +606,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_factor; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterFactor(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterFactor(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitFactor(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFactor(this);
 		}
 	}
 
@@ -647,11 +647,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_factor_a; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterFactor_a(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterFactor_a(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitFactor_a(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFactor_a(this);
 		}
 	}
 
@@ -703,11 +703,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_r_arith; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterR_arith(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterR_arith(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitR_arith(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitR_arith(this);
 		}
 	}
 
@@ -757,20 +757,20 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Arith_idContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
-		public TerminalNode UNARY_PLUS() { return getToken(VicuschiLexParser.UNARY_PLUS, 0); }
-		public TerminalNode UNARY_MINUS() { return getToken(VicuschiLexParser.UNARY_MINUS, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
+		public TerminalNode UNARY_PLUS() { return getToken(VicuschiParser.UNARY_PLUS, 0); }
+		public TerminalNode UNARY_MINUS() { return getToken(VicuschiParser.UNARY_MINUS, 0); }
 		public Arith_idContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_arith_id; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterArith_id(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterArith_id(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitArith_id(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_id(this);
 		}
 	}
 
@@ -815,20 +815,20 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Arith_numberContext extends ParserRuleContext {
-		public TerminalNode NUMBER() { return getToken(VicuschiLexParser.NUMBER, 0); }
-		public TerminalNode UNARY_PLUS() { return getToken(VicuschiLexParser.UNARY_PLUS, 0); }
-		public TerminalNode UNARY_MINUS() { return getToken(VicuschiLexParser.UNARY_MINUS, 0); }
+		public TerminalNode NUMBER() { return getToken(VicuschiParser.NUMBER, 0); }
+		public TerminalNode UNARY_PLUS() { return getToken(VicuschiParser.UNARY_PLUS, 0); }
+		public TerminalNode UNARY_MINUS() { return getToken(VicuschiParser.UNARY_MINUS, 0); }
 		public Arith_numberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_arith_number; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterArith_number(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterArith_number(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitArith_number(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_number(this);
 		}
 	}
 
@@ -873,7 +873,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Function_callContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public ParamsContext params() {
 			return getRuleContext(ParamsContext.class,0);
 		}
@@ -883,11 +883,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_function_call; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterFunction_call(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterFunction_call(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitFunction_call(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFunction_call(this);
 		}
 	}
 
@@ -934,22 +934,22 @@ public class VicuschiLexParser extends Parser {
 		public StmtContext stmt() {
 			return getRuleContext(StmtContext.class,0);
 		}
-		public TerminalNode ENDF() { return getToken(VicuschiLexParser.ENDF, 0); }
+		public TerminalNode ENDF() { return getToken(VicuschiParser.ENDF, 0); }
 		public Declaration_paramsContext declaration_params() {
 			return getRuleContext(Declaration_paramsContext.class,0);
 		}
-		public TerminalNode WS() { return getToken(VicuschiLexParser.WS, 0); }
+		public TerminalNode WS() { return getToken(VicuschiParser.WS, 0); }
 		public Function_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_function_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterFunction_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterFunction_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitFunction_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFunction_declaration(this);
 		}
 	}
 
@@ -1010,9 +1010,9 @@ public class VicuschiLexParser extends Parser {
 		public Generic_declarationContext generic_declaration(int i) {
 			return getRuleContext(Generic_declarationContext.class,i);
 		}
-		public List<TerminalNode> WS() { return getTokens(VicuschiLexParser.WS); }
+		public List<TerminalNode> WS() { return getTokens(VicuschiParser.WS); }
 		public TerminalNode WS(int i) {
-			return getToken(VicuschiLexParser.WS, i);
+			return getToken(VicuschiParser.WS, i);
 		}
 		public Declaration_paramsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1020,11 +1020,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_declaration_params; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterDeclaration_params(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterDeclaration_params(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitDeclaration_params(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDeclaration_params(this);
 		}
 	}
 
@@ -1083,9 +1083,9 @@ public class VicuschiLexParser extends Parser {
 		public AttributedContext attributed(int i) {
 			return getRuleContext(AttributedContext.class,i);
 		}
-		public List<TerminalNode> WS() { return getTokens(VicuschiLexParser.WS); }
+		public List<TerminalNode> WS() { return getTokens(VicuschiParser.WS); }
 		public TerminalNode WS(int i) {
-			return getToken(VicuschiLexParser.WS, i);
+			return getToken(VicuschiParser.WS, i);
 		}
 		public ParamsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1093,11 +1093,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_params; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterParams(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterParams(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitParams(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitParams(this);
 		}
 	}
 
@@ -1171,11 +1171,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_attributed; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterAttributed(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterAttributed(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitAttributed(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitAttributed(this);
 		}
 	}
 
@@ -1233,7 +1233,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class AttributionContext extends ParserRuleContext {
-		public TerminalNode ATTRIBUTION() { return getToken(VicuschiLexParser.ATTRIBUTION, 0); }
+		public TerminalNode ATTRIBUTION() { return getToken(VicuschiParser.ATTRIBUTION, 0); }
 		public AttributedContext attributed() {
 			return getRuleContext(AttributedContext.class,0);
 		}
@@ -1243,11 +1243,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_attribution; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterAttribution(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterAttribution(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitAttribution(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitAttribution(this);
 		}
 	}
 
@@ -1287,11 +1287,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_unary_expression; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterUnary_expression(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterUnary_expression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitUnary_expression(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitUnary_expression(this);
 		}
 	}
 
@@ -1330,19 +1330,19 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class DecrementContext extends ParserRuleContext {
-		public TerminalNode DECREMENT() { return getToken(VicuschiLexParser.DECREMENT, 0); }
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode DECREMENT() { return getToken(VicuschiParser.DECREMENT, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public DecrementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_decrement; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterDecrement(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterDecrement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitDecrement(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDecrement(this);
 		}
 	}
 
@@ -1387,19 +1387,19 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class IncrementContext extends ParserRuleContext {
-		public TerminalNode INCREMENT() { return getToken(VicuschiLexParser.INCREMENT, 0); }
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode INCREMENT() { return getToken(VicuschiParser.INCREMENT, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public IncrementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_increment; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterIncrement(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterIncrement(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitIncrement(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitIncrement(this);
 		}
 	}
 
@@ -1444,25 +1444,25 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class If_declarationContext extends ParserRuleContext {
-		public TerminalNode IF() { return getToken(VicuschiLexParser.IF, 0); }
+		public TerminalNode IF() { return getToken(VicuschiParser.IF, 0); }
 		public Logic_exprContext logic_expr() {
 			return getRuleContext(Logic_exprContext.class,0);
 		}
 		public StmtContext stmt() {
 			return getRuleContext(StmtContext.class,0);
 		}
-		public TerminalNode ENDIF() { return getToken(VicuschiLexParser.ENDIF, 0); }
+		public TerminalNode ENDIF() { return getToken(VicuschiParser.ENDIF, 0); }
 		public If_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_if_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterIf_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterIf_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitIf_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitIf_declaration(this);
 		}
 	}
 
@@ -1494,25 +1494,25 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class While_declarationContext extends ParserRuleContext {
-		public TerminalNode WHILE() { return getToken(VicuschiLexParser.WHILE, 0); }
+		public TerminalNode WHILE() { return getToken(VicuschiParser.WHILE, 0); }
 		public Logic_exprContext logic_expr() {
 			return getRuleContext(Logic_exprContext.class,0);
 		}
 		public StmtContext stmt() {
 			return getRuleContext(StmtContext.class,0);
 		}
-		public TerminalNode ENDWHILE() { return getToken(VicuschiLexParser.ENDWHILE, 0); }
+		public TerminalNode ENDWHILE() { return getToken(VicuschiParser.ENDWHILE, 0); }
 		public While_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_while_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterWhile_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterWhile_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitWhile_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitWhile_declaration(this);
 		}
 	}
 
@@ -1544,24 +1544,24 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class For_declarationContext extends ParserRuleContext {
-		public TerminalNode FOR() { return getToken(VicuschiLexParser.FOR, 0); }
-		public TerminalNode INTERVAL() { return getToken(VicuschiLexParser.INTERVAL, 0); }
+		public TerminalNode FOR() { return getToken(VicuschiParser.FOR, 0); }
+		public TerminalNode INTERVAL() { return getToken(VicuschiParser.INTERVAL, 0); }
 		public StmtContext stmt() {
 			return getRuleContext(StmtContext.class,0);
 		}
-		public TerminalNode ENDFOR() { return getToken(VicuschiLexParser.ENDFOR, 0); }
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode ENDFOR() { return getToken(VicuschiParser.ENDFOR, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public For_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_for_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterFor_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterFor_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitFor_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFor_declaration(this);
 		}
 	}
 
@@ -1618,11 +1618,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_logic_expr; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterLogic_expr(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterLogic_expr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitLogic_expr(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_expr(this);
 		}
 	}
 
@@ -1650,7 +1650,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Logic_expr_1Context extends ParserRuleContext {
-		public TerminalNode LOGICAL_OR() { return getToken(VicuschiLexParser.LOGICAL_OR, 0); }
+		public TerminalNode LOGICAL_OR() { return getToken(VicuschiParser.LOGICAL_OR, 0); }
 		public Logic_exprContext logic_expr() {
 			return getRuleContext(Logic_exprContext.class,0);
 		}
@@ -1660,11 +1660,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_logic_expr_1; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterLogic_expr_1(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterLogic_expr_1(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitLogic_expr_1(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_expr_1(this);
 		}
 	}
 
@@ -1712,11 +1712,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_logic_term; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterLogic_term(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterLogic_term(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitLogic_term(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_term(this);
 		}
 	}
 
@@ -1744,7 +1744,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Logic_term_aContext extends ParserRuleContext {
-		public TerminalNode LOGICAL_AND() { return getToken(VicuschiLexParser.LOGICAL_AND, 0); }
+		public TerminalNode LOGICAL_AND() { return getToken(VicuschiParser.LOGICAL_AND, 0); }
 		public Logic_termContext logic_term() {
 			return getRuleContext(Logic_termContext.class,0);
 		}
@@ -1754,11 +1754,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_logic_term_a; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterLogic_term_a(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterLogic_term_a(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitLogic_term_a(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_term_a(this);
 		}
 	}
 
@@ -1797,20 +1797,26 @@ public class VicuschiLexParser extends Parser {
 		public Logic_exprContext logic_expr() {
 			return getRuleContext(Logic_exprContext.class,0);
 		}
-		public List<TerminalNode> ID() { return getTokens(VicuschiLexParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(VicuschiLexParser.ID, i);
+		public Arith_idContext arith_id() {
+			return getRuleContext(Arith_idContext.class,0);
 		}
-		public List<TerminalNode> NUMBER() { return getTokens(VicuschiLexParser.NUMBER); }
-		public TerminalNode NUMBER(int i) {
-			return getToken(VicuschiLexParser.NUMBER, i);
+		public Arith_numberContext arith_number() {
+			return getRuleContext(Arith_numberContext.class,0);
 		}
-		public TerminalNode BOOL() { return getToken(VicuschiLexParser.BOOL, 0); }
+		public TerminalNode BOOL() { return getToken(VicuschiParser.BOOL, 0); }
 		public Not_idContext not_id() {
 			return getRuleContext(Not_idContext.class,0);
 		}
 		public ComparatorContext comparator() {
 			return getRuleContext(ComparatorContext.class,0);
+		}
+		public List<TerminalNode> ID() { return getTokens(VicuschiParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(VicuschiParser.ID, i);
+		}
+		public List<TerminalNode> NUMBER() { return getTokens(VicuschiParser.NUMBER); }
+		public TerminalNode NUMBER(int i) {
+			return getToken(VicuschiParser.NUMBER, i);
 		}
 		public R_logicContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1818,11 +1824,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_r_logic; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterR_logic(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterR_logic(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitR_logic(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitR_logic(this);
 		}
 	}
 
@@ -1858,14 +1864,14 @@ public class VicuschiLexParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(261);
-				match(ID);
+				arith_id();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(262);
-				match(NUMBER);
+				arith_number();
 				}
 				break;
 			case 5:
@@ -1923,7 +1929,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Not_idContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public Generic_arrayContext generic_array() {
 			return getRuleContext(Generic_arrayContext.class,0);
 		}
@@ -1933,11 +1939,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_not_id; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterNot_id(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterNot_id(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitNot_id(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitNot_id(this);
 		}
 	}
 
@@ -1979,19 +1985,19 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Integer_declarationContext extends ParserRuleContext {
-		public TerminalNode INT() { return getToken(VicuschiLexParser.INT, 0); }
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode INT() { return getToken(VicuschiParser.INT, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public Integer_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_integer_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterInteger_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterInteger_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitInteger_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitInteger_declaration(this);
 		}
 	}
 
@@ -2019,19 +2025,19 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Float_declarationContext extends ParserRuleContext {
-		public TerminalNode FLOAT() { return getToken(VicuschiLexParser.FLOAT, 0); }
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode FLOAT() { return getToken(VicuschiParser.FLOAT, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public Float_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_float_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterFloat_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterFloat_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitFloat_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFloat_declaration(this);
 		}
 	}
 
@@ -2059,19 +2065,19 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class String_declarationContext extends ParserRuleContext {
-		public TerminalNode STRING() { return getToken(VicuschiLexParser.STRING, 0); }
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode STRING() { return getToken(VicuschiParser.STRING, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public String_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_string_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterString_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterString_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitString_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitString_declaration(this);
 		}
 	}
 
@@ -2099,19 +2105,19 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Boolean_declarationContext extends ParserRuleContext {
-		public TerminalNode BOOLEAN() { return getToken(VicuschiLexParser.BOOLEAN, 0); }
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode BOOLEAN() { return getToken(VicuschiParser.BOOLEAN, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public Boolean_declarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_boolean_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterBoolean_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterBoolean_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitBoolean_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitBoolean_declaration(this);
 		}
 	}
 
@@ -2151,11 +2157,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_declaration_attribution; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterDeclaration_attribution(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterDeclaration_attribution(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitDeclaration_attribution(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDeclaration_attribution(this);
 		}
 	}
 
@@ -2183,7 +2189,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Integer_array_declarationContext extends ParserRuleContext {
-		public TerminalNode INT() { return getToken(VicuschiLexParser.INT, 0); }
+		public TerminalNode INT() { return getToken(VicuschiParser.INT, 0); }
 		public Generic_arrayContext generic_array() {
 			return getRuleContext(Generic_arrayContext.class,0);
 		}
@@ -2193,11 +2199,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_integer_array_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterInteger_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterInteger_array_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitInteger_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitInteger_array_declaration(this);
 		}
 	}
 
@@ -2225,7 +2231,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Float_array_declarationContext extends ParserRuleContext {
-		public TerminalNode FLOAT() { return getToken(VicuschiLexParser.FLOAT, 0); }
+		public TerminalNode FLOAT() { return getToken(VicuschiParser.FLOAT, 0); }
 		public Generic_arrayContext generic_array() {
 			return getRuleContext(Generic_arrayContext.class,0);
 		}
@@ -2235,11 +2241,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_float_array_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterFloat_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterFloat_array_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitFloat_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFloat_array_declaration(this);
 		}
 	}
 
@@ -2267,7 +2273,7 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class String_array_declarationContext extends ParserRuleContext {
-		public TerminalNode STRING() { return getToken(VicuschiLexParser.STRING, 0); }
+		public TerminalNode STRING() { return getToken(VicuschiParser.STRING, 0); }
 		public Generic_arrayContext generic_array() {
 			return getRuleContext(Generic_arrayContext.class,0);
 		}
@@ -2277,11 +2283,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_string_array_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterString_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterString_array_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitString_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitString_array_declaration(this);
 		}
 	}
 
@@ -2318,11 +2324,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_boolean_array_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterBoolean_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterBoolean_array_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitBoolean_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitBoolean_array_declaration(this);
 		}
 	}
 
@@ -2371,11 +2377,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_generic_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterGeneric_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterGeneric_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitGeneric_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_declaration(this);
 		}
 	}
 
@@ -2435,19 +2441,19 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class Generic_arrayContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
-		public TerminalNode INDEX() { return getToken(VicuschiLexParser.INDEX, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
+		public TerminalNode INDEX() { return getToken(VicuschiParser.INDEX, 0); }
 		public Generic_arrayContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_generic_array; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterGeneric_array(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterGeneric_array(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitGeneric_array(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_array(this);
 		}
 	}
 
@@ -2493,11 +2499,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_generic_array_declaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterGeneric_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterGeneric_array_declaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitGeneric_array_declaration(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_array_declaration(this);
 		}
 	}
 
@@ -2555,7 +2561,7 @@ public class VicuschiLexParser extends Parser {
 		public AttributionContext attribution() {
 			return getRuleContext(AttributionContext.class,0);
 		}
-		public TerminalNode ID() { return getToken(VicuschiLexParser.ID, 0); }
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public Generic_arrayContext generic_array() {
 			return getRuleContext(Generic_arrayContext.class,0);
 		}
@@ -2565,11 +2571,11 @@ public class VicuschiLexParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_generic_attribution; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterGeneric_attribution(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterGeneric_attribution(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitGeneric_attribution(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_attribution(this);
 		}
 	}
 
@@ -2611,21 +2617,21 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class LiteralContext extends ParserRuleContext {
-		public TerminalNode ARRAY() { return getToken(VicuschiLexParser.ARRAY, 0); }
-		public TerminalNode BOOL() { return getToken(VicuschiLexParser.BOOL, 0); }
-		public TerminalNode NUMBER() { return getToken(VicuschiLexParser.NUMBER, 0); }
-		public TerminalNode STRING() { return getToken(VicuschiLexParser.STRING, 0); }
+		public TerminalNode ARRAY() { return getToken(VicuschiParser.ARRAY, 0); }
+		public TerminalNode BOOL() { return getToken(VicuschiParser.BOOL, 0); }
+		public TerminalNode NUMBER() { return getToken(VicuschiParser.NUMBER, 0); }
+		public TerminalNode STRING() { return getToken(VicuschiParser.STRING, 0); }
 		public LiteralContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_literal; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterLiteral(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterLiteral(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitLiteral(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLiteral(this);
 		}
 	}
 
@@ -2660,23 +2666,23 @@ public class VicuschiLexParser extends Parser {
 	}
 
 	public static class ComparatorContext extends ParserRuleContext {
-		public TerminalNode MAJOR() { return getToken(VicuschiLexParser.MAJOR, 0); }
-		public TerminalNode MINOR() { return getToken(VicuschiLexParser.MINOR, 0); }
-		public TerminalNode EQUALS() { return getToken(VicuschiLexParser.EQUALS, 0); }
-		public TerminalNode MAJOR_EQUALS() { return getToken(VicuschiLexParser.MAJOR_EQUALS, 0); }
-		public TerminalNode MINOR_EQUALS() { return getToken(VicuschiLexParser.MINOR_EQUALS, 0); }
-		public TerminalNode DIFFERENT() { return getToken(VicuschiLexParser.DIFFERENT, 0); }
+		public TerminalNode MAJOR() { return getToken(VicuschiParser.MAJOR, 0); }
+		public TerminalNode MINOR() { return getToken(VicuschiParser.MINOR, 0); }
+		public TerminalNode EQUALS() { return getToken(VicuschiParser.EQUALS, 0); }
+		public TerminalNode MAJOR_EQUALS() { return getToken(VicuschiParser.MAJOR_EQUALS, 0); }
+		public TerminalNode MINOR_EQUALS() { return getToken(VicuschiParser.MINOR_EQUALS, 0); }
+		public TerminalNode DIFFERENT() { return getToken(VicuschiParser.DIFFERENT, 0); }
 		public ComparatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_comparator; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).enterComparator(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterComparator(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof VicuschiLexListener ) ((VicuschiLexListener)listener).exitComparator(this);
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitComparator(this);
 		}
 	}
 
@@ -2796,9 +2802,9 @@ public class VicuschiLexParser extends Parser {
 		"\2\u00fb\u00fc\5:\36\2\u00fc9\3\2\2\2\u00fd\u00fe\7\'\2\2\u00fe\u0100"+
 		"\58\35\2\u00ff\u00fd\3\2\2\2\u00ff\u0100\3\2\2\2\u0100;\3\2\2\2\u0101"+
 		"\u0102\7\6\2\2\u0102\u0103\5\64\33\2\u0103\u0104\7\7\2\2\u0104\u0110\3"+
-		"\2\2\2\u0105\u0106\7\t\2\2\u0106\u0110\5\64\33\2\u0107\u0110\7\61\2\2"+
-		"\u0108\u0110\7-\2\2\u0109\u0110\7,\2\2\u010a\u0110\5> \2\u010b\u010c\t"+
-		"\4\2\2\u010c\u010d\5\\/\2\u010d\u010e\t\4\2\2\u010e\u0110\3\2\2\2\u010f"+
+		"\2\2\2\u0105\u0106\7\t\2\2\u0106\u0110\5\64\33\2\u0107\u0110\5\30\r\2"+
+		"\u0108\u0110\5\32\16\2\u0109\u0110\7,\2\2\u010a\u0110\5> \2\u010b\u010c"+
+		"\t\4\2\2\u010c\u010d\5\\/\2\u010d\u010e\t\4\2\2\u010e\u0110\3\2\2\2\u010f"+
 		"\u0101\3\2\2\2\u010f\u0105\3\2\2\2\u010f\u0107\3\2\2\2\u010f\u0108\3\2"+
 		"\2\2\u010f\u0109\3\2\2\2\u010f\u010a\3\2\2\2\u010f\u010b\3\2\2\2\u0110"+
 		"=\3\2\2\2\u0111\u0114\7\t\2\2\u0112\u0115\7\61\2\2\u0113\u0115\5T+\2\u0114"+

@@ -1,567 +1,567 @@
-// Generated from VicuschiLex.g4 by ANTLR 4.7.1
+// Generated from Vicuschi.g4 by ANTLR 4.7.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link VicuschiLexListener},
+ * This class provides an empty implementation of {@link VicuschiListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class VicuschiLexBaseListener implements VicuschiLexListener {
+public class VicuschiBaseListener implements VicuschiListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterR(VicuschiLexParser.RContext ctx) { }
+	@Override public void enterR(VicuschiParser.RContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitR(VicuschiLexParser.RContext ctx) { }
+	@Override public void exitR(VicuschiParser.RContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStmt(VicuschiLexParser.StmtContext ctx) { }
+	@Override public void enterStmt(VicuschiParser.StmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStmt(VicuschiLexParser.StmtContext ctx) { }
+	@Override public void exitStmt(VicuschiParser.StmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimple_stmt(VicuschiLexParser.Simple_stmtContext ctx) { }
+	@Override public void enterSimple_stmt(VicuschiParser.Simple_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimple_stmt(VicuschiLexParser.Simple_stmtContext ctx) { }
+	@Override public void exitSimple_stmt(VicuschiParser.Simple_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImport_declaration(VicuschiLexParser.Import_declarationContext ctx) { }
+	@Override public void enterImport_declaration(VicuschiParser.Import_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImport_declaration(VicuschiLexParser.Import_declarationContext ctx) { }
+	@Override public void exitImport_declaration(VicuschiParser.Import_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArith_expr(VicuschiLexParser.Arith_exprContext ctx) { }
+	@Override public void enterArith_expr(VicuschiParser.Arith_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArith_expr(VicuschiLexParser.Arith_exprContext ctx) { }
+	@Override public void exitArith_expr(VicuschiParser.Arith_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArith_expr_1(VicuschiLexParser.Arith_expr_1Context ctx) { }
+	@Override public void enterArith_expr_1(VicuschiParser.Arith_expr_1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArith_expr_1(VicuschiLexParser.Arith_expr_1Context ctx) { }
+	@Override public void exitArith_expr_1(VicuschiParser.Arith_expr_1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTerm(VicuschiLexParser.TermContext ctx) { }
+	@Override public void enterTerm(VicuschiParser.TermContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTerm(VicuschiLexParser.TermContext ctx) { }
+	@Override public void exitTerm(VicuschiParser.TermContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTerm_a(VicuschiLexParser.Term_aContext ctx) { }
+	@Override public void enterTerm_a(VicuschiParser.Term_aContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTerm_a(VicuschiLexParser.Term_aContext ctx) { }
+	@Override public void exitTerm_a(VicuschiParser.Term_aContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFactor(VicuschiLexParser.FactorContext ctx) { }
+	@Override public void enterFactor(VicuschiParser.FactorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFactor(VicuschiLexParser.FactorContext ctx) { }
+	@Override public void exitFactor(VicuschiParser.FactorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFactor_a(VicuschiLexParser.Factor_aContext ctx) { }
+	@Override public void enterFactor_a(VicuschiParser.Factor_aContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFactor_a(VicuschiLexParser.Factor_aContext ctx) { }
+	@Override public void exitFactor_a(VicuschiParser.Factor_aContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterR_arith(VicuschiLexParser.R_arithContext ctx) { }
+	@Override public void enterR_arith(VicuschiParser.R_arithContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitR_arith(VicuschiLexParser.R_arithContext ctx) { }
+	@Override public void exitR_arith(VicuschiParser.R_arithContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArith_id(VicuschiLexParser.Arith_idContext ctx) { }
+	@Override public void enterArith_id(VicuschiParser.Arith_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArith_id(VicuschiLexParser.Arith_idContext ctx) { }
+	@Override public void exitArith_id(VicuschiParser.Arith_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArith_number(VicuschiLexParser.Arith_numberContext ctx) { }
+	@Override public void enterArith_number(VicuschiParser.Arith_numberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArith_number(VicuschiLexParser.Arith_numberContext ctx) { }
+	@Override public void exitArith_number(VicuschiParser.Arith_numberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction_call(VicuschiLexParser.Function_callContext ctx) { }
+	@Override public void enterFunction_call(VicuschiParser.Function_callContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction_call(VicuschiLexParser.Function_callContext ctx) { }
+	@Override public void exitFunction_call(VicuschiParser.Function_callContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction_declaration(VicuschiLexParser.Function_declarationContext ctx) { }
+	@Override public void enterFunction_declaration(VicuschiParser.Function_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction_declaration(VicuschiLexParser.Function_declarationContext ctx) { }
+	@Override public void exitFunction_declaration(VicuschiParser.Function_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaration_params(VicuschiLexParser.Declaration_paramsContext ctx) { }
+	@Override public void enterDeclaration_params(VicuschiParser.Declaration_paramsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclaration_params(VicuschiLexParser.Declaration_paramsContext ctx) { }
+	@Override public void exitDeclaration_params(VicuschiParser.Declaration_paramsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParams(VicuschiLexParser.ParamsContext ctx) { }
+	@Override public void enterParams(VicuschiParser.ParamsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParams(VicuschiLexParser.ParamsContext ctx) { }
+	@Override public void exitParams(VicuschiParser.ParamsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttributed(VicuschiLexParser.AttributedContext ctx) { }
+	@Override public void enterAttributed(VicuschiParser.AttributedContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttributed(VicuschiLexParser.AttributedContext ctx) { }
+	@Override public void exitAttributed(VicuschiParser.AttributedContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttribution(VicuschiLexParser.AttributionContext ctx) { }
+	@Override public void enterAttribution(VicuschiParser.AttributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttribution(VicuschiLexParser.AttributionContext ctx) { }
+	@Override public void exitAttribution(VicuschiParser.AttributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnary_expression(VicuschiLexParser.Unary_expressionContext ctx) { }
+	@Override public void enterUnary_expression(VicuschiParser.Unary_expressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnary_expression(VicuschiLexParser.Unary_expressionContext ctx) { }
+	@Override public void exitUnary_expression(VicuschiParser.Unary_expressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecrement(VicuschiLexParser.DecrementContext ctx) { }
+	@Override public void enterDecrement(VicuschiParser.DecrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecrement(VicuschiLexParser.DecrementContext ctx) { }
+	@Override public void exitDecrement(VicuschiParser.DecrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIncrement(VicuschiLexParser.IncrementContext ctx) { }
+	@Override public void enterIncrement(VicuschiParser.IncrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIncrement(VicuschiLexParser.IncrementContext ctx) { }
+	@Override public void exitIncrement(VicuschiParser.IncrementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIf_declaration(VicuschiLexParser.If_declarationContext ctx) { }
+	@Override public void enterIf_declaration(VicuschiParser.If_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIf_declaration(VicuschiLexParser.If_declarationContext ctx) { }
+	@Override public void exitIf_declaration(VicuschiParser.If_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterWhile_declaration(VicuschiLexParser.While_declarationContext ctx) { }
+	@Override public void enterWhile_declaration(VicuschiParser.While_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitWhile_declaration(VicuschiLexParser.While_declarationContext ctx) { }
+	@Override public void exitWhile_declaration(VicuschiParser.While_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFor_declaration(VicuschiLexParser.For_declarationContext ctx) { }
+	@Override public void enterFor_declaration(VicuschiParser.For_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFor_declaration(VicuschiLexParser.For_declarationContext ctx) { }
+	@Override public void exitFor_declaration(VicuschiParser.For_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogic_expr(VicuschiLexParser.Logic_exprContext ctx) { }
+	@Override public void enterLogic_expr(VicuschiParser.Logic_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogic_expr(VicuschiLexParser.Logic_exprContext ctx) { }
+	@Override public void exitLogic_expr(VicuschiParser.Logic_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogic_expr_1(VicuschiLexParser.Logic_expr_1Context ctx) { }
+	@Override public void enterLogic_expr_1(VicuschiParser.Logic_expr_1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogic_expr_1(VicuschiLexParser.Logic_expr_1Context ctx) { }
+	@Override public void exitLogic_expr_1(VicuschiParser.Logic_expr_1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogic_term(VicuschiLexParser.Logic_termContext ctx) { }
+	@Override public void enterLogic_term(VicuschiParser.Logic_termContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogic_term(VicuschiLexParser.Logic_termContext ctx) { }
+	@Override public void exitLogic_term(VicuschiParser.Logic_termContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogic_term_a(VicuschiLexParser.Logic_term_aContext ctx) { }
+	@Override public void enterLogic_term_a(VicuschiParser.Logic_term_aContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogic_term_a(VicuschiLexParser.Logic_term_aContext ctx) { }
+	@Override public void exitLogic_term_a(VicuschiParser.Logic_term_aContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterR_logic(VicuschiLexParser.R_logicContext ctx) { }
+	@Override public void enterR_logic(VicuschiParser.R_logicContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitR_logic(VicuschiLexParser.R_logicContext ctx) { }
+	@Override public void exitR_logic(VicuschiParser.R_logicContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNot_id(VicuschiLexParser.Not_idContext ctx) { }
+	@Override public void enterNot_id(VicuschiParser.Not_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNot_id(VicuschiLexParser.Not_idContext ctx) { }
+	@Override public void exitNot_id(VicuschiParser.Not_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInteger_declaration(VicuschiLexParser.Integer_declarationContext ctx) { }
+	@Override public void enterInteger_declaration(VicuschiParser.Integer_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInteger_declaration(VicuschiLexParser.Integer_declarationContext ctx) { }
+	@Override public void exitInteger_declaration(VicuschiParser.Integer_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFloat_declaration(VicuschiLexParser.Float_declarationContext ctx) { }
+	@Override public void enterFloat_declaration(VicuschiParser.Float_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFloat_declaration(VicuschiLexParser.Float_declarationContext ctx) { }
+	@Override public void exitFloat_declaration(VicuschiParser.Float_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterString_declaration(VicuschiLexParser.String_declarationContext ctx) { }
+	@Override public void enterString_declaration(VicuschiParser.String_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitString_declaration(VicuschiLexParser.String_declarationContext ctx) { }
+	@Override public void exitString_declaration(VicuschiParser.String_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolean_declaration(VicuschiLexParser.Boolean_declarationContext ctx) { }
+	@Override public void enterBoolean_declaration(VicuschiParser.Boolean_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolean_declaration(VicuschiLexParser.Boolean_declarationContext ctx) { }
+	@Override public void exitBoolean_declaration(VicuschiParser.Boolean_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaration_attribution(VicuschiLexParser.Declaration_attributionContext ctx) { }
+	@Override public void enterDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclaration_attribution(VicuschiLexParser.Declaration_attributionContext ctx) { }
+	@Override public void exitDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInteger_array_declaration(VicuschiLexParser.Integer_array_declarationContext ctx) { }
+	@Override public void enterInteger_array_declaration(VicuschiParser.Integer_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInteger_array_declaration(VicuschiLexParser.Integer_array_declarationContext ctx) { }
+	@Override public void exitInteger_array_declaration(VicuschiParser.Integer_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFloat_array_declaration(VicuschiLexParser.Float_array_declarationContext ctx) { }
+	@Override public void enterFloat_array_declaration(VicuschiParser.Float_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFloat_array_declaration(VicuschiLexParser.Float_array_declarationContext ctx) { }
+	@Override public void exitFloat_array_declaration(VicuschiParser.Float_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterString_array_declaration(VicuschiLexParser.String_array_declarationContext ctx) { }
+	@Override public void enterString_array_declaration(VicuschiParser.String_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitString_array_declaration(VicuschiLexParser.String_array_declarationContext ctx) { }
+	@Override public void exitString_array_declaration(VicuschiParser.String_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolean_array_declaration(VicuschiLexParser.Boolean_array_declarationContext ctx) { }
+	@Override public void enterBoolean_array_declaration(VicuschiParser.Boolean_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolean_array_declaration(VicuschiLexParser.Boolean_array_declarationContext ctx) { }
+	@Override public void exitBoolean_array_declaration(VicuschiParser.Boolean_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGeneric_declaration(VicuschiLexParser.Generic_declarationContext ctx) { }
+	@Override public void enterGeneric_declaration(VicuschiParser.Generic_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGeneric_declaration(VicuschiLexParser.Generic_declarationContext ctx) { }
+	@Override public void exitGeneric_declaration(VicuschiParser.Generic_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGeneric_array(VicuschiLexParser.Generic_arrayContext ctx) { }
+	@Override public void enterGeneric_array(VicuschiParser.Generic_arrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGeneric_array(VicuschiLexParser.Generic_arrayContext ctx) { }
+	@Override public void exitGeneric_array(VicuschiParser.Generic_arrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGeneric_array_declaration(VicuschiLexParser.Generic_array_declarationContext ctx) { }
+	@Override public void enterGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGeneric_array_declaration(VicuschiLexParser.Generic_array_declarationContext ctx) { }
+	@Override public void exitGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGeneric_attribution(VicuschiLexParser.Generic_attributionContext ctx) { }
+	@Override public void enterGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGeneric_attribution(VicuschiLexParser.Generic_attributionContext ctx) { }
+	@Override public void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLiteral(VicuschiLexParser.LiteralContext ctx) { }
+	@Override public void enterLiteral(VicuschiParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLiteral(VicuschiLexParser.LiteralContext ctx) { }
+	@Override public void exitLiteral(VicuschiParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComparator(VicuschiLexParser.ComparatorContext ctx) { }
+	@Override public void enterComparator(VicuschiParser.ComparatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComparator(VicuschiLexParser.ComparatorContext ctx) { }
+	@Override public void exitComparator(VicuschiParser.ComparatorContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,4 +1,4 @@
-grammar VicuschiLex;
+grammar Vicuschi;
 
 r : stmt;
 
