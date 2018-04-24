@@ -15,7 +15,7 @@ public class Main {
 		}
 
 		CharStream stream = new ANTLRInputStream(readFile(args[0]));
-		VicuschiLexLexer lexer = new VicuschiLexLexer(stream);
+		VicuschiLexer lexer = new VicuschiLexer(stream);
 		System.out.printf("\n");
 
 		Token t = lexer.nextToken();
