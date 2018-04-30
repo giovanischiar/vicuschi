@@ -1,0 +1,5 @@
+int print(string a, int b) {
+	
+}
+
+print("hello world");

@@ -1,6 +1,6 @@
 grammar Vicuschi;
 
-r : stmt;
+program : stmt;
 
 //parser
 
@@ -53,16 +53,25 @@ arith_number
 
 
 function_call
-	: ID '(' params? ')';
+	: ID '(' params? ')' { if (lookup(ID).nparams != params.nparams) throw RecognitionException("ta errado!"); }
+	;
+
 
 function_declaration
-	: generic_declaration '(' declaration_params? ')' WS? stmt ENDF;
+	: generic_declaration '(' declaration_params? ')' WS? stmt ENDF
+	{ generic_declaration.nparams = lookup(declaration_params.nparams); }
+	;
+
 
 declaration_params
-	: generic_declaration (',' WS? generic_declaration)*;
+	: generic_declaration (',' WS? generic_declaration)*
+	{ declaration_params.nparams = count(generic_declaration); }
+	;
 
 params
-	: attributed (',' WS? attributed)*;
+	: attributed (',' WS? attributed)*
+	{ params.nparams = count(attributed); }
+	;
 
 attributed
 	: (literal | unary_expression | logic_expr | function_call | arith_expr);
@@ -113,7 +122,9 @@ r_logic
 not_id : '!' (ID | generic_array);
 
 integer_declaration 
-	: INT ID;
+	: INT ID
+	{ ID[0].nparams = lookup(integer_declaration.nparams); }
+	;
 
 float_declaration 
 	: FLOAT ID;
@@ -141,10 +152,12 @@ boolean_array_declaration
 
 generic_declaration 
 	: integer_declaration 
+	{ integer_declaration.nparams = lookup(generic_declaration.nparams); }
 	| float_declaration 
 	| string_declaration
 	| boolean_declaration 
-	| generic_array_declaration;
+	| generic_array_declaration
+	;
 
 generic_array : ID INDEX;
 
@@ -161,7 +174,7 @@ literal
 	: ARRAY 
 	| BOOL 
 	| NUMBER 
-	| STRING;
+	| WORD;
 
 comparator
  	: MAJOR

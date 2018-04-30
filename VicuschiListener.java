@@ -7,15 +7,15 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface VicuschiListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link VicuschiParser#r}.
+	 * Enter a parse tree produced by {@link VicuschiParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void enterR(VicuschiParser.RContext ctx);
+	void enterProgram(VicuschiParser.ProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link VicuschiParser#r}.
+	 * Exit a parse tree produced by {@link VicuschiParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void exitR(VicuschiParser.RContext ctx);
+	void exitProgram(VicuschiParser.ProgramContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#stmt}.
 	 * @param ctx the parse tree

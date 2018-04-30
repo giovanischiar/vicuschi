@@ -15,13 +15,13 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterR(VicuschiParser.RContext ctx) { }
+	@Override public void enterProgram(VicuschiParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitR(VicuschiParser.RContext ctx) { }
+	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
