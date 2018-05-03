@@ -1,3 +1,11 @@
+Uso de variavel nao declarado: lookup(ID) != null no uso
+Uso de variavel sem valor (ex.: {int x; x++}): lookup(ID.val) != null no uso
+Declaracao dupla de variavel: como usamos generic_array, foi atribuido o valor de lookup(ID) ao generic_array.declared, e este é verificado se == null na declaracao (quando a declaracao eh de ID, apenas verifico se o lookup(ID) != null)
+
+***Mudar function_declaration para tirar o generic_declaration dali? (Se sim, adicionar gram. de atributos ao function_declaration)****
+
+
+
 arith_expr
 	: (ID | NUMBER) (('+' | '-' | '*' | '/' | '^') (ID | NUMBER))+;
 

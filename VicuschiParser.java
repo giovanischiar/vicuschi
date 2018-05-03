@@ -135,11 +135,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitProgram(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitProgram(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -181,11 +176,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitStmt(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitStmt(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -267,11 +257,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitSimple_stmt(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitSimple_stmt(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -380,11 +365,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitImport_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitImport_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Import_declarationContext import_declaration() throws RecognitionException {
@@ -429,11 +409,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_expr(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitArith_expr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Arith_exprContext arith_expr() throws RecognitionException {
@@ -474,11 +449,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_expr_1(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitArith_expr_1(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -541,11 +511,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitTerm(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitTerm(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final TermContext term() throws RecognitionException {
@@ -586,11 +551,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitTerm_a(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitTerm_a(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -653,11 +613,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFactor(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFactor(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FactorContext factor() throws RecognitionException {
@@ -698,11 +653,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFactor_a(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFactor_a(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -759,11 +709,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitR_arith(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitR_arith(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -828,11 +773,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_id(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitArith_id(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Arith_idContext arith_id() throws RecognitionException {
@@ -890,11 +830,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_number(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitArith_number(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -954,11 +889,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFunction_call(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFunction_call(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1022,11 +952,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFunction_declaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFunction_declaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1104,11 +1029,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDeclaration_params(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitDeclaration_params(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Declaration_paramsContext declaration_params() throws RecognitionException {
@@ -1182,11 +1102,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitParams(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitParams(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1267,11 +1182,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitAttributed(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitAttributed(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AttributedContext attributed() throws RecognitionException {
@@ -1344,11 +1254,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitAttribution(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitAttribution(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AttributionContext attribution() throws RecognitionException {
@@ -1392,11 +1297,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitUnary_expression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitUnary_expression(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1448,11 +1348,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDecrement(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitDecrement(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1510,11 +1405,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitIncrement(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitIncrement(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1579,11 +1469,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitIf_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitIf_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final If_declarationContext if_declaration() throws RecognitionException {
@@ -1634,11 +1519,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitWhile_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitWhile_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final While_declarationContext while_declaration() throws RecognitionException {
@@ -1687,11 +1567,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFor_declaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFor_declaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1754,11 +1629,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_expr(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLogic_expr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Logic_exprContext logic_expr() throws RecognitionException {
@@ -1800,11 +1670,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_expr_1(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLogic_expr_1(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1858,11 +1723,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_term(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLogic_term(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Logic_termContext logic_term() throws RecognitionException {
@@ -1904,11 +1764,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_term_a(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLogic_term_a(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1979,11 +1834,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitR_logic(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitR_logic(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2100,11 +1950,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitNot_id(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitNot_id(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Not_idContext not_id() throws RecognitionException {
@@ -2159,11 +2004,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitInteger_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitInteger_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Integer_declarationContext integer_declaration() throws RecognitionException {
@@ -2205,11 +2045,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFloat_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFloat_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Float_declarationContext float_declaration() throws RecognitionException {
@@ -2250,11 +2085,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitString_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitString_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final String_declarationContext string_declaration() throws RecognitionException {
@@ -2294,11 +2124,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitBoolean_declaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitBoolean_declaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2344,11 +2169,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDeclaration_attribution(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitDeclaration_attribution(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Declaration_attributionContext declaration_attribution() throws RecognitionException {
@@ -2390,11 +2210,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitInteger_array_declaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitInteger_array_declaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2438,11 +2253,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFloat_array_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFloat_array_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Float_array_declarationContext float_array_declaration() throws RecognitionException {
@@ -2485,11 +2295,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitString_array_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitString_array_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final String_array_declarationContext string_array_declaration() throws RecognitionException {
@@ -2530,11 +2335,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitBoolean_array_declaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitBoolean_array_declaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2588,11 +2388,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_declaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_declaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2667,11 +2462,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_array(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_array(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Generic_arrayContext generic_array() throws RecognitionException {
@@ -2721,11 +2511,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_array_declaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_array_declaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2799,11 +2584,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_attribution(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_attribution(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Generic_attributionContext generic_attribution() throws RecognitionException {
@@ -2860,11 +2640,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLiteral(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLiteral(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LiteralContext literal() throws RecognitionException {
@@ -2915,11 +2690,6 @@ public class VicuschiParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitComparator(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitComparator(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 

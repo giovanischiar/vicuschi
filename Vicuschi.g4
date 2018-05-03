@@ -46,20 +46,20 @@ r_arith
 	| arith_number;
 
 arith_id
-	: (UNARY_PLUS | UNARY_MINUS)? ID;
+	: (UNARY_PLUS | UNARY_MINUS)? ID {lookup(ID) != null; lookup(ID.val) != null};
 
 arith_number
 	: (UNARY_PLUS | UNARY_MINUS)? NUMBER;
 
 
-function_call
-	: ID '(' params? ')' { if (lookup(ID).nparams != params.nparams) throw RecognitionException("ta errado!"); }
+function_call 
+	: ID '(' params? ')' { lookup(ID.nparams) != lookup(params.nparams); lookup(ID) != null }
 	;
 
 
 function_declaration
 	: generic_declaration '(' declaration_params? ')' WS? stmt ENDF
-	{ generic_declaration.nparams = lookup(declaration_params.nparams); }
+	{ generic_declaration.nparams = lookup(declaration_params.nparams)}
 	;
 
 
@@ -84,10 +84,10 @@ unary_expression
 	| increment;
 
 decrement
-	: DECREMENT ID | ID DECREMENT;
+	: DECREMENT ID | ID DECREMENT {lookup(ID) != null; lookup(ID.val) != null};
 
 increment
-	: INCREMENT ID | ID INCREMENT;
+	: INCREMENT ID | ID INCREMENT {lookup(ID) != null; lookup(ID.val) != null};
 
 if_declaration
 	: IF logic_expr stmt ENDIF;
@@ -96,7 +96,7 @@ while_declaration
 	: WHILE logic_expr stmt ENDWHILE;
 
 for_declaration
-	: FOR ID? ':' INTERVAL stmt ENDFOR;
+	: FOR ID? ':' INTERVAL stmt ENDFOR {lookup(ID) != null};
 
 logic_expr
 	: logic_term logic_expr_1;
@@ -117,49 +117,53 @@ r_logic
 	| arith_number
 	| BOOL
 	| not_id
-	| (ID | NUMBER) comparator (ID | NUMBER);
+	| (ID | NUMBER) comparator (ID | NUMBER) {lookup(ID[1]) != null; lookup(ID[2]) != null; lookup(ID[1].val) != null; lookup(ID[2].val) != null};
 
-not_id : '!' (ID | generic_array);
+not_id : '!' (ID | generic_array){lookup(ID) != null; lookup(ID.val) != null};
 
 integer_declaration 
 	: INT ID
-	{ ID[0].nparams = lookup(integer_declaration.nparams); }
+	{ ID.nparams = lookup(integer_declaration.nparams); lookup(ID) == null}
 	;
 
 float_declaration 
-	: FLOAT ID;
+	: FLOAT ID {lookup(ID) == null};
 
 string_declaration 
-	: STRING ID;
+	: STRING ID {lookup(ID) == null};
 
 boolean_declaration 
-	: BOOLEAN ID;
+	: BOOLEAN ID {lookup(ID) == null};
 
 declaration_attribution 
 	: generic_declaration attribution;
 
 integer_array_declaration 
-	: INT generic_array;
+	: INT generic_array {lookup(generic_array.declared) == null};
 
 float_array_declaration 
-	: FLOAT generic_array;
+	: FLOAT generic_array {lookup(generic_array.declared) == null};
 
 string_array_declaration 
-	: STRING generic_array;
+	: STRING generic_array {lookup(generic_array.declared) == null};
 
 boolean_array_declaration 
-	: 'boolean' generic_array;
+	: BOOLEAN generic_array {lookup(generic_array.declared) == null};
 
 generic_declaration 
 	: integer_declaration 
-	{ integer_declaration.nparams = lookup(generic_declaration.nparams); }
+	{ integer_declaration.nparams = lookup(generic_declaration.nparams)}
 	| float_declaration 
+	{ float_declaration.nparams = lookup(generic_declaration.nparams)}
 	| string_declaration
+	{ string_declaration.nparams = lookup(generic_declaration.nparams)}
 	| boolean_declaration 
+	{ boolean_declaration.nparams = lookup(generic_declaration.nparams)}
 	| generic_array_declaration
+	{ generic_array_declaration.nparams = lookup(generic_declaration.nparams)}
 	;
 
-generic_array : ID INDEX;
+generic_array : ID INDEX {generic_array.declared = lookup(ID)};
 
 generic_array_declaration 
 	: integer_array_declaration
@@ -168,7 +172,7 @@ generic_array_declaration
   	| boolean_array_declaration;
 
 generic_attribution 
-	: (ID | generic_array) attribution;
+	: (ID | generic_array) attribution {lookup(ID) != null OR lookup(generic_array.declared) != null};
 
 literal 
 	: ARRAY 
