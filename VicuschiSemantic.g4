@@ -212,6 +212,7 @@ generic_unary_declaration
 generic_array : ID INDEX;
 				{ generic_array.declared = lookup(ID) }
 				{ ID.hasValue = lookup(generic_array.hasValue) }
+				{ generic_array.expectedType = lookup(ID.type) }
 
 generic_array_declaration 
 	: integer_array_declaration
@@ -222,11 +223,13 @@ generic_array_declaration
 attribuition_id
 	: ID attribution {lookup(ID) != null };
 	  { ID.hasValue = true }
+	  { ID.expectedType = lookup(ID.type) }
 
 attribuition_array
 	: generic_array attribution 
 	  { lookup(generic_array.declared) != null;
-	    generic_array.hasValue = true };
+	    generic_array.hasValue = true 
+	    attribuition_array.expectedType = lookup(generic_array.expectedType)};
 
 generic_attribution 
 	: attribution_array
