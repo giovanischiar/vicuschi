@@ -1,9 +1,40 @@
 Uso de variavel nao declarado: lookup(ID) != null no uso
 Uso de variavel sem valor (ex.: {int x; x++}): lookup(ID.val) != null no uso
-Declaracao dupla de variavel: como usamos generic_array, foi atribuido o valor de lookup(ID) ao generic_array.declared, e este é verificado se == null na declaracao (quando a declaracao eh de ID, apenas verifico se o lookup(ID) != null)
+Declaracao dupla de variavel: como usamos generic_array, foi atribuido o valor de lookup(ID) ao generic_array.declared, e este é verificado se == null na declaracao (quando a declaracao eh de ID, apenas verifico se o lookup(ID) == null)
+
+*** revisar gramática a partir da VicuschiSemantic.g4 (manualmente);
+
+*** remover arith_id do r_logic;
 
 ***Mudar function_declaration para tirar o generic_declaration dali? (Se sim, adicionar gram. de atributos ao function_declaration)****
+(int foo[2]() é uma construção válida sintaticamente)
 
+generic_declaration 
+	: generic_unary_declaration
+	{ generic_unary_declaration.nparams = lookup(generic_declaration.nparams)}
+	| generic_array_declaration
+	{ generic_array_declaration.nparams = lookup(generic_declaration.nparams)}
+	;
+
+generic_unary_declaration
+	: integer_declaration 
+	{ integer_declaration.nparams = lookup(generic_unary_declaration.nparams)}
+	| float_declaration 
+	{ float_declaration.nparams = lookup(generic_unary_declaration.nparams)}
+	| string_declaration
+	{ string_declaration.nparams = lookup(generic_unary_declaration.nparams)}
+	| boolean_declaration 
+	{ boolean_declaration.nparams = lookup(generic_unary_declaration.nparams)}
+	;
+
+function_declaration
+	: generic_unary_declaration '(' declaration_params? ')' WS? stmt ENDF
+	{ generic_unary_declaration.nparams = lookup(declaration_params.nparams)}
+	;
+
+string func(int a, int b, int c);
+
+string b = func(1);
 
 
 arith_expr
