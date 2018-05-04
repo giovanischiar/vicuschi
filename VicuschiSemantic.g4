@@ -75,7 +75,7 @@ function_call
 
 function_declaration
 	: generic_unary_declaration '(' declaration_params? ')' WS? stmt ENDF
-	{ generic_declaration.nparams = lookup(declaration_params.nparams)}
+	{ generic_unary_declaration.nparams = lookup(declaration_params.nparams)}
 	;
 
 
