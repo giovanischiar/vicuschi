@@ -1,5 +1,5 @@
 Uso de variavel nao declarado: lookup(ID) != null no uso
-Uso de variavel sem valor (ex.: {int x; x++}): lookup(ID.val) != null no uso
+Uso de variavel sem valor (ex.: {int x; x++}): lookup(ID.hasValue) == null no uso
 Declaracao dupla de variavel: como usamos generic_array, foi atribuido o valor de lookup(ID) ao generic_array.declared, e este é verificado se == null na declaracao (quando a declaracao eh de ID, apenas verifico se o lookup(ID) == null)
 
 *** revisar gramática a partir da VicuschiSemantic.g4 (manualmente);
