@@ -57,7 +57,7 @@ r_arith
 	| arith_id 
 	  { r_arith.type = lookup(arith_id.type) }
 	| arith_number;
-	  { r_arith.type = lookup(arith_number.type) }
+	  { r_arith.type = float }
 
 arith_id
 	: (UNARY_PLUS | UNARY_MINUS)? ID 
@@ -70,6 +70,7 @@ arith_number
 
 function_call 
 	: ID '(' params? ')' { lookup(ID.nparams) != lookup(params.nparams); lookup(ID) != null }
+						{ function_call.type = lookup(ID.type) }
 	;
 
 
@@ -91,15 +92,15 @@ params
 
 attributed
 	: literal 
-	  { attributed.type = literal.type }
+	  { attributed.type = lookup(literal.type) }
 	| unary_expression 
-      { attributed.type = unary_expression.type }
+      { attributed.type = lookup(unary_expression.type) }
 	| logic_expr 
-	  { attributed.type = logic_expr.type }
+	  { attributed.type = boolean }
 	| function_call 
-	  { attributed.type = function_call.type }
+	  { attributed.type = lookup(function_call.type) }
 	| arith_expr;
-	  { attributed.type = arith_expr.type }
+	  { attributed.type = lookup(arith_expr.type) }
 
 attribution
 	: ATTRIBUTION attributed;
@@ -108,19 +109,21 @@ attribution
 
 unary_expression 
 	: decrement
-	  { unary_expression.type = decrement.type }
+	  { unary_expression.type = lookup(decrement.type) }
 	| increment;
-	  { unary_expression.type = increment.type }
+	  { unary_expression.type = lookup(increment.type) }
 
 decrement
 	: DECREMENT ID | ID DECREMENT;
 	  { lookup(ID) != null }
 	  { lookup(ID.hasValue) == true }
+	  { decrement.type = lookup(ID.type) }
 
 increment
 	: INCREMENT ID | ID INCREMENT 
 	  { lookup(ID) != null }
 	  { lookup(ID.hasValue) == true }
+	  { increment.type = lookup(ID.type) }
 
 if_declaration
 	: IF logic_expr stmt ENDIF;
@@ -170,14 +173,17 @@ float_declaration
 	  { ID.nparams = lookup(float_declaration.nparams)}
 
 string_declaration 
-	: STRING ID {lookup(ID) == null};
+	: STRING ID {lookup(ID) == null}
+				{ ID.nparams = lookup(string_declaration.nparams)};
 
 boolean_declaration 
-	: BOOLEAN ID {lookup(ID) == null};
+	: BOOLEAN ID {lookup(ID) == null}
+				{ ID.nparams = lookup(boolean_declaration.nparams)};;
 
 declaration_attribution 
 	: generic_declaration attribution;
 	{ generic_declaration.hasValue = true }
+	{ generic_declaration.expectedType == lookup(attribution.type) }
 
 integer_array_declaration 
 	: INT generic_array {lookup(generic_array.declared) == null};
@@ -194,19 +200,25 @@ boolean_array_declaration
 generic_declaration 
 	: generic_unary_declaration
 	{ generic_unary_declaration.nparams = lookup(generic_declaration.nparams)}
+	{ generic_declaration.expectedType = lookup(generic_unary_declaration.expectedType) }
 	| generic_array_declaration
 	{ generic_array_declaration.nparams = lookup(generic_declaration.nparams)}
+	{ generic_declaration.expectedType = lookup(generic_array_declaration.expectedType) }
 	;
 
 generic_unary_declaration
 	: integer_declaration 
 	{ integer_declaration.nparams = lookup(generic_unary_declaration.nparams)}
+	{ generic_unary_declaration.expectedType = integer }
 	| float_declaration 
 	{ float_declaration.nparams = lookup(generic_unary_declaration.nparams)}
+	{ generic_unary_declaration.expectedType = float }
 	| string_declaration
 	{ string_declaration.nparams = lookup(generic_unary_declaration.nparams)}
+	{ generic_unary_declaration.expectedType = string }
 	| boolean_declaration 
 	{ boolean_declaration.nparams = lookup(generic_unary_declaration.nparams)}
+	{ generic_unary_declaration.expectedType = boolean}
 	;
 
 generic_array : ID INDEX;
@@ -216,9 +228,13 @@ generic_array : ID INDEX;
 
 generic_array_declaration 
 	: integer_array_declaration
+	{ generic_array_declaration.expectedType = integer_array }
   	| float_array_declaration
+  	{ generic_array_declaration.expectedType = float_array }
   	| string_array_declaration
-  	| boolean_array_declaration;
+  	{ generic_array_declaration.expectedType = string_array }
+  	| boolean_array_declaration
+  	{ generic_array_declaration.expectedType = boolean_array };
 
 attribuition_id
 	: ID attribution {lookup(ID) != null };
