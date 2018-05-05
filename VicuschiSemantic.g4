@@ -153,6 +153,8 @@ r_logic
 	| ID 
 	  { lookup(ID.type) == 'boolean' }
 	| BOOL
+	| generic_array
+	  { lookup(generic_array.expectedType) == 'boolean_array' }
 	| (ID | NUMBER) comparator (ID | NUMBER);
 	  { lookup(ID[1]) != null; lookup(ID[2]) != null; }
 	  { lookup(ID[1].hasValue) == true; lookup(ID[2].hasValue) == true }
@@ -186,16 +188,20 @@ declaration_attribution
 	{ generic_declaration.expectedType == lookup(attribution.type) }
 
 integer_array_declaration 
-	: INT generic_array {lookup(generic_array.declared) == null};
+	: INT generic_array {lookup(generic_array.declared) == null}
+			    { generic_array.expectedType = integer_array };
 
 float_array_declaration 
-	: FLOAT generic_array {lookup(generic_array.declared) == null};
+	: FLOAT generic_array {lookup(generic_array.declared) == null}
+				{ generic_array.expectedType = float_array };;
 
 string_array_declaration 
-	: STRING generic_array {lookup(generic_array.declared) == null};
+	: STRING generic_array {lookup(generic_array.declared) == null}
+				{ generic_array.expectedType = string_array };;
 
 boolean_array_declaration 
-	: BOOLEAN generic_array {lookup(generic_array.declared) == null};
+	: BOOLEAN generic_array {lookup(generic_array.declared) == null}
+				{ generic_array.expectedType = boolean_array };;
 
 generic_declaration 
 	: generic_unary_declaration
@@ -224,17 +230,21 @@ generic_unary_declaration
 generic_array : ID INDEX;
 				{ generic_array.declared = lookup(ID) }
 				{ ID.hasValue = lookup(generic_array.hasValue) }
-				{ generic_array.expectedType = lookup(ID.type) }
+				{ ID.type = lookup(generic_array.expectedType) }
 
 generic_array_declaration 
 	: integer_array_declaration
 	{ generic_array_declaration.expectedType = integer_array }
+	{ integer_array_declaration.expectedType = integer_array }
   	| float_array_declaration
   	{ generic_array_declaration.expectedType = float_array }
+	{ float_array_declaration.expectedType = float_array }
   	| string_array_declaration
   	{ generic_array_declaration.expectedType = string_array }
+	{ string_array_declaration.expectedType = string_array }
   	| boolean_array_declaration
-  	{ generic_array_declaration.expectedType = boolean_array };
+  	{ generic_array_declaration.expectedType = boolean_array }
+	{ boolean_array_declaration.expectedType = boolean_array };
 
 attribuition_id
 	: ID attribution {lookup(ID) != null };
