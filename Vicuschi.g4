@@ -57,7 +57,7 @@ function_call
 	;
 
 function_declaration
-	: generic_declaration '(' declaration_params? ')' WS? stmt ENDF
+	: generic_unary_declaration '(' declaration_params? ')' WS? stmt ENDF
 	;
 
 
@@ -72,7 +72,11 @@ params
 	;
 
 attributed
-	: (literal | unary_expression | logic_expr | function_call | arith_expr);
+	: literal 
+	| unary_expression 
+	| logic_expr 
+	| function_call 
+	| arith_expr;
 
 attribution
 	: ATTRIBUTION attributed;
@@ -111,17 +115,15 @@ logic_term_a
 r_logic
 	: '(' logic_expr ')' 
 	| '!' logic_expr
-	| arith_id 
-	| arith_number
+	| ID
 	| BOOL
-	| not_id
+	| generic_array
 	| (ID | NUMBER) comparator (ID | NUMBER) ;
 
 not_id : '!' (ID | generic_array);
 
 integer_declaration 
 	: INT ID
-	
 	;
 
 float_declaration 
@@ -149,16 +151,15 @@ boolean_array_declaration
 	: BOOLEAN generic_array ;
 
 generic_declaration 
-	: integer_declaration 
-	
-	| float_declaration 
-	
-	| string_declaration
-	
-	| boolean_declaration 
-	
+	: generic_unary_declaration
 	| generic_array_declaration
+	;
 	
+generic_unary_declaration
+	: integer_declaration 
+	| float_declaration 
+	| string_declaration
+	| boolean_declaration 
 	;
 
 generic_array : ID INDEX ;
@@ -169,8 +170,17 @@ generic_array_declaration
   	| string_array_declaration
   	| boolean_array_declaration;
 
+attribuition_id
+	: ID attribution
+	;
+attribuition_array
+	: generic_array attribution
+	;
+	
 generic_attribution 
-	: (ID | generic_array) attribution ;
+	: attribuition_id
+	| attribuition_array
+	;
 
 literal 
 	: ARRAY 
