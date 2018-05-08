@@ -62,7 +62,7 @@ r_arith
 arith_id
 	: (UNARY_PLUS | UNARY_MINUS)? ID 
 	  { lookup(ID) != null; lookup(ID.hasValue) == true };
-	  { arith_id.type = lookup(ID.type) }
+	  { arith_id.type = lookup(ID.actualType) }
 
 arith_number
 	: (UNARY_PLUS | UNARY_MINUS)? NUMBER;
@@ -70,13 +70,14 @@ arith_number
 
 function_call 
 	: ID '(' params? ')' { lookup(ID.nparams) != lookup(params.nparams); lookup(ID) != null }
-						{ function_call.type = lookup(ID.type) }
+						{ function_call.type = lookup(ID.actualType) }
 	;
 
 
 function_declaration
 	: generic_unary_declaration '(' declaration_params? ')' WS? stmt ENDF
 	{ generic_unary_declaration.nparams = lookup(declaration_params.nparams)}
+	{ funtion_declaration.type = generic_unary_declaration.type }
 	;
 
 
@@ -94,7 +95,7 @@ attributed
 	: literal 
 	  { attributed.type = lookup(literal.type) }
 	| unary_expression 
-      { attributed.type = lookup(unary_expression.type) }
+     	  { attributed.type = lookup(unary_expression.type) }
 	| logic_expr 
 	  { attributed.type = boolean }
 	| function_call 
@@ -104,7 +105,7 @@ attributed
 
 attribution
 	: ATTRIBUTION attributed;
-	{ attribution.type = lookup(attribution.type) }
+	{ attribution.expectedType = lookup(attributed.type) }
 	{ attribution.hasValue = true }
 
 unary_expression 
@@ -117,13 +118,13 @@ decrement
 	: DECREMENT ID | ID DECREMENT;
 	  { lookup(ID) != null }
 	  { lookup(ID.hasValue) == true }
-	  { decrement.type = lookup(ID.type) }
+	  { decrement.type = lookup(ID.actualType) }
 
 increment
 	: INCREMENT ID | ID INCREMENT 
 	  { lookup(ID) != null }
 	  { lookup(ID.hasValue) == true }
-	  { increment.type = lookup(ID.type) }
+	  { increment.type = lookup(ID.actualType) }
 
 if_declaration
 	: IF logic_expr stmt ENDIF;
@@ -132,7 +133,7 @@ while_declaration
 	: WHILE logic_expr stmt ENDWHILE;
 
 for_declaration
-	: FOR ID? ':' INTERVAL stmt ENDFOR {lookup(ID) != null};
+	: FOR ID? ':' INTERVAL stmt ENDFOR {lookup(ID) != null}; // nao precisa, ele foi declarado aqui mesmo
 
 logic_expr
 	: logic_term logic_expr_1;
@@ -151,111 +152,120 @@ r_logic
 	: '(' logic_expr ')' 
 	| '!' logic_expr
 	| ID 
-	  { lookup(ID.type) == 'boolean' }
+	  { lookup(ID.type) == boolean }
 	| BOOL
 	| generic_array
-	  { lookup(generic_array.expectedType) == 'boolean_array' }
+	  { lookup(generic_array.type) == boolean }
 	| (ID | NUMBER) comparator (ID | NUMBER);
 	  { lookup(ID[1]) != null; lookup(ID[2]) != null; }
 	  { lookup(ID[1].hasValue) == true; lookup(ID[2].hasValue) == true }
-	  { lookup(ID[1].type) == "float" | "int" | "boolean"}; lookup(ID[2].type) == "float" | "int" | "boolean" }
+	  { lookup(ID[1].actualType) == float | int | boolean}; lookup(ID[2].actualType) == float | int | boolean }
 
 not_id : '!' (ID | generic_array);
 		 { lookup(ID) != null } 
 		 { lookup(ID.hasValue) == true }
-		 { lookup(ID.type) == 'boolean'}
+		 { lookup(ID.actualType) == boolean}
+		 { lookup(generic_array.actualType) == boolean }
 
 integer_declaration 
 	: INT ID
 	{ ID.nparams = lookup(integer_declaration.nparams)}
-	{lookup(ID) == null};
+	{lookup(ID) == null}
+	{ ID.actualType = integer };
 
 float_declaration 
 	: FLOAT ID {lookup(ID) == null};
 	  { ID.nparams = lookup(float_declaration.nparams)}
+	  { ID.actualType = float }
 
 string_declaration 
 	: STRING ID {lookup(ID) == null}
-				{ ID.nparams = lookup(string_declaration.nparams)};
+				{ ID.nparams = lookup(string_declaration.nparams)}
+				{ ID.actualType = string };
 
 boolean_declaration 
 	: BOOLEAN ID {lookup(ID) == null}
-				{ ID.nparams = lookup(boolean_declaration.nparams)};;
+				{ ID.nparams = lookup(boolean_declaration.nparams)}
+				{ ID.actualType = boolean };
 
 declaration_attribution 
 	: generic_declaration attribution;
 	{ generic_declaration.hasValue = true }
-	{ generic_declaration.expectedType == lookup(attribution.type) }
+	{ generic_declaration.actualType == lookup(attribution.expectedType) }
 
 integer_array_declaration 
 	: INT generic_array {lookup(generic_array.declared) == null}
-			    { generic_array.expectedType = integer_array };
+			    { generic_array.actualType = integer_array };
 
 float_array_declaration 
 	: FLOAT generic_array {lookup(generic_array.declared) == null}
-				{ generic_array.expectedType = float_array };;
+				{ generic_array.actualType = float_array };;
 
 string_array_declaration 
 	: STRING generic_array {lookup(generic_array.declared) == null}
-				{ generic_array.expectedType = string_array };;
+				{ generic_array.actualType = string_array };;
 
 boolean_array_declaration 
 	: BOOLEAN generic_array {lookup(generic_array.declared) == null}
-				{ generic_array.expectedType = boolean_array };;
+				{ generic_array.actualType = boolean_array };;
 
 generic_declaration 
 	: generic_unary_declaration
 	{ generic_unary_declaration.nparams = lookup(generic_declaration.nparams)}
-	{ generic_declaration.expectedType = lookup(generic_unary_declaration.expectedType) }
+	{ generic_declaration.actualType = lookup(generic_unary_declaration.actualType) }
 	| generic_array_declaration
 	{ generic_array_declaration.nparams = lookup(generic_declaration.nparams)}
-	{ generic_declaration.expectedType = lookup(generic_array_declaration.expectedType) }
+	{ generic_declaration.actualType = lookup(generic_array_declaration.actualType) }
 	;
 
 generic_unary_declaration
 	: integer_declaration 
 	{ integer_declaration.nparams = lookup(generic_unary_declaration.nparams)}
-	{ generic_unary_declaration.expectedType = integer }
+	{ generic_unary_declaration.actualType = integer }
 	| float_declaration 
 	{ float_declaration.nparams = lookup(generic_unary_declaration.nparams)}
-	{ generic_unary_declaration.expectedType = float }
+	{ generic_unary_declaration.actualType = float }
 	| string_declaration
 	{ string_declaration.nparams = lookup(generic_unary_declaration.nparams)}
-	{ generic_unary_declaration.expectedType = string }
+	{ generic_unary_declaration.actualType = string }
 	| boolean_declaration 
 	{ boolean_declaration.nparams = lookup(generic_unary_declaration.nparams)}
-	{ generic_unary_declaration.expectedType = boolean}
+	{ generic_unary_declaration.actualType = boolean}
 	;
 
 generic_array : ID INDEX;
 				{ generic_array.declared = lookup(ID) }
 				{ ID.hasValue = lookup(generic_array.hasValue) }
-				{ ID.type = lookup(generic_array.expectedType) }
+				{ ID.actualType = lookup(generic_array.actualType) } // ao declarar
+
+				// verificar (uso) { if lookup(ID.actualType) != null generic_array.type = lookup(ID.actualType)}
 
 generic_array_declaration 
 	: integer_array_declaration
-	{ generic_array_declaration.expectedType = integer_array }
+	{ generic_array_declaration.actualType = integer_array }
 	{ integer_array_declaration.expectedType = integer_array }
   	| float_array_declaration
-  	{ generic_array_declaration.expectedType = float_array }
+  	{ generic_array_declaration.actualType = float_array }
 	{ float_array_declaration.expectedType = float_array }
   	| string_array_declaration
-  	{ generic_array_declaration.expectedType = string_array }
+  	{ generic_array_declaration.actualType = string_array }
 	{ string_array_declaration.expectedType = string_array }
   	| boolean_array_declaration
-  	{ generic_array_declaration.expectedType = boolean_array }
+  	{ generic_array_declaration.actualType = boolean_array }
 	{ boolean_array_declaration.expectedType = boolean_array };
 
 attribuition_id
 	: ID attribution {lookup(ID) != null };
 	  { ID.hasValue = true }
-	  { ID.expectedType = lookup(ID.type) }
+	  { lookup(ID.actualType) == lookup(attribution.expectedType) }
 
 attribuition_array
 	: generic_array attribution 
 	  { lookup(generic_array.declared) != null;
 	    generic_array.hasValue = true 
-	    attribuition_array.expectedType = lookup(generic_array.expectedType)};
+	    lookup(generic_array.actualType) == lookup(attribution.expectedType)
+	    		// tirar? attribuition_array.expectedType = lookup(generic_array.type)
+	    };
 
 generic_attribution 
 	: attribution_array
@@ -264,10 +274,13 @@ generic_attribution
 	{ generic_attribution.hasValue = lookup(attribuition_id.hasValue) }
 
 literal 
-	: ARRAY 
+	: ARRAY // completar
 	| BOOL 
+	{ literal.type = boolean }
 	| NUMBER 
-	| WORD;
+	{ literal.type = float }
+	| WORD
+	{ literal.type = string };
 
 comparator
  	: MAJOR
