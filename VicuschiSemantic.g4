@@ -167,47 +167,12 @@ not_id : '!' (ID | generic_array);
 		 { lookup(ID.actualType) == boolean}
 		 { lookup(generic_array.actualType) == boolean }
 
-integer_declaration 
-	: INT ID
-	{ ID.nparams = lookup(integer_declaration.nparams)}
-	{lookup(ID) == null}
-	{ ID.actualType = integer };
-
-float_declaration 
-	: FLOAT ID {lookup(ID) == null};
-	  { ID.nparams = lookup(float_declaration.nparams)}
-	  { ID.actualType = float }
-
-string_declaration 
-	: STRING ID {lookup(ID) == null}
-				{ ID.nparams = lookup(string_declaration.nparams)}
-				{ ID.actualType = string };
-
-boolean_declaration 
-	: BOOLEAN ID {lookup(ID) == null}
-				{ ID.nparams = lookup(boolean_declaration.nparams)}
-				{ ID.actualType = boolean };
 
 declaration_attribution 
 	: generic_declaration attribution;
 	{ generic_declaration.hasValue = true }
 	{ generic_declaration.actualType == lookup(attribution.expectedType) }
 
-integer_array_declaration 
-	: INT generic_array {lookup(generic_array.declared) == null}
-			    { generic_array.actualType = integer_array };
-
-float_array_declaration 
-	: FLOAT generic_array {lookup(generic_array.declared) == null}
-				{ generic_array.actualType = float_array };;
-
-string_array_declaration 
-	: STRING generic_array {lookup(generic_array.declared) == null}
-				{ generic_array.actualType = string_array };;
-
-boolean_array_declaration 
-	: BOOLEAN generic_array {lookup(generic_array.declared) == null}
-				{ generic_array.actualType = boolean_array };;
 
 generic_declaration 
 	: generic_unary_declaration
@@ -232,13 +197,28 @@ generic_unary_declaration
 	{ boolean_declaration.nparams = lookup(generic_unary_declaration.nparams)}
 	{ generic_unary_declaration.actualType = boolean}
 	;
+	
+integer_declaration 
+	: INT ID
+	{ ID.nparams = lookup(integer_declaration.nparams)}
+	{lookup(ID) == null}
+	{ ID.actualType = integer };
 
-generic_array : ID INDEX;
-				{ generic_array.declared = lookup(ID) }
-				{ ID.hasValue = lookup(generic_array.hasValue) }
-				{ ID.actualType = lookup(generic_array.actualType) } // ao declarar
+float_declaration 
+	: FLOAT ID {lookup(ID) == null};
+	  { ID.nparams = lookup(float_declaration.nparams)}
+	  { ID.actualType = float }
 
-				// verificar (uso) { if lookup(ID.actualType) != null generic_array.type = lookup(ID.actualType)}
+string_declaration 
+	: STRING ID {lookup(ID) == null}
+				{ ID.nparams = lookup(string_declaration.nparams)}
+				{ ID.actualType = string };
+
+boolean_declaration 
+	: BOOLEAN ID {lookup(ID) == null}
+				{ ID.nparams = lookup(boolean_declaration.nparams)}
+				{ ID.actualType = boolean };
+
 
 generic_array_declaration 
 	: integer_array_declaration
@@ -253,7 +233,40 @@ generic_array_declaration
   	| boolean_array_declaration
   	{ generic_array_declaration.actualType = boolean_array }
 	{ boolean_array_declaration.expectedType = boolean_array };
+	
 
+integer_array_declaration 
+	: INT generic_array {lookup(generic_array.declared) == null}
+			    { generic_array.actualType = integer_array };
+
+float_array_declaration 
+	: FLOAT generic_array {lookup(generic_array.declared) == null}
+				{ generic_array.actualType = float_array };
+
+string_array_declaration 
+	: STRING generic_array {lookup(generic_array.declared) == null}
+				{ generic_array.actualType = string_array };
+
+boolean_array_declaration 
+	: BOOLEAN generic_array {lookup(generic_array.declared) == null}
+				{ generic_array.actualType = boolean_array };
+	
+	
+generic_array : ID INDEX;
+				{ generic_array.declared = lookup(ID) }
+				{ ID.hasValue = lookup(generic_array.hasValue) }
+				{ ID.actualType = lookup(generic_array.actualType) } // ao declarar
+
+				// verificar (uso) { if lookup(ID.actualType) != null generic_array.type = lookup(ID.actualType)}
+
+
+generic_attribution 
+	: attribution_array
+	{ generic_attribution.hasValue = lookup(attribution_array.hasValue) }
+	| attribuition_id;
+	{ generic_attribution.hasValue = lookup(attribuition_id.hasValue) }
+	
+	
 attribuition_id
 	: ID attribution {lookup(ID) != null };
 	  { ID.hasValue = true }
@@ -267,11 +280,7 @@ attribuition_array
 	    		// tirar? attribuition_array.expectedType = lookup(generic_array.type)
 	    };
 
-generic_attribution 
-	: attribution_array
-	{ generic_attribution.hasValue = lookup(attribution_array.hasValue) }
-	| attribuition_id;
-	{ generic_attribution.hasValue = lookup(attribuition_id.hasValue) }
+
 
 literal 
 	: ARRAY // completar
