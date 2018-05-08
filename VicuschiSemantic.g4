@@ -154,8 +154,8 @@ r_logic
 	| ID 
 	  { lookup(ID.type) == boolean }
 	| BOOL
-	| generic_array
-	  { lookup(generic_array.type) == boolean }
+	| ID INDEX //era generic_array
+	  { lookup(ID.type) == boolean_array }
 	| (ID | NUMBER) comparator (ID | NUMBER);
 	  { lookup(ID[1]) != null; lookup(ID[2]) != null; }
 	  { lookup(ID[1].hasValue) == true; lookup(ID[2].hasValue) == true }
@@ -257,6 +257,7 @@ generic_array : ID INDEX;
 				{ ID.hasValue = lookup(generic_array.hasValue) }
 				{ ID.actualType = lookup(generic_array.actualType) } // ao declarar
 
+				// remover?
 				// verificar (uso) { if lookup(ID.actualType) != null generic_array.type = lookup(ID.actualType)}
 
 
