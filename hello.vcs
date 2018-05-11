@@ -1,5 +1,5 @@
-int print[123](string a, int b)
-	int a = 2;
+int print(string a, int b)
+    int a = 2;
 endf;
 
 print("hello world");

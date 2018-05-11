@@ -256,6 +256,12 @@ public interface VicuschiVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGeneric_declaration(VicuschiParser.Generic_declarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link VicuschiParser#generic_unary_declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link VicuschiParser#generic_array}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -267,6 +273,18 @@ public interface VicuschiVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link VicuschiParser#attribuition_id}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttribuition_id(VicuschiParser.Attribuition_idContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link VicuschiParser#attribuition_array}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttribuition_array(VicuschiParser.Attribuition_arrayContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link VicuschiParser#generic_attribution}.
 	 * @param ctx the parse tree
