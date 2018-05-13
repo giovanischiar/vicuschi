@@ -1,5 +1,8 @@
 int print(string a, int b)
-    int a = 2;
+    int a1 = 2;
 endf;
 
 print("hello world");
+
+//boolean b = yes;
+//float f = 2.5;

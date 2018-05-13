@@ -1,6 +1,6 @@
- antlr4 VicuschiLex.g4 ;and javac *.java ;and java Main teste.vcs
+ antlr4 VicuschiLex.g4 ;and javac *.java ;and java Main hello.vcs
 
- grun VicuschiLex r -tokens teste.vcs 
+ grun Vicuschi r -gui hello.vcs 
 
  export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
 
