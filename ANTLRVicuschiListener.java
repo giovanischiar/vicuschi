@@ -26,30 +26,30 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		System.out.println("function_declaration: "+id+". Nodo: "+ctx);	
 	}
 
-	@Override public void exitGeneric_declaration(VicuschiParser.Generic_declarationContext ctx) {
-	
+	@Override public void exitGeneric_declaration(VicuschiParser.Generic_declarationContext ctx) {	
 		String id = ctx.getChild(0).getChild(0).getChild(1).getText();
-		Attribute a = attributeTable.get(id);
+		if(ctx.getChild(0).getChild(0).getChild(1) instanceof VicuschiParser.Generic_arrayContext) {
+			id = ctx.getChild(0).getChild(0).getChild(1).getChild(0).getText();
+		}
+		
+		addAttributeAtNodeTable(id, ctx);
+	}
 
-		nodeTable.put(a.name, ctx);
-		//System.out.println("tipo passado para cima: "+a.type);
-		System.out.println("generic_declaration: "+id+". Nodo: "+ctx);	
+	private void addAttributeAtNodeTable(String id, ParserRuleContext ctx) {
+		if(attributeTable.containsKey(id)) {
+			Attribute a = attributeTable.get(id);
+			nodeTable.put(a.name, ctx);
+		} else {
+			System.out.println("Warning: " + id + " doesn't exist at  symbol table");
+		}
 	}
 
 	@Override public void exitGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx) {
-		
 		String id = ctx.getChild(0).getChild(1).getText();
-		Attribute a = attributeTable.get(id);
-
-		nodeTable.put(a.name, ctx);
+		addAttributeAtNodeTable(id, ctx);
 		//System.out.println("tipo passado para cima: "+a.type);
 		//System.out.println("generic_unary_declaration: "+id+". Nodo: "+ctx);
 	}
-
-	@Override public void exitGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx) {
-		
-	}
-
 
 	@Override public void exitString_declaration(VicuschiParser.String_declarationContext ctx) {
 		Attribute<String> attribute = new Attribute<>();
@@ -61,7 +61,6 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 
 		attributeTable.put(attribute.name, attribute);
-
 		nodeTable.put(attribute.name, ctx);
 	}
 
@@ -75,8 +74,6 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 
 		attributeTable.put(attribute.name, attribute);
-
-
 		nodeTable.put(attribute.name, ctx);
 	}
 
@@ -90,7 +87,6 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 
 		attributeTable.put(attribute.name, attribute);
-
 		nodeTable.put(attribute.name, ctx);
 	}
 
@@ -105,6 +101,90 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 		attributeTable.put(attribute.name, attribute);
 		nodeTable.put(attribute.name, ctx);
+	}
+
+	@Override public void exitGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx) {
+		String id = ctx.getChild(0).getChild(1).getChild(0).getText();
+		addAttributeAtNodeTable(id, ctx);
+		//System.out.println("tipo passado para cima: "+a.type);
+		//System.out.println("generic_unary_declaration: "+id+". Nodo: "+ctx);	
+	}
+
+	// @Override public void exitString_array_declaration(VicuschiParser.String_array_declarationContext ctx) {
+	// 	Attribute<String> attribute = new Attribute<>();
+	// 	attribute.name = ctx.ID().getText();
+	// 	attribute.type = "string";
+	// 	attribute.value = null;
+	// 	if(attributeTable.containsKey(attribute.name)) {
+	// 		System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+	// 	}
+
+	// 	attributeTable.put(attribute.name, attribute);
+	// 	nodeTable.put(attribute.name, ctx);
+	// }
+
+	// @Override public void exitInteger_array_declaration(VicuschiParser.Integer_array_declarationContext ctx) { 
+	// 	Attribute<Integer[]> attribute = new Attribute<>();
+	// 	attribute.name = ctx.ID().getText();
+	// 	attribute.type = "int[]";
+	// 	attribute.value = null;
+	// 	if(attributeTable.containsKey(attribute.name)) {
+	// 		System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+	// 	}
+
+	// 	attributeTable.put(attribute.name, attribute);
+	// 	nodeTable.put(attribute.name, ctx);
+	// }
+
+	// @Override public void exitFloat_array_declaration(VicuschiParser.Float_array_declarationContext ctx) { 
+	// 	Attribute<Float[]> attribute = new Attribute<>();
+	// 	attribute.name = ctx.ID().getText();
+	// 	attribute.type = "float[]";
+	// 	attribute.value = null;
+	// 	if(attributeTable.containsKey(attribute.name)) {
+	// 		System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+	// 	}
+
+	// 	attributeTable.put(attribute.name, attribute);
+	// 	nodeTable.put(attribute.name, ctx);
+	// }
+
+	@Override public void exitBoolean_array_declaration(VicuschiParser.Boolean_array_declarationContext ctx) { 
+		System.out.println("exitBoolean_array_declaration");
+
+		//verificação da presença da declaração do index
+
+		ParseTree genericArray = ctx.getChild(1);
+		VicuschiParser.TerminalNode index = genericArray.getChild(1);
+		VicuschiParser.TerminalNode token = index.getChild(1);
+		int tokenType = token.getSymbol().getType();
+		System.out.println(tokenType);
+		if(VicuschiParser.getSymbolicName(tokenType).equals("ID")) {
+			System.out.println("cheguei aqui yaaay");
+		}
+		// if(ctx.generic_array().INDEX().getChild(1) != null) {
+		// 	if(attributeTable.containsKey(ctx.generic_array().INDEX().getChild(1).getText())) {
+		// 		if(attributeTable.get(ctx.generic_array().INDEX().getChild(1)).type.equals("int")) {
+		// 			System.out.println("beleza pode criar");
+		// 		}
+		// 	} else {
+		// 		System.out.println("fodeu cria não");
+		// 	}
+		// }
+
+		// Adicionando o nodo
+		Attribute<Boolean[]> attribute = new Attribute<>();
+		attribute.name = ctx.generic_array().getChild(0).getText();
+		attribute.type = "boolean[]";
+		attribute.value = null;
+		if(attributeTable.containsKey(attribute.name)) {
+			System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+		}
+
+		attributeTable.put(attribute.name, attribute);
+		nodeTable.put(attribute.name, ctx);
+
+		System.out.println("end exitBoolean_array_declaration");
 	}
 
 	class Attribute<T> implements Comparable<Attribute> {
