@@ -139,6 +139,20 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			} else{
 				System.out.println("Error: undeclared array index: "+id.getText());
 			}
+		} else { // se o indice eh um numero
+					// Adicionando o nodo
+					Attribute<Boolean[]> attribute = new Attribute<>();
+					attribute.name = ctx.generic_array().getChild(0).getText();
+					attribute.type = "string[]";
+					attribute.value = null;
+					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
+					System.out.println(attribute.size);
+					if(attributeTable.containsKey(attribute.name)) {
+						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+					}
+
+					attributeTable.put(attribute.name, attribute);
+					nodeTable.put(attribute.name, ctx);
 		}
 	}
 
@@ -167,6 +181,20 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			} else{
 				System.out.println("Error: undeclared array index: "+id.getText());
 			}
+		} else { // se o indice eh um numero
+					// Adicionando o nodo
+					Attribute<Boolean[]> attribute = new Attribute<>();
+					attribute.name = ctx.generic_array().getChild(0).getText();
+					attribute.type = "int[]";
+					attribute.value = null;
+					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
+					System.out.println(attribute.size);
+					if(attributeTable.containsKey(attribute.name)) {
+						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+					}
+
+					attributeTable.put(attribute.name, attribute);
+					nodeTable.put(attribute.name, ctx);
 		}
 	}
 
@@ -195,6 +223,20 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			} else{
 				System.out.println("Error: undeclared array index: "+id.getText());
 			}
+		} else { // se o indice eh um numero
+					// Adicionando o nodo
+					Attribute<Boolean[]> attribute = new Attribute<>();
+					attribute.name = ctx.generic_array().getChild(0).getText();
+					attribute.type = "float[]";
+					attribute.value = null;
+					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
+					System.out.println(attribute.size);
+					if(attributeTable.containsKey(attribute.name)) {
+						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+					}
+
+					attributeTable.put(attribute.name, attribute);
+					nodeTable.put(attribute.name, ctx);
 		}
 	}
 
@@ -225,6 +267,20 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			} else{
 				System.out.println("Error: undeclared array index: "+id.getText());
 			}
+		} else { // se o indice eh um numero
+					// Adicionando o nodo
+					Attribute<Boolean[]> attribute = new Attribute<>();
+					attribute.name = ctx.generic_array().getChild(0).getText();
+					attribute.type = "boolean[]";
+					attribute.value = null;
+					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
+					System.out.println(attribute.size);
+					if(attributeTable.containsKey(attribute.name)) {
+						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+					}
+
+					attributeTable.put(attribute.name, attribute);
+					nodeTable.put(attribute.name, ctx);
 		}
 
 		//System.out.println("end exitBoolean_array_declaration");
@@ -234,9 +290,10 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		public String name;
 		public String type;
 		public T value;
+		public int size = 1;
 		@Override
 		public String toString() {
-			return "(" + name + ", " + type + ", " + value + ")";
+			return "(" + name + ", " + type + ", " + value + ", " + size + ")";
 		}
 
 		@Override
