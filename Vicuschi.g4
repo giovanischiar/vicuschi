@@ -162,7 +162,9 @@ generic_unary_declaration
 	| boolean_declaration 
 	;
 
-generic_array : ID INDEX ;
+generic_array : ID index ;
+
+index : '[' ID ']' | '[' ARRAY_INDEX ']' | '[]';
 
 generic_array_declaration 
 	: integer_array_declaration
@@ -239,7 +241,8 @@ LOGICAL_OR : '|';
 
 SEMICOLON : ';';
 
-INDEX : '[' ID ']' | '[' DIGIT+ ']' | '[]';
+
+ARRAY_INDEX : DIGIT+;
 EACH : ':';
 
 //literals;

@@ -437,6 +437,16 @@ public interface VicuschiListener extends ParseTreeListener {
 	 */
 	void exitGeneric_array(VicuschiParser.Generic_arrayContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link VicuschiParser#index}.
+	 * @param ctx the parse tree
+	 */
+	void enterIndex(VicuschiParser.IndexContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiParser#index}.
+	 * @param ctx the parse tree
+	 */
+	void exitIndex(VicuschiParser.IndexContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#generic_array_declaration}.
 	 * @param ctx the parse tree
 	 */

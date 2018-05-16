@@ -16,14 +16,14 @@ public class VicuschiParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, IF=8, ENDIF=9, 
-		FOR=10, ENDFOR=11, CASE=12, WHEN=13, WHILE=14, ENDWHILE=15, ENDCASE=16, 
-		CONTINUE=17, ENDF=18, RETURN=19, IMPORT=20, INT=21, FLOAT=22, STRING=23, 
-		BOOLEAN=24, MAJOR=25, MINOR=26, EQUALS=27, MAJOR_EQUALS=28, MINOR_EQUALS=29, 
-		DIFFERENT=30, ATTRIBUTION=31, INCREMENT=32, DECREMENT=33, THEN=34, UNARY_PLUS=35, 
-		UNARY_MINUS=36, LOGICAL_AND=37, LOGICAL_OR=38, SEMICOLON=39, INDEX=40, 
-		EACH=41, BOOL=42, NUMBER=43, WORD=44, ARRAY=45, INTERVAL=46, ID=47, S_COMMENTARY=48, 
-		M_COMMENTARY=49, WS=50;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, IF=11, ENDIF=12, FOR=13, ENDFOR=14, CASE=15, WHEN=16, WHILE=17, 
+		ENDWHILE=18, ENDCASE=19, CONTINUE=20, ENDF=21, RETURN=22, IMPORT=23, INT=24, 
+		FLOAT=25, STRING=26, BOOLEAN=27, MAJOR=28, MINOR=29, EQUALS=30, MAJOR_EQUALS=31, 
+		MINOR_EQUALS=32, DIFFERENT=33, ATTRIBUTION=34, INCREMENT=35, DECREMENT=36, 
+		THEN=37, UNARY_PLUS=38, UNARY_MINUS=39, LOGICAL_AND=40, LOGICAL_OR=41, 
+		SEMICOLON=42, ARRAY_INDEX=43, EACH=44, BOOL=45, NUMBER=46, WORD=47, ARRAY=48, 
+		INTERVAL=49, ID=50, S_COMMENTARY=51, M_COMMENTARY=52, WS=53;
 	public static final int
 		RULE_program = 0, RULE_stmt = 1, RULE_simple_stmt = 2, RULE_import_declaration = 3, 
 		RULE_arith_expr = 4, RULE_arith_expr_1 = 5, RULE_term = 6, RULE_term_a = 7, 
@@ -38,9 +38,9 @@ public class VicuschiParser extends Parser {
 		RULE_boolean_declaration = 34, RULE_declaration_attribution = 35, RULE_integer_array_declaration = 36, 
 		RULE_float_array_declaration = 37, RULE_string_array_declaration = 38, 
 		RULE_boolean_array_declaration = 39, RULE_generic_declaration = 40, RULE_generic_unary_declaration = 41, 
-		RULE_generic_array = 42, RULE_generic_array_declaration = 43, RULE_attribuition_id = 44, 
-		RULE_attribuition_array = 45, RULE_generic_attribution = 46, RULE_literal = 47, 
-		RULE_comparator = 48;
+		RULE_generic_array = 42, RULE_index = 43, RULE_generic_array_declaration = 44, 
+		RULE_attribuition_id = 45, RULE_attribuition_array = 46, RULE_generic_attribution = 47, 
+		RULE_literal = 48, RULE_comparator = 49;
 	public static final String[] ruleNames = {
 		"program", "stmt", "simple_stmt", "import_declaration", "arith_expr", 
 		"arith_expr_1", "term", "term_a", "factor", "factor_a", "r_arith", "arith_id", 
@@ -51,26 +51,28 @@ public class VicuschiParser extends Parser {
 		"not_id", "integer_declaration", "float_declaration", "string_declaration", 
 		"boolean_declaration", "declaration_attribution", "integer_array_declaration", 
 		"float_array_declaration", "string_array_declaration", "boolean_array_declaration", 
-		"generic_declaration", "generic_unary_declaration", "generic_array", "generic_array_declaration", 
-		"attribuition_id", "attribuition_array", "generic_attribution", "literal", 
-		"comparator"
+		"generic_declaration", "generic_unary_declaration", "generic_array", "index", 
+		"generic_array_declaration", "attribuition_id", "attribuition_array", 
+		"generic_attribution", "literal", "comparator"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'*'", "'/'", "'^'", "'('", "')'", "','", "'!'", "'if'", "'endif'", 
-		"'for'", "'endfor'", "'case'", "'when'", "'while'", "'endwhile'", "'endcase'", 
-		"'continue'", "'endf'", "'return'", "'import'", "'int'", "'float'", "'string'", 
-		"'boolean'", "'>'", "'<'", "'=='", "'>='", "'<='", "'!='", "'='", "'++'", 
-		"'--'", "'->'", "'+'", "'-'", "'&'", "'|'", "';'", null, "':'"
+		null, "'*'", "'/'", "'^'", "'('", "')'", "','", "'!'", "'['", "']'", "'[]'", 
+		"'if'", "'endif'", "'for'", "'endfor'", "'case'", "'when'", "'while'", 
+		"'endwhile'", "'endcase'", "'continue'", "'endf'", "'return'", "'import'", 
+		"'int'", "'float'", "'string'", "'boolean'", "'>'", "'<'", "'=='", "'>='", 
+		"'<='", "'!='", "'='", "'++'", "'--'", "'->'", "'+'", "'-'", "'&'", "'|'", 
+		"';'", null, "':'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, "IF", "ENDIF", "FOR", 
-		"ENDFOR", "CASE", "WHEN", "WHILE", "ENDWHILE", "ENDCASE", "CONTINUE", 
-		"ENDF", "RETURN", "IMPORT", "INT", "FLOAT", "STRING", "BOOLEAN", "MAJOR", 
-		"MINOR", "EQUALS", "MAJOR_EQUALS", "MINOR_EQUALS", "DIFFERENT", "ATTRIBUTION", 
-		"INCREMENT", "DECREMENT", "THEN", "UNARY_PLUS", "UNARY_MINUS", "LOGICAL_AND", 
-		"LOGICAL_OR", "SEMICOLON", "INDEX", "EACH", "BOOL", "NUMBER", "WORD", 
-		"ARRAY", "INTERVAL", "ID", "S_COMMENTARY", "M_COMMENTARY", "WS"
+		null, null, null, null, null, null, null, null, null, null, null, "IF", 
+		"ENDIF", "FOR", "ENDFOR", "CASE", "WHEN", "WHILE", "ENDWHILE", "ENDCASE", 
+		"CONTINUE", "ENDF", "RETURN", "IMPORT", "INT", "FLOAT", "STRING", "BOOLEAN", 
+		"MAJOR", "MINOR", "EQUALS", "MAJOR_EQUALS", "MINOR_EQUALS", "DIFFERENT", 
+		"ATTRIBUTION", "INCREMENT", "DECREMENT", "THEN", "UNARY_PLUS", "UNARY_MINUS", 
+		"LOGICAL_AND", "LOGICAL_OR", "SEMICOLON", "ARRAY_INDEX", "EACH", "BOOL", 
+		"NUMBER", "WORD", "ARRAY", "INTERVAL", "ID", "S_COMMENTARY", "M_COMMENTARY", 
+		"WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -137,11 +139,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitProgram(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitProgram(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -150,7 +147,7 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(98);
+			setState(100);
 			stmt();
 			}
 		}
@@ -184,11 +181,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitStmt(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitStmt(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final StmtContext stmt() throws RecognitionException {
@@ -198,19 +190,19 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(103); 
+			setState(105); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(100);
+				setState(102);
 				simple_stmt();
-				setState(101);
+				setState(103);
 				match(SEMICOLON);
 				}
 				}
-				setState(105); 
+				setState(107); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << IMPORT) | (1L << INT) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << INCREMENT) | (1L << DECREMENT) | (1L << ID))) != 0) );
@@ -270,87 +262,82 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitSimple_stmt(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitSimple_stmt(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Simple_stmtContext simple_stmt() throws RecognitionException {
 		Simple_stmtContext _localctx = new Simple_stmtContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_simple_stmt);
 		try {
-			setState(117);
+			setState(119);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(107);
+				setState(109);
 				declaration_attribution();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(108);
+				setState(110);
 				while_declaration();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(109);
+				setState(111);
 				for_declaration();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(110);
+				setState(112);
 				if_declaration();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(111);
+				setState(113);
 				generic_declaration();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(112);
+				setState(114);
 				unary_expression();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(113);
+				setState(115);
 				generic_attribution();
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(114);
+				setState(116);
 				function_declaration();
 				}
 				break;
 			case 9:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(115);
+				setState(117);
 				function_call();
 				}
 				break;
 			case 10:
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(116);
+				setState(118);
 				import_declaration();
 				}
 				break;
@@ -382,11 +369,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitImport_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitImport_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Import_declarationContext import_declaration() throws RecognitionException {
@@ -395,9 +377,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
+			setState(121);
 			match(IMPORT);
-			setState(120);
+			setState(122);
 			match(WORD);
 			}
 		}
@@ -431,11 +413,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_expr(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitArith_expr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Arith_exprContext arith_expr() throws RecognitionException {
@@ -444,9 +421,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(122);
+			setState(124);
 			term();
-			setState(123);
+			setState(125);
 			arith_expr_1();
 			}
 		}
@@ -477,11 +454,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_expr_1(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitArith_expr_1(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Arith_expr_1Context arith_expr_1() throws RecognitionException {
@@ -491,12 +463,12 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(127);
+			setState(129);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==UNARY_PLUS || _la==UNARY_MINUS) {
 				{
-				setState(125);
+				setState(127);
 				_la = _input.LA(1);
 				if ( !(_la==UNARY_PLUS || _la==UNARY_MINUS) ) {
 				_errHandler.recoverInline(this);
@@ -506,7 +478,7 @@ public class VicuschiParser extends Parser {
 					_errHandler.reportMatch(this);
 					consume();
 				}
-				setState(126);
+				setState(128);
 				arith_expr();
 				}
 			}
@@ -543,11 +515,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitTerm(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitTerm(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final TermContext term() throws RecognitionException {
@@ -556,9 +523,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(129);
+			setState(131);
 			factor();
-			setState(130);
+			setState(132);
 			term_a();
 			}
 		}
@@ -589,11 +556,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitTerm_a(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitTerm_a(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Term_aContext term_a() throws RecognitionException {
@@ -603,12 +565,12 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(134);
+			setState(136);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__0 || _la==T__1) {
 				{
-				setState(132);
+				setState(134);
 				_la = _input.LA(1);
 				if ( !(_la==T__0 || _la==T__1) ) {
 				_errHandler.recoverInline(this);
@@ -618,7 +580,7 @@ public class VicuschiParser extends Parser {
 					_errHandler.reportMatch(this);
 					consume();
 				}
-				setState(133);
+				setState(135);
 				term();
 				}
 			}
@@ -655,11 +617,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFactor(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFactor(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FactorContext factor() throws RecognitionException {
@@ -668,9 +625,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(136);
+			setState(138);
 			r_arith();
-			setState(137);
+			setState(139);
 			factor_a();
 			}
 		}
@@ -701,11 +658,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFactor_a(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFactor_a(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Factor_aContext factor_a() throws RecognitionException {
@@ -715,14 +667,14 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(141);
+			setState(143);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__2) {
 				{
-				setState(139);
+				setState(141);
 				match(T__2);
-				setState(140);
+				setState(142);
 				factor();
 				}
 			}
@@ -762,42 +714,37 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitR_arith(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitR_arith(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final R_arithContext r_arith() throws RecognitionException {
 		R_arithContext _localctx = new R_arithContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_r_arith);
 		try {
-			setState(149);
+			setState(151);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(143);
-				match(T__3);
-				setState(144);
-				arith_expr();
 				setState(145);
+				match(T__3);
+				setState(146);
+				arith_expr();
+				setState(147);
 				match(T__4);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(147);
+				setState(149);
 				arith_id();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(148);
+				setState(150);
 				arith_number();
 				}
 				break;
@@ -830,11 +777,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_id(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitArith_id(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Arith_idContext arith_id() throws RecognitionException {
@@ -844,12 +786,12 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(152);
+			setState(154);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==UNARY_PLUS || _la==UNARY_MINUS) {
 				{
-				setState(151);
+				setState(153);
 				_la = _input.LA(1);
 				if ( !(_la==UNARY_PLUS || _la==UNARY_MINUS) ) {
 				_errHandler.recoverInline(this);
@@ -862,7 +804,7 @@ public class VicuschiParser extends Parser {
 				}
 			}
 
-			setState(154);
+			setState(156);
 			match(ID);
 			}
 		}
@@ -893,11 +835,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitArith_number(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitArith_number(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Arith_numberContext arith_number() throws RecognitionException {
@@ -907,12 +844,12 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(157);
+			setState(159);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==UNARY_PLUS || _la==UNARY_MINUS) {
 				{
-				setState(156);
+				setState(158);
 				_la = _input.LA(1);
 				if ( !(_la==UNARY_PLUS || _la==UNARY_MINUS) ) {
 				_errHandler.recoverInline(this);
@@ -925,7 +862,7 @@ public class VicuschiParser extends Parser {
 				}
 			}
 
-			setState(159);
+			setState(161);
 			match(NUMBER);
 			}
 		}
@@ -957,11 +894,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFunction_call(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFunction_call(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Function_callContext function_call() throws RecognitionException {
@@ -971,21 +903,21 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(161);
+			setState(163);
 			match(ID);
-			setState(162);
-			match(T__3);
 			setState(164);
+			match(T__3);
+			setState(166);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__6) | (1L << INCREMENT) | (1L << DECREMENT) | (1L << UNARY_PLUS) | (1L << UNARY_MINUS) | (1L << BOOL) | (1L << NUMBER) | (1L << WORD) | (1L << ARRAY) | (1L << ID))) != 0)) {
 				{
-				setState(163);
+				setState(165);
 				params();
 				}
 			}
 
-			setState(166);
+			setState(168);
 			match(T__4);
 			}
 		}
@@ -1024,11 +956,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFunction_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFunction_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Function_declarationContext function_declaration() throws RecognitionException {
@@ -1038,35 +965,35 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(168);
+			setState(170);
 			generic_unary_declaration();
-			setState(169);
-			match(T__3);
 			setState(171);
+			match(T__3);
+			setState(173);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN))) != 0)) {
 				{
-				setState(170);
+				setState(172);
 				declaration_params();
 				}
 			}
 
-			setState(173);
-			match(T__4);
 			setState(175);
+			match(T__4);
+			setState(177);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WS) {
 				{
-				setState(174);
+				setState(176);
 				match(WS);
 				}
 			}
 
-			setState(177);
+			setState(179);
 			stmt();
-			setState(178);
+			setState(180);
 			match(ENDF);
 			}
 		}
@@ -1104,11 +1031,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDeclaration_params(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitDeclaration_params(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Declaration_paramsContext declaration_params() throws RecognitionException {
@@ -1118,31 +1040,31 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(180);
+			setState(182);
 			generic_declaration();
-			setState(188);
+			setState(190);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__5) {
 				{
 				{
-				setState(181);
-				match(T__5);
 				setState(183);
+				match(T__5);
+				setState(185);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==WS) {
 					{
-					setState(182);
+					setState(184);
 					match(WS);
 					}
 				}
 
-				setState(185);
+				setState(187);
 				generic_declaration();
 				}
 				}
-				setState(190);
+				setState(192);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1182,11 +1104,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitParams(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitParams(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ParamsContext params() throws RecognitionException {
@@ -1196,31 +1113,31 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(191);
+			setState(193);
 			attributed();
-			setState(199);
+			setState(201);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__5) {
 				{
 				{
-				setState(192);
-				match(T__5);
 				setState(194);
+				match(T__5);
+				setState(196);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==WS) {
 					{
-					setState(193);
+					setState(195);
 					match(WS);
 					}
 				}
 
-				setState(196);
+				setState(198);
 				attributed();
 				}
 				}
-				setState(201);
+				setState(203);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1265,52 +1182,47 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitAttributed(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitAttributed(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AttributedContext attributed() throws RecognitionException {
 		AttributedContext _localctx = new AttributedContext(_ctx, getState());
 		enterRule(_localctx, 34, RULE_attributed);
 		try {
-			setState(207);
+			setState(209);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(202);
+				setState(204);
 				literal();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(203);
+				setState(205);
 				unary_expression();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(204);
+				setState(206);
 				logic_expr();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(205);
+				setState(207);
 				function_call();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(206);
+				setState(208);
 				arith_expr();
 				}
 				break;
@@ -1344,11 +1256,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitAttribution(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitAttribution(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AttributionContext attribution() throws RecognitionException {
@@ -1357,9 +1264,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(209);
+			setState(211);
 			match(ATTRIBUTION);
-			setState(210);
+			setState(212);
 			attributed();
 			}
 		}
@@ -1393,31 +1300,26 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitUnary_expression(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitUnary_expression(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Unary_expressionContext unary_expression() throws RecognitionException {
 		Unary_expressionContext _localctx = new Unary_expressionContext(_ctx, getState());
 		enterRule(_localctx, 38, RULE_unary_expression);
 		try {
-			setState(214);
+			setState(216);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(212);
+				setState(214);
 				decrement();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(213);
+				setState(215);
 				increment();
 				}
 				break;
@@ -1449,35 +1351,30 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDecrement(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitDecrement(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final DecrementContext decrement() throws RecognitionException {
 		DecrementContext _localctx = new DecrementContext(_ctx, getState());
 		enterRule(_localctx, 40, RULE_decrement);
 		try {
-			setState(220);
+			setState(222);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case DECREMENT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(216);
+				setState(218);
 				match(DECREMENT);
-				setState(217);
+				setState(219);
 				match(ID);
 				}
 				break;
 			case ID:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(218);
+				setState(220);
 				match(ID);
-				setState(219);
+				setState(221);
 				match(DECREMENT);
 				}
 				break;
@@ -1511,35 +1408,30 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitIncrement(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitIncrement(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final IncrementContext increment() throws RecognitionException {
 		IncrementContext _localctx = new IncrementContext(_ctx, getState());
 		enterRule(_localctx, 42, RULE_increment);
 		try {
-			setState(226);
+			setState(228);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INCREMENT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(222);
+				setState(224);
 				match(INCREMENT);
-				setState(223);
+				setState(225);
 				match(ID);
 				}
 				break;
 			case ID:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(224);
+				setState(226);
 				match(ID);
-				setState(225);
+				setState(227);
 				match(INCREMENT);
 				}
 				break;
@@ -1579,11 +1471,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitIf_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitIf_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final If_declarationContext if_declaration() throws RecognitionException {
@@ -1592,13 +1479,13 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(228);
-			match(IF);
-			setState(229);
-			logic_expr();
 			setState(230);
-			stmt();
+			match(IF);
 			setState(231);
+			logic_expr();
+			setState(232);
+			stmt();
+			setState(233);
 			match(ENDIF);
 			}
 		}
@@ -1634,11 +1521,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitWhile_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitWhile_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final While_declarationContext while_declaration() throws RecognitionException {
@@ -1647,13 +1529,13 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(233);
-			match(WHILE);
-			setState(234);
-			logic_expr();
 			setState(235);
-			stmt();
+			match(WHILE);
 			setState(236);
+			logic_expr();
+			setState(237);
+			stmt();
+			setState(238);
 			match(ENDWHILE);
 			}
 		}
@@ -1688,11 +1570,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFor_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFor_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final For_declarationContext for_declaration() throws RecognitionException {
@@ -1702,25 +1579,25 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(238);
-			match(FOR);
 			setState(240);
+			match(FOR);
+			setState(242);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ID) {
 				{
-				setState(239);
+				setState(241);
 				match(ID);
 				}
 			}
 
-			setState(242);
-			match(EACH);
-			setState(243);
-			match(INTERVAL);
 			setState(244);
-			stmt();
+			match(EACH);
 			setState(245);
+			match(INTERVAL);
+			setState(246);
+			stmt();
+			setState(247);
 			match(ENDFOR);
 			}
 		}
@@ -1754,11 +1631,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_expr(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLogic_expr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Logic_exprContext logic_expr() throws RecognitionException {
@@ -1767,9 +1639,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(247);
+			setState(249);
 			logic_term();
-			setState(248);
+			setState(250);
 			logic_expr_1();
 			}
 		}
@@ -1801,11 +1673,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_expr_1(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLogic_expr_1(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Logic_expr_1Context logic_expr_1() throws RecognitionException {
@@ -1814,14 +1681,14 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(252);
+			setState(254);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
 			case 1:
 				{
-				setState(250);
+				setState(252);
 				match(LOGICAL_OR);
-				setState(251);
+				setState(253);
 				logic_expr();
 				}
 				break;
@@ -1858,11 +1725,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_term(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLogic_term(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Logic_termContext logic_term() throws RecognitionException {
@@ -1871,9 +1733,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(254);
+			setState(256);
 			r_logic();
-			setState(255);
+			setState(257);
 			logic_term_a();
 			}
 		}
@@ -1905,11 +1767,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLogic_term_a(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLogic_term_a(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Logic_term_aContext logic_term_a() throws RecognitionException {
@@ -1918,14 +1775,14 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(259);
+			setState(261);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
 			case 1:
 				{
-				setState(257);
+				setState(259);
 				match(LOGICAL_AND);
-				setState(258);
+				setState(260);
 				logic_term();
 				}
 				break;
@@ -1974,11 +1831,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitR_logic(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitR_logic(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final R_logicContext r_logic() throws RecognitionException {
@@ -1986,54 +1838,54 @@ public class VicuschiParser extends Parser {
 		enterRule(_localctx, 58, RULE_r_logic);
 		int _la;
 		try {
-			setState(274);
+			setState(276);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(261);
-				match(T__3);
-				setState(262);
-				logic_expr();
 				setState(263);
+				match(T__3);
+				setState(264);
+				logic_expr();
+				setState(265);
 				match(T__4);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(265);
+				setState(267);
 				match(T__6);
-				setState(266);
+				setState(268);
 				logic_expr();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(267);
+				setState(269);
 				match(ID);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(268);
+				setState(270);
 				match(BOOL);
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(269);
+				setState(271);
 				generic_array();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(270);
+				setState(272);
 				_la = _input.LA(1);
 				if ( !(_la==NUMBER || _la==ID) ) {
 				_errHandler.recoverInline(this);
@@ -2043,9 +1895,9 @@ public class VicuschiParser extends Parser {
 					_errHandler.reportMatch(this);
 					consume();
 				}
-				setState(271);
+				setState(273);
 				comparator();
-				setState(272);
+				setState(274);
 				_la = _input.LA(1);
 				if ( !(_la==NUMBER || _la==ID) ) {
 				_errHandler.recoverInline(this);
@@ -2087,11 +1939,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitNot_id(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitNot_id(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Not_idContext not_id() throws RecognitionException {
@@ -2100,20 +1947,20 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(276);
+			setState(278);
 			match(T__6);
-			setState(279);
+			setState(281);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
 			case 1:
 				{
-				setState(277);
+				setState(279);
 				match(ID);
 				}
 				break;
 			case 2:
 				{
-				setState(278);
+				setState(280);
 				generic_array();
 				}
 				break;
@@ -2146,11 +1993,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitInteger_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitInteger_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Integer_declarationContext integer_declaration() throws RecognitionException {
@@ -2159,9 +2001,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(281);
+			setState(283);
 			match(INT);
-			setState(282);
+			setState(284);
 			match(ID);
 			}
 		}
@@ -2191,11 +2033,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFloat_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFloat_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Float_declarationContext float_declaration() throws RecognitionException {
@@ -2204,9 +2041,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(284);
+			setState(286);
 			match(FLOAT);
-			setState(285);
+			setState(287);
 			match(ID);
 			}
 		}
@@ -2236,11 +2073,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitString_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitString_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final String_declarationContext string_declaration() throws RecognitionException {
@@ -2249,9 +2081,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(287);
+			setState(289);
 			match(STRING);
-			setState(288);
+			setState(290);
 			match(ID);
 			}
 		}
@@ -2281,11 +2113,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitBoolean_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitBoolean_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Boolean_declarationContext boolean_declaration() throws RecognitionException {
@@ -2294,9 +2121,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(290);
+			setState(292);
 			match(BOOLEAN);
-			setState(291);
+			setState(293);
 			match(ID);
 			}
 		}
@@ -2330,11 +2157,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitDeclaration_attribution(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitDeclaration_attribution(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Declaration_attributionContext declaration_attribution() throws RecognitionException {
@@ -2343,9 +2165,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(293);
+			setState(295);
 			generic_declaration();
-			setState(294);
+			setState(296);
 			attribution();
 			}
 		}
@@ -2377,11 +2199,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitInteger_array_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitInteger_array_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Integer_array_declarationContext integer_array_declaration() throws RecognitionException {
@@ -2390,9 +2207,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(296);
+			setState(298);
 			match(INT);
-			setState(297);
+			setState(299);
 			generic_array();
 			}
 		}
@@ -2424,11 +2241,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitFloat_array_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitFloat_array_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Float_array_declarationContext float_array_declaration() throws RecognitionException {
@@ -2437,9 +2249,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(299);
+			setState(301);
 			match(FLOAT);
-			setState(300);
+			setState(302);
 			generic_array();
 			}
 		}
@@ -2471,11 +2283,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitString_array_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitString_array_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final String_array_declarationContext string_array_declaration() throws RecognitionException {
@@ -2484,9 +2291,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(302);
+			setState(304);
 			match(STRING);
-			setState(303);
+			setState(305);
 			generic_array();
 			}
 		}
@@ -2518,11 +2325,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitBoolean_array_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitBoolean_array_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Boolean_array_declarationContext boolean_array_declaration() throws RecognitionException {
@@ -2531,9 +2333,9 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(305);
+			setState(307);
 			match(BOOLEAN);
-			setState(306);
+			setState(308);
 			generic_array();
 			}
 		}
@@ -2567,31 +2369,26 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Generic_declarationContext generic_declaration() throws RecognitionException {
 		Generic_declarationContext _localctx = new Generic_declarationContext(_ctx, getState());
 		enterRule(_localctx, 80, RULE_generic_declaration);
 		try {
-			setState(310);
+			setState(312);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,24,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(308);
+				setState(310);
 				generic_unary_declaration();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(309);
+				setState(311);
 				generic_array_declaration();
 				}
 				break;
@@ -2633,45 +2430,40 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_unary_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_unary_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Generic_unary_declarationContext generic_unary_declaration() throws RecognitionException {
 		Generic_unary_declarationContext _localctx = new Generic_unary_declarationContext(_ctx, getState());
 		enterRule(_localctx, 82, RULE_generic_unary_declaration);
 		try {
-			setState(316);
+			setState(318);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(312);
+				setState(314);
 				integer_declaration();
 				}
 				break;
 			case FLOAT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(313);
+				setState(315);
 				float_declaration();
 				}
 				break;
 			case STRING:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(314);
+				setState(316);
 				string_declaration();
 				}
 				break;
 			case BOOLEAN:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(315);
+				setState(317);
 				boolean_declaration();
 				}
 				break;
@@ -2692,7 +2484,9 @@ public class VicuschiParser extends Parser {
 
 	public static class Generic_arrayContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
-		public TerminalNode INDEX() { return getToken(VicuschiParser.INDEX, 0); }
+		public IndexContext index() {
+			return getRuleContext(IndexContext.class,0);
+		}
 		public Generic_arrayContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2705,11 +2499,6 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_array(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_array(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Generic_arrayContext generic_array() throws RecognitionException {
@@ -2718,10 +2507,76 @@ public class VicuschiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(318);
+			setState(320);
 			match(ID);
-			setState(319);
-			match(INDEX);
+			setState(321);
+			index();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class IndexContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
+		public TerminalNode ARRAY_INDEX() { return getToken(VicuschiParser.ARRAY_INDEX, 0); }
+		public IndexContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_index; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).enterIndex(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitIndex(this);
+		}
+	}
+
+	public final IndexContext index() throws RecognitionException {
+		IndexContext _localctx = new IndexContext(_ctx, getState());
+		enterRule(_localctx, 86, RULE_index);
+		try {
+			setState(330);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(323);
+				match(T__7);
+				setState(324);
+				match(ID);
+				setState(325);
+				match(T__8);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(326);
+				match(T__7);
+				setState(327);
+				match(ARRAY_INDEX);
+				setState(328);
+				match(T__8);
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(329);
+				match(T__9);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -2760,45 +2615,40 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_array_declaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_array_declaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Generic_array_declarationContext generic_array_declaration() throws RecognitionException {
 		Generic_array_declarationContext _localctx = new Generic_array_declarationContext(_ctx, getState());
-		enterRule(_localctx, 86, RULE_generic_array_declaration);
+		enterRule(_localctx, 88, RULE_generic_array_declaration);
 		try {
-			setState(325);
+			setState(336);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(321);
+				setState(332);
 				integer_array_declaration();
 				}
 				break;
 			case FLOAT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(322);
+				setState(333);
 				float_array_declaration();
 				}
 				break;
 			case STRING:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(323);
+				setState(334);
 				string_array_declaration();
 				}
 				break;
 			case BOOLEAN:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(324);
+				setState(335);
 				boolean_array_declaration();
 				}
 				break;
@@ -2834,22 +2684,17 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitAttribuition_id(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitAttribuition_id(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Attribuition_idContext attribuition_id() throws RecognitionException {
 		Attribuition_idContext _localctx = new Attribuition_idContext(_ctx, getState());
-		enterRule(_localctx, 88, RULE_attribuition_id);
+		enterRule(_localctx, 90, RULE_attribuition_id);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(327);
+			setState(338);
 			match(ID);
-			setState(328);
+			setState(339);
 			attribution();
 			}
 		}
@@ -2883,22 +2728,17 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitAttribuition_array(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitAttribuition_array(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Attribuition_arrayContext attribuition_array() throws RecognitionException {
 		Attribuition_arrayContext _localctx = new Attribuition_arrayContext(_ctx, getState());
-		enterRule(_localctx, 90, RULE_attribuition_array);
+		enterRule(_localctx, 92, RULE_attribuition_array);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(330);
+			setState(341);
 			generic_array();
-			setState(331);
+			setState(342);
 			attribution();
 			}
 		}
@@ -2932,31 +2772,26 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitGeneric_attribution(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitGeneric_attribution(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Generic_attributionContext generic_attribution() throws RecognitionException {
 		Generic_attributionContext _localctx = new Generic_attributionContext(_ctx, getState());
-		enterRule(_localctx, 92, RULE_generic_attribution);
+		enterRule(_localctx, 94, RULE_generic_attribution);
 		try {
-			setState(335);
+			setState(346);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,28,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(333);
+				setState(344);
 				attribuition_id();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(334);
+				setState(345);
 				attribuition_array();
 				}
 				break;
@@ -2990,21 +2825,16 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitLiteral(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitLiteral(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LiteralContext literal() throws RecognitionException {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
-		enterRule(_localctx, 94, RULE_literal);
+		enterRule(_localctx, 96, RULE_literal);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(337);
+			setState(348);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOOL) | (1L << NUMBER) | (1L << WORD) | (1L << ARRAY))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3046,21 +2876,16 @@ public class VicuschiParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof VicuschiListener ) ((VicuschiListener)listener).exitComparator(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof VicuschiVisitor ) return ((VicuschiVisitor<? extends T>)visitor).visitComparator(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ComparatorContext comparator() throws RecognitionException {
 		ComparatorContext _localctx = new ComparatorContext(_ctx, getState());
-		enterRule(_localctx, 96, RULE_comparator);
+		enterRule(_localctx, 98, RULE_comparator);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(339);
+			setState(350);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MAJOR) | (1L << MINOR) | (1L << EQUALS) | (1L << MAJOR_EQUALS) | (1L << MINOR_EQUALS) | (1L << DIFFERENT))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -3084,120 +2909,125 @@ public class VicuschiParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\64\u0158\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\67\u0163\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
 		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\4\37\t\37\4 \t \4!"+
 		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t&\4\'\t\'\4(\t(\4)\t)\4*\t*\4+\t+\4"+
-		",\t,\4-\t-\4.\t.\4/\t/\4\60\t\60\4\61\t\61\4\62\t\62\3\2\3\2\3\3\3\3\3"+
-		"\3\6\3j\n\3\r\3\16\3k\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4x\n\4"+
-		"\3\5\3\5\3\5\3\6\3\6\3\6\3\7\3\7\5\7\u0082\n\7\3\b\3\b\3\b\3\t\3\t\5\t"+
-		"\u0089\n\t\3\n\3\n\3\n\3\13\3\13\5\13\u0090\n\13\3\f\3\f\3\f\3\f\3\f\3"+
-		"\f\5\f\u0098\n\f\3\r\5\r\u009b\n\r\3\r\3\r\3\16\5\16\u00a0\n\16\3\16\3"+
-		"\16\3\17\3\17\3\17\5\17\u00a7\n\17\3\17\3\17\3\20\3\20\3\20\5\20\u00ae"+
-		"\n\20\3\20\3\20\5\20\u00b2\n\20\3\20\3\20\3\20\3\21\3\21\3\21\5\21\u00ba"+
-		"\n\21\3\21\7\21\u00bd\n\21\f\21\16\21\u00c0\13\21\3\22\3\22\3\22\5\22"+
-		"\u00c5\n\22\3\22\7\22\u00c8\n\22\f\22\16\22\u00cb\13\22\3\23\3\23\3\23"+
-		"\3\23\3\23\5\23\u00d2\n\23\3\24\3\24\3\24\3\25\3\25\5\25\u00d9\n\25\3"+
-		"\26\3\26\3\26\3\26\5\26\u00df\n\26\3\27\3\27\3\27\3\27\5\27\u00e5\n\27"+
-		"\3\30\3\30\3\30\3\30\3\30\3\31\3\31\3\31\3\31\3\31\3\32\3\32\5\32\u00f3"+
-		"\n\32\3\32\3\32\3\32\3\32\3\32\3\33\3\33\3\33\3\34\3\34\5\34\u00ff\n\34"+
-		"\3\35\3\35\3\35\3\36\3\36\5\36\u0106\n\36\3\37\3\37\3\37\3\37\3\37\3\37"+
-		"\3\37\3\37\3\37\3\37\3\37\3\37\3\37\5\37\u0115\n\37\3 \3 \3 \5 \u011a"+
-		"\n \3!\3!\3!\3\"\3\"\3\"\3#\3#\3#\3$\3$\3$\3%\3%\3%\3&\3&\3&\3\'\3\'\3"+
-		"\'\3(\3(\3(\3)\3)\3)\3*\3*\5*\u0139\n*\3+\3+\3+\3+\5+\u013f\n+\3,\3,\3"+
-		",\3-\3-\3-\3-\5-\u0148\n-\3.\3.\3.\3/\3/\3/\3\60\3\60\5\60\u0152\n\60"+
-		"\3\61\3\61\3\62\3\62\3\62\2\2\63\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36"+
-		" \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`b\2\7\3\2%&\3\2\3\4\4\2--\61"+
-		"\61\3\2,/\3\2\33 \2\u0156\2d\3\2\2\2\4i\3\2\2\2\6w\3\2\2\2\by\3\2\2\2"+
-		"\n|\3\2\2\2\f\u0081\3\2\2\2\16\u0083\3\2\2\2\20\u0088\3\2\2\2\22\u008a"+
-		"\3\2\2\2\24\u008f\3\2\2\2\26\u0097\3\2\2\2\30\u009a\3\2\2\2\32\u009f\3"+
-		"\2\2\2\34\u00a3\3\2\2\2\36\u00aa\3\2\2\2 \u00b6\3\2\2\2\"\u00c1\3\2\2"+
-		"\2$\u00d1\3\2\2\2&\u00d3\3\2\2\2(\u00d8\3\2\2\2*\u00de\3\2\2\2,\u00e4"+
-		"\3\2\2\2.\u00e6\3\2\2\2\60\u00eb\3\2\2\2\62\u00f0\3\2\2\2\64\u00f9\3\2"+
-		"\2\2\66\u00fe\3\2\2\28\u0100\3\2\2\2:\u0105\3\2\2\2<\u0114\3\2\2\2>\u0116"+
-		"\3\2\2\2@\u011b\3\2\2\2B\u011e\3\2\2\2D\u0121\3\2\2\2F\u0124\3\2\2\2H"+
-		"\u0127\3\2\2\2J\u012a\3\2\2\2L\u012d\3\2\2\2N\u0130\3\2\2\2P\u0133\3\2"+
-		"\2\2R\u0138\3\2\2\2T\u013e\3\2\2\2V\u0140\3\2\2\2X\u0147\3\2\2\2Z\u0149"+
-		"\3\2\2\2\\\u014c\3\2\2\2^\u0151\3\2\2\2`\u0153\3\2\2\2b\u0155\3\2\2\2"+
-		"de\5\4\3\2e\3\3\2\2\2fg\5\6\4\2gh\7)\2\2hj\3\2\2\2if\3\2\2\2jk\3\2\2\2"+
-		"ki\3\2\2\2kl\3\2\2\2l\5\3\2\2\2mx\5H%\2nx\5\60\31\2ox\5\62\32\2px\5.\30"+
-		"\2qx\5R*\2rx\5(\25\2sx\5^\60\2tx\5\36\20\2ux\5\34\17\2vx\5\b\5\2wm\3\2"+
-		"\2\2wn\3\2\2\2wo\3\2\2\2wp\3\2\2\2wq\3\2\2\2wr\3\2\2\2ws\3\2\2\2wt\3\2"+
-		"\2\2wu\3\2\2\2wv\3\2\2\2x\7\3\2\2\2yz\7\26\2\2z{\7.\2\2{\t\3\2\2\2|}\5"+
-		"\16\b\2}~\5\f\7\2~\13\3\2\2\2\177\u0080\t\2\2\2\u0080\u0082\5\n\6\2\u0081"+
-		"\177\3\2\2\2\u0081\u0082\3\2\2\2\u0082\r\3\2\2\2\u0083\u0084\5\22\n\2"+
-		"\u0084\u0085\5\20\t\2\u0085\17\3\2\2\2\u0086\u0087\t\3\2\2\u0087\u0089"+
-		"\5\16\b\2\u0088\u0086\3\2\2\2\u0088\u0089\3\2\2\2\u0089\21\3\2\2\2\u008a"+
-		"\u008b\5\26\f\2\u008b\u008c\5\24\13\2\u008c\23\3\2\2\2\u008d\u008e\7\5"+
-		"\2\2\u008e\u0090\5\22\n\2\u008f\u008d\3\2\2\2\u008f\u0090\3\2\2\2\u0090"+
-		"\25\3\2\2\2\u0091\u0092\7\6\2\2\u0092\u0093\5\n\6\2\u0093\u0094\7\7\2"+
-		"\2\u0094\u0098\3\2\2\2\u0095\u0098\5\30\r\2\u0096\u0098\5\32\16\2\u0097"+
-		"\u0091\3\2\2\2\u0097\u0095\3\2\2\2\u0097\u0096\3\2\2\2\u0098\27\3\2\2"+
-		"\2\u0099\u009b\t\2\2\2\u009a\u0099\3\2\2\2\u009a\u009b\3\2\2\2\u009b\u009c"+
-		"\3\2\2\2\u009c\u009d\7\61\2\2\u009d\31\3\2\2\2\u009e\u00a0\t\2\2\2\u009f"+
-		"\u009e\3\2\2\2\u009f\u00a0\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1\u00a2\7-"+
-		"\2\2\u00a2\33\3\2\2\2\u00a3\u00a4\7\61\2\2\u00a4\u00a6\7\6\2\2\u00a5\u00a7"+
-		"\5\"\22\2\u00a6\u00a5\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7\u00a8\3\2\2\2"+
-		"\u00a8\u00a9\7\7\2\2\u00a9\35\3\2\2\2\u00aa\u00ab\5T+\2\u00ab\u00ad\7"+
-		"\6\2\2\u00ac\u00ae\5 \21\2\u00ad\u00ac\3\2\2\2\u00ad\u00ae\3\2\2\2\u00ae"+
-		"\u00af\3\2\2\2\u00af\u00b1\7\7\2\2\u00b0\u00b2\7\64\2\2\u00b1\u00b0\3"+
-		"\2\2\2\u00b1\u00b2\3\2\2\2\u00b2\u00b3\3\2\2\2\u00b3\u00b4\5\4\3\2\u00b4"+
-		"\u00b5\7\24\2\2\u00b5\37\3\2\2\2\u00b6\u00be\5R*\2\u00b7\u00b9\7\b\2\2"+
-		"\u00b8\u00ba\7\64\2\2\u00b9\u00b8\3\2\2\2\u00b9\u00ba\3\2\2\2\u00ba\u00bb"+
-		"\3\2\2\2\u00bb\u00bd\5R*\2\u00bc\u00b7\3\2\2\2\u00bd\u00c0\3\2\2\2\u00be"+
-		"\u00bc\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf!\3\2\2\2\u00c0\u00be\3\2\2\2"+
-		"\u00c1\u00c9\5$\23\2\u00c2\u00c4\7\b\2\2\u00c3\u00c5\7\64\2\2\u00c4\u00c3"+
-		"\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5\u00c6\3\2\2\2\u00c6\u00c8\5$\23\2\u00c7"+
-		"\u00c2\3\2\2\2\u00c8\u00cb\3\2\2\2\u00c9\u00c7\3\2\2\2\u00c9\u00ca\3\2"+
-		"\2\2\u00ca#\3\2\2\2\u00cb\u00c9\3\2\2\2\u00cc\u00d2\5`\61\2\u00cd\u00d2"+
-		"\5(\25\2\u00ce\u00d2\5\64\33\2\u00cf\u00d2\5\34\17\2\u00d0\u00d2\5\n\6"+
-		"\2\u00d1\u00cc\3\2\2\2\u00d1\u00cd\3\2\2\2\u00d1\u00ce\3\2\2\2\u00d1\u00cf"+
-		"\3\2\2\2\u00d1\u00d0\3\2\2\2\u00d2%\3\2\2\2\u00d3\u00d4\7!\2\2\u00d4\u00d5"+
-		"\5$\23\2\u00d5\'\3\2\2\2\u00d6\u00d9\5*\26\2\u00d7\u00d9\5,\27\2\u00d8"+
-		"\u00d6\3\2\2\2\u00d8\u00d7\3\2\2\2\u00d9)\3\2\2\2\u00da\u00db\7#\2\2\u00db"+
-		"\u00df\7\61\2\2\u00dc\u00dd\7\61\2\2\u00dd\u00df\7#\2\2\u00de\u00da\3"+
-		"\2\2\2\u00de\u00dc\3\2\2\2\u00df+\3\2\2\2\u00e0\u00e1\7\"\2\2\u00e1\u00e5"+
-		"\7\61\2\2\u00e2\u00e3\7\61\2\2\u00e3\u00e5\7\"\2\2\u00e4\u00e0\3\2\2\2"+
-		"\u00e4\u00e2\3\2\2\2\u00e5-\3\2\2\2\u00e6\u00e7\7\n\2\2\u00e7\u00e8\5"+
-		"\64\33\2\u00e8\u00e9\5\4\3\2\u00e9\u00ea\7\13\2\2\u00ea/\3\2\2\2\u00eb"+
-		"\u00ec\7\20\2\2\u00ec\u00ed\5\64\33\2\u00ed\u00ee\5\4\3\2\u00ee\u00ef"+
-		"\7\21\2\2\u00ef\61\3\2\2\2\u00f0\u00f2\7\f\2\2\u00f1\u00f3\7\61\2\2\u00f2"+
-		"\u00f1\3\2\2\2\u00f2\u00f3\3\2\2\2\u00f3\u00f4\3\2\2\2\u00f4\u00f5\7+"+
-		"\2\2\u00f5\u00f6\7\60\2\2\u00f6\u00f7\5\4\3\2\u00f7\u00f8\7\r\2\2\u00f8"+
-		"\63\3\2\2\2\u00f9\u00fa\58\35\2\u00fa\u00fb\5\66\34\2\u00fb\65\3\2\2\2"+
-		"\u00fc\u00fd\7(\2\2\u00fd\u00ff\5\64\33\2\u00fe\u00fc\3\2\2\2\u00fe\u00ff"+
-		"\3\2\2\2\u00ff\67\3\2\2\2\u0100\u0101\5<\37\2\u0101\u0102\5:\36\2\u0102"+
-		"9\3\2\2\2\u0103\u0104\7\'\2\2\u0104\u0106\58\35\2\u0105\u0103\3\2\2\2"+
-		"\u0105\u0106\3\2\2\2\u0106;\3\2\2\2\u0107\u0108\7\6\2\2\u0108\u0109\5"+
-		"\64\33\2\u0109\u010a\7\7\2\2\u010a\u0115\3\2\2\2\u010b\u010c\7\t\2\2\u010c"+
-		"\u0115\5\64\33\2\u010d\u0115\7\61\2\2\u010e\u0115\7,\2\2\u010f\u0115\5"+
-		"V,\2\u0110\u0111\t\4\2\2\u0111\u0112\5b\62\2\u0112\u0113\t\4\2\2\u0113"+
-		"\u0115\3\2\2\2\u0114\u0107\3\2\2\2\u0114\u010b\3\2\2\2\u0114\u010d\3\2"+
-		"\2\2\u0114\u010e\3\2\2\2\u0114\u010f\3\2\2\2\u0114\u0110\3\2\2\2\u0115"+
-		"=\3\2\2\2\u0116\u0119\7\t\2\2\u0117\u011a\7\61\2\2\u0118\u011a\5V,\2\u0119"+
-		"\u0117\3\2\2\2\u0119\u0118\3\2\2\2\u011a?\3\2\2\2\u011b\u011c\7\27\2\2"+
-		"\u011c\u011d\7\61\2\2\u011dA\3\2\2\2\u011e\u011f\7\30\2\2\u011f\u0120"+
-		"\7\61\2\2\u0120C\3\2\2\2\u0121\u0122\7\31\2\2\u0122\u0123\7\61\2\2\u0123"+
-		"E\3\2\2\2\u0124\u0125\7\32\2\2\u0125\u0126\7\61\2\2\u0126G\3\2\2\2\u0127"+
-		"\u0128\5R*\2\u0128\u0129\5&\24\2\u0129I\3\2\2\2\u012a\u012b\7\27\2\2\u012b"+
-		"\u012c\5V,\2\u012cK\3\2\2\2\u012d\u012e\7\30\2\2\u012e\u012f\5V,\2\u012f"+
-		"M\3\2\2\2\u0130\u0131\7\31\2\2\u0131\u0132\5V,\2\u0132O\3\2\2\2\u0133"+
-		"\u0134\7\32\2\2\u0134\u0135\5V,\2\u0135Q\3\2\2\2\u0136\u0139\5T+\2\u0137"+
-		"\u0139\5X-\2\u0138\u0136\3\2\2\2\u0138\u0137\3\2\2\2\u0139S\3\2\2\2\u013a"+
-		"\u013f\5@!\2\u013b\u013f\5B\"\2\u013c\u013f\5D#\2\u013d\u013f\5F$\2\u013e"+
-		"\u013a\3\2\2\2\u013e\u013b\3\2\2\2\u013e\u013c\3\2\2\2\u013e\u013d\3\2"+
-		"\2\2\u013fU\3\2\2\2\u0140\u0141\7\61\2\2\u0141\u0142\7*\2\2\u0142W\3\2"+
-		"\2\2\u0143\u0148\5J&\2\u0144\u0148\5L\'\2\u0145\u0148\5N(\2\u0146\u0148"+
-		"\5P)\2\u0147\u0143\3\2\2\2\u0147\u0144\3\2\2\2\u0147\u0145\3\2\2\2\u0147"+
-		"\u0146\3\2\2\2\u0148Y\3\2\2\2\u0149\u014a\7\61\2\2\u014a\u014b\5&\24\2"+
-		"\u014b[\3\2\2\2\u014c\u014d\5V,\2\u014d\u014e\5&\24\2\u014e]\3\2\2\2\u014f"+
-		"\u0152\5Z.\2\u0150\u0152\5\\/\2\u0151\u014f\3\2\2\2\u0151\u0150\3\2\2"+
-		"\2\u0152_\3\2\2\2\u0153\u0154\t\5\2\2\u0154a\3\2\2\2\u0155\u0156\t\6\2"+
-		"\2\u0156c\3\2\2\2\36kw\u0081\u0088\u008f\u0097\u009a\u009f\u00a6\u00ad"+
-		"\u00b1\u00b9\u00be\u00c4\u00c9\u00d1\u00d8\u00de\u00e4\u00f2\u00fe\u0105"+
-		"\u0114\u0119\u0138\u013e\u0147\u0151";
+		",\t,\4-\t-\4.\t.\4/\t/\4\60\t\60\4\61\t\61\4\62\t\62\4\63\t\63\3\2\3\2"+
+		"\3\3\3\3\3\3\6\3l\n\3\r\3\16\3m\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
+		"\4\5\4z\n\4\3\5\3\5\3\5\3\6\3\6\3\6\3\7\3\7\5\7\u0084\n\7\3\b\3\b\3\b"+
+		"\3\t\3\t\5\t\u008b\n\t\3\n\3\n\3\n\3\13\3\13\5\13\u0092\n\13\3\f\3\f\3"+
+		"\f\3\f\3\f\3\f\5\f\u009a\n\f\3\r\5\r\u009d\n\r\3\r\3\r\3\16\5\16\u00a2"+
+		"\n\16\3\16\3\16\3\17\3\17\3\17\5\17\u00a9\n\17\3\17\3\17\3\20\3\20\3\20"+
+		"\5\20\u00b0\n\20\3\20\3\20\5\20\u00b4\n\20\3\20\3\20\3\20\3\21\3\21\3"+
+		"\21\5\21\u00bc\n\21\3\21\7\21\u00bf\n\21\f\21\16\21\u00c2\13\21\3\22\3"+
+		"\22\3\22\5\22\u00c7\n\22\3\22\7\22\u00ca\n\22\f\22\16\22\u00cd\13\22\3"+
+		"\23\3\23\3\23\3\23\3\23\5\23\u00d4\n\23\3\24\3\24\3\24\3\25\3\25\5\25"+
+		"\u00db\n\25\3\26\3\26\3\26\3\26\5\26\u00e1\n\26\3\27\3\27\3\27\3\27\5"+
+		"\27\u00e7\n\27\3\30\3\30\3\30\3\30\3\30\3\31\3\31\3\31\3\31\3\31\3\32"+
+		"\3\32\5\32\u00f5\n\32\3\32\3\32\3\32\3\32\3\32\3\33\3\33\3\33\3\34\3\34"+
+		"\5\34\u0101\n\34\3\35\3\35\3\35\3\36\3\36\5\36\u0108\n\36\3\37\3\37\3"+
+		"\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\5\37\u0117\n\37"+
+		"\3 \3 \3 \5 \u011c\n \3!\3!\3!\3\"\3\"\3\"\3#\3#\3#\3$\3$\3$\3%\3%\3%"+
+		"\3&\3&\3&\3\'\3\'\3\'\3(\3(\3(\3)\3)\3)\3*\3*\5*\u013b\n*\3+\3+\3+\3+"+
+		"\5+\u0141\n+\3,\3,\3,\3-\3-\3-\3-\3-\3-\3-\5-\u014d\n-\3.\3.\3.\3.\5."+
+		"\u0153\n.\3/\3/\3/\3\60\3\60\3\60\3\61\3\61\5\61\u015d\n\61\3\62\3\62"+
+		"\3\63\3\63\3\63\2\2\64\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,"+
+		".\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bd\2\7\3\2()\3\2\3\4\4\2\60\60\64\64"+
+		"\3\2/\62\3\2\36#\2\u0162\2f\3\2\2\2\4k\3\2\2\2\6y\3\2\2\2\b{\3\2\2\2\n"+
+		"~\3\2\2\2\f\u0083\3\2\2\2\16\u0085\3\2\2\2\20\u008a\3\2\2\2\22\u008c\3"+
+		"\2\2\2\24\u0091\3\2\2\2\26\u0099\3\2\2\2\30\u009c\3\2\2\2\32\u00a1\3\2"+
+		"\2\2\34\u00a5\3\2\2\2\36\u00ac\3\2\2\2 \u00b8\3\2\2\2\"\u00c3\3\2\2\2"+
+		"$\u00d3\3\2\2\2&\u00d5\3\2\2\2(\u00da\3\2\2\2*\u00e0\3\2\2\2,\u00e6\3"+
+		"\2\2\2.\u00e8\3\2\2\2\60\u00ed\3\2\2\2\62\u00f2\3\2\2\2\64\u00fb\3\2\2"+
+		"\2\66\u0100\3\2\2\28\u0102\3\2\2\2:\u0107\3\2\2\2<\u0116\3\2\2\2>\u0118"+
+		"\3\2\2\2@\u011d\3\2\2\2B\u0120\3\2\2\2D\u0123\3\2\2\2F\u0126\3\2\2\2H"+
+		"\u0129\3\2\2\2J\u012c\3\2\2\2L\u012f\3\2\2\2N\u0132\3\2\2\2P\u0135\3\2"+
+		"\2\2R\u013a\3\2\2\2T\u0140\3\2\2\2V\u0142\3\2\2\2X\u014c\3\2\2\2Z\u0152"+
+		"\3\2\2\2\\\u0154\3\2\2\2^\u0157\3\2\2\2`\u015c\3\2\2\2b\u015e\3\2\2\2"+
+		"d\u0160\3\2\2\2fg\5\4\3\2g\3\3\2\2\2hi\5\6\4\2ij\7,\2\2jl\3\2\2\2kh\3"+
+		"\2\2\2lm\3\2\2\2mk\3\2\2\2mn\3\2\2\2n\5\3\2\2\2oz\5H%\2pz\5\60\31\2qz"+
+		"\5\62\32\2rz\5.\30\2sz\5R*\2tz\5(\25\2uz\5`\61\2vz\5\36\20\2wz\5\34\17"+
+		"\2xz\5\b\5\2yo\3\2\2\2yp\3\2\2\2yq\3\2\2\2yr\3\2\2\2ys\3\2\2\2yt\3\2\2"+
+		"\2yu\3\2\2\2yv\3\2\2\2yw\3\2\2\2yx\3\2\2\2z\7\3\2\2\2{|\7\31\2\2|}\7\61"+
+		"\2\2}\t\3\2\2\2~\177\5\16\b\2\177\u0080\5\f\7\2\u0080\13\3\2\2\2\u0081"+
+		"\u0082\t\2\2\2\u0082\u0084\5\n\6\2\u0083\u0081\3\2\2\2\u0083\u0084\3\2"+
+		"\2\2\u0084\r\3\2\2\2\u0085\u0086\5\22\n\2\u0086\u0087\5\20\t\2\u0087\17"+
+		"\3\2\2\2\u0088\u0089\t\3\2\2\u0089\u008b\5\16\b\2\u008a\u0088\3\2\2\2"+
+		"\u008a\u008b\3\2\2\2\u008b\21\3\2\2\2\u008c\u008d\5\26\f\2\u008d\u008e"+
+		"\5\24\13\2\u008e\23\3\2\2\2\u008f\u0090\7\5\2\2\u0090\u0092\5\22\n\2\u0091"+
+		"\u008f\3\2\2\2\u0091\u0092\3\2\2\2\u0092\25\3\2\2\2\u0093\u0094\7\6\2"+
+		"\2\u0094\u0095\5\n\6\2\u0095\u0096\7\7\2\2\u0096\u009a\3\2\2\2\u0097\u009a"+
+		"\5\30\r\2\u0098\u009a\5\32\16\2\u0099\u0093\3\2\2\2\u0099\u0097\3\2\2"+
+		"\2\u0099\u0098\3\2\2\2\u009a\27\3\2\2\2\u009b\u009d\t\2\2\2\u009c\u009b"+
+		"\3\2\2\2\u009c\u009d\3\2\2\2\u009d\u009e\3\2\2\2\u009e\u009f\7\64\2\2"+
+		"\u009f\31\3\2\2\2\u00a0\u00a2\t\2\2\2\u00a1\u00a0\3\2\2\2\u00a1\u00a2"+
+		"\3\2\2\2\u00a2\u00a3\3\2\2\2\u00a3\u00a4\7\60\2\2\u00a4\33\3\2\2\2\u00a5"+
+		"\u00a6\7\64\2\2\u00a6\u00a8\7\6\2\2\u00a7\u00a9\5\"\22\2\u00a8\u00a7\3"+
+		"\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00aa\3\2\2\2\u00aa\u00ab\7\7\2\2\u00ab"+
+		"\35\3\2\2\2\u00ac\u00ad\5T+\2\u00ad\u00af\7\6\2\2\u00ae\u00b0\5 \21\2"+
+		"\u00af\u00ae\3\2\2\2\u00af\u00b0\3\2\2\2\u00b0\u00b1\3\2\2\2\u00b1\u00b3"+
+		"\7\7\2\2\u00b2\u00b4\7\67\2\2\u00b3\u00b2\3\2\2\2\u00b3\u00b4\3\2\2\2"+
+		"\u00b4\u00b5\3\2\2\2\u00b5\u00b6\5\4\3\2\u00b6\u00b7\7\27\2\2\u00b7\37"+
+		"\3\2\2\2\u00b8\u00c0\5R*\2\u00b9\u00bb\7\b\2\2\u00ba\u00bc\7\67\2\2\u00bb"+
+		"\u00ba\3\2\2\2\u00bb\u00bc\3\2\2\2\u00bc\u00bd\3\2\2\2\u00bd\u00bf\5R"+
+		"*\2\u00be\u00b9\3\2\2\2\u00bf\u00c2\3\2\2\2\u00c0\u00be\3\2\2\2\u00c0"+
+		"\u00c1\3\2\2\2\u00c1!\3\2\2\2\u00c2\u00c0\3\2\2\2\u00c3\u00cb\5$\23\2"+
+		"\u00c4\u00c6\7\b\2\2\u00c5\u00c7\7\67\2\2\u00c6\u00c5\3\2\2\2\u00c6\u00c7"+
+		"\3\2\2\2\u00c7\u00c8\3\2\2\2\u00c8\u00ca\5$\23\2\u00c9\u00c4\3\2\2\2\u00ca"+
+		"\u00cd\3\2\2\2\u00cb\u00c9\3\2\2\2\u00cb\u00cc\3\2\2\2\u00cc#\3\2\2\2"+
+		"\u00cd\u00cb\3\2\2\2\u00ce\u00d4\5b\62\2\u00cf\u00d4\5(\25\2\u00d0\u00d4"+
+		"\5\64\33\2\u00d1\u00d4\5\34\17\2\u00d2\u00d4\5\n\6\2\u00d3\u00ce\3\2\2"+
+		"\2\u00d3\u00cf\3\2\2\2\u00d3\u00d0\3\2\2\2\u00d3\u00d1\3\2\2\2\u00d3\u00d2"+
+		"\3\2\2\2\u00d4%\3\2\2\2\u00d5\u00d6\7$\2\2\u00d6\u00d7\5$\23\2\u00d7\'"+
+		"\3\2\2\2\u00d8\u00db\5*\26\2\u00d9\u00db\5,\27\2\u00da\u00d8\3\2\2\2\u00da"+
+		"\u00d9\3\2\2\2\u00db)\3\2\2\2\u00dc\u00dd\7&\2\2\u00dd\u00e1\7\64\2\2"+
+		"\u00de\u00df\7\64\2\2\u00df\u00e1\7&\2\2\u00e0\u00dc\3\2\2\2\u00e0\u00de"+
+		"\3\2\2\2\u00e1+\3\2\2\2\u00e2\u00e3\7%\2\2\u00e3\u00e7\7\64\2\2\u00e4"+
+		"\u00e5\7\64\2\2\u00e5\u00e7\7%\2\2\u00e6\u00e2\3\2\2\2\u00e6\u00e4\3\2"+
+		"\2\2\u00e7-\3\2\2\2\u00e8\u00e9\7\r\2\2\u00e9\u00ea\5\64\33\2\u00ea\u00eb"+
+		"\5\4\3\2\u00eb\u00ec\7\16\2\2\u00ec/\3\2\2\2\u00ed\u00ee\7\23\2\2\u00ee"+
+		"\u00ef\5\64\33\2\u00ef\u00f0\5\4\3\2\u00f0\u00f1\7\24\2\2\u00f1\61\3\2"+
+		"\2\2\u00f2\u00f4\7\17\2\2\u00f3\u00f5\7\64\2\2\u00f4\u00f3\3\2\2\2\u00f4"+
+		"\u00f5\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6\u00f7\7.\2\2\u00f7\u00f8\7\63"+
+		"\2\2\u00f8\u00f9\5\4\3\2\u00f9\u00fa\7\20\2\2\u00fa\63\3\2\2\2\u00fb\u00fc"+
+		"\58\35\2\u00fc\u00fd\5\66\34\2\u00fd\65\3\2\2\2\u00fe\u00ff\7+\2\2\u00ff"+
+		"\u0101\5\64\33\2\u0100\u00fe\3\2\2\2\u0100\u0101\3\2\2\2\u0101\67\3\2"+
+		"\2\2\u0102\u0103\5<\37\2\u0103\u0104\5:\36\2\u01049\3\2\2\2\u0105\u0106"+
+		"\7*\2\2\u0106\u0108\58\35\2\u0107\u0105\3\2\2\2\u0107\u0108\3\2\2\2\u0108"+
+		";\3\2\2\2\u0109\u010a\7\6\2\2\u010a\u010b\5\64\33\2\u010b\u010c\7\7\2"+
+		"\2\u010c\u0117\3\2\2\2\u010d\u010e\7\t\2\2\u010e\u0117\5\64\33\2\u010f"+
+		"\u0117\7\64\2\2\u0110\u0117\7/\2\2\u0111\u0117\5V,\2\u0112\u0113\t\4\2"+
+		"\2\u0113\u0114\5d\63\2\u0114\u0115\t\4\2\2\u0115\u0117\3\2\2\2\u0116\u0109"+
+		"\3\2\2\2\u0116\u010d\3\2\2\2\u0116\u010f\3\2\2\2\u0116\u0110\3\2\2\2\u0116"+
+		"\u0111\3\2\2\2\u0116\u0112\3\2\2\2\u0117=\3\2\2\2\u0118\u011b\7\t\2\2"+
+		"\u0119\u011c\7\64\2\2\u011a\u011c\5V,\2\u011b\u0119\3\2\2\2\u011b\u011a"+
+		"\3\2\2\2\u011c?\3\2\2\2\u011d\u011e\7\32\2\2\u011e\u011f\7\64\2\2\u011f"+
+		"A\3\2\2\2\u0120\u0121\7\33\2\2\u0121\u0122\7\64\2\2\u0122C\3\2\2\2\u0123"+
+		"\u0124\7\34\2\2\u0124\u0125\7\64\2\2\u0125E\3\2\2\2\u0126\u0127\7\35\2"+
+		"\2\u0127\u0128\7\64\2\2\u0128G\3\2\2\2\u0129\u012a\5R*\2\u012a\u012b\5"+
+		"&\24\2\u012bI\3\2\2\2\u012c\u012d\7\32\2\2\u012d\u012e\5V,\2\u012eK\3"+
+		"\2\2\2\u012f\u0130\7\33\2\2\u0130\u0131\5V,\2\u0131M\3\2\2\2\u0132\u0133"+
+		"\7\34\2\2\u0133\u0134\5V,\2\u0134O\3\2\2\2\u0135\u0136\7\35\2\2\u0136"+
+		"\u0137\5V,\2\u0137Q\3\2\2\2\u0138\u013b\5T+\2\u0139\u013b\5Z.\2\u013a"+
+		"\u0138\3\2\2\2\u013a\u0139\3\2\2\2\u013bS\3\2\2\2\u013c\u0141\5@!\2\u013d"+
+		"\u0141\5B\"\2\u013e\u0141\5D#\2\u013f\u0141\5F$\2\u0140\u013c\3\2\2\2"+
+		"\u0140\u013d\3\2\2\2\u0140\u013e\3\2\2\2\u0140\u013f\3\2\2\2\u0141U\3"+
+		"\2\2\2\u0142\u0143\7\64\2\2\u0143\u0144\5X-\2\u0144W\3\2\2\2\u0145\u0146"+
+		"\7\n\2\2\u0146\u0147\7\64\2\2\u0147\u014d\7\13\2\2\u0148\u0149\7\n\2\2"+
+		"\u0149\u014a\7-\2\2\u014a\u014d\7\13\2\2\u014b\u014d\7\f\2\2\u014c\u0145"+
+		"\3\2\2\2\u014c\u0148\3\2\2\2\u014c\u014b\3\2\2\2\u014dY\3\2\2\2\u014e"+
+		"\u0153\5J&\2\u014f\u0153\5L\'\2\u0150\u0153\5N(\2\u0151\u0153\5P)\2\u0152"+
+		"\u014e\3\2\2\2\u0152\u014f\3\2\2\2\u0152\u0150\3\2\2\2\u0152\u0151\3\2"+
+		"\2\2\u0153[\3\2\2\2\u0154\u0155\7\64\2\2\u0155\u0156\5&\24\2\u0156]\3"+
+		"\2\2\2\u0157\u0158\5V,\2\u0158\u0159\5&\24\2\u0159_\3\2\2\2\u015a\u015d"+
+		"\5\\/\2\u015b\u015d\5^\60\2\u015c\u015a\3\2\2\2\u015c\u015b\3\2\2\2\u015d"+
+		"a\3\2\2\2\u015e\u015f\t\5\2\2\u015fc\3\2\2\2\u0160\u0161\t\6\2\2\u0161"+
+		"e\3\2\2\2\37my\u0083\u008a\u0091\u0099\u009c\u00a1\u00a8\u00af\u00b3\u00bb"+
+		"\u00c0\u00c6\u00cb\u00d3\u00da\u00e0\u00e6\u00f4\u0100\u0107\u0116\u011b"+
+		"\u013a\u0140\u014c\u0152\u015c";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

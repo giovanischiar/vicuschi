@@ -11,5 +11,5 @@
 //boolean b = yes;
 //float f = 2.5;
 
-int index;
+boolean index;
 boolean wee[index];
