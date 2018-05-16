@@ -114,44 +114,89 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		//System.out.println("generic_unary_declaration: "+id+". Nodo: "+ctx);	
 	}
 
-	// @Override public void exitString_array_declaration(VicuschiParser.String_array_declarationContext ctx) {
-	// 	Attribute<String> attribute = new Attribute<>();
-	// 	attribute.name = ctx.ID().getText();
-	// 	attribute.type = "string";
-	// 	attribute.value = null;
-	// 	if(attributeTable.containsKey(attribute.name)) {
-	// 		System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
-	// 	}
+	@Override public void exitString_array_declaration(VicuschiParser.String_array_declarationContext ctx) {
+		//verificação da presença da declaração do index
+		TerminalNode id = ctx.generic_array().index().ID();
+		//TerminalNodeImpl id = prc.ID();
 
-	// 	attributeTable.put(attribute.name, attribute);
-	// 	nodeTable.put(attribute.name, ctx);
-	// }
+		if (id != null){
+			if (attributeTable.containsKey(id.getText())){
+				if (attributeTable.get(id.getText()).type.equals("int")){
+					// Adicionando o nodo
+					Attribute<Boolean[]> attribute = new Attribute<>();
+					attribute.name = ctx.generic_array().getChild(0).getText();
+					attribute.type = "string[]";
+					attribute.value = null;
+					if(attributeTable.containsKey(attribute.name)) {
+						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+					}
 
-	// @Override public void exitInteger_array_declaration(VicuschiParser.Integer_array_declarationContext ctx) { 
-	// 	Attribute<Integer[]> attribute = new Attribute<>();
-	// 	attribute.name = ctx.ID().getText();
-	// 	attribute.type = "int[]";
-	// 	attribute.value = null;
-	// 	if(attributeTable.containsKey(attribute.name)) {
-	// 		System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
-	// 	}
+					attributeTable.put(attribute.name, attribute);
+					nodeTable.put(attribute.name, ctx);
+				} else {
+					System.out.println("Error: array index has to be of type 'int' ");	
+				}
+			} else{
+				System.out.println("Error: undeclared array index: "+id.getText());
+			}
+		}
+	}
 
-	// 	attributeTable.put(attribute.name, attribute);
-	// 	nodeTable.put(attribute.name, ctx);
-	// }
+	@Override public void exitInteger_array_declaration(VicuschiParser.Integer_array_declarationContext ctx) { 
+		//verificação da presença da declaração do index
+		TerminalNode id = ctx.generic_array().index().ID();
+		//TerminalNodeImpl id = prc.ID();
 
-	// @Override public void exitFloat_array_declaration(VicuschiParser.Float_array_declarationContext ctx) { 
-	// 	Attribute<Float[]> attribute = new Attribute<>();
-	// 	attribute.name = ctx.ID().getText();
-	// 	attribute.type = "float[]";
-	// 	attribute.value = null;
-	// 	if(attributeTable.containsKey(attribute.name)) {
-	// 		System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
-	// 	}
+		if (id != null){
+			if (attributeTable.containsKey(id.getText())){
+				if (attributeTable.get(id.getText()).type.equals("int")){
+					// Adicionando o nodo
+					Attribute<Boolean[]> attribute = new Attribute<>();
+					attribute.name = ctx.generic_array().getChild(0).getText();
+					attribute.type = "int[]";
+					attribute.value = null;
+					if(attributeTable.containsKey(attribute.name)) {
+						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+					}
 
-	// 	attributeTable.put(attribute.name, attribute);
-	// 	nodeTable.put(attribute.name, ctx);
-	// }
+					attributeTable.put(attribute.name, attribute);
+					nodeTable.put(attribute.name, ctx);
+				} else {
+					System.out.println("Error: array index has to be of type 'int' ");	
+				}
+			} else{
+				System.out.println("Error: undeclared array index: "+id.getText());
+			}
+		}
+	}
+
+	@Override public void exitFloat_array_declaration(VicuschiParser.Float_array_declarationContext ctx) { 
+		//verificação da presença da declaração do index
+		TerminalNode id = ctx.generic_array().index().ID();
+		//TerminalNodeImpl id = prc.ID();
+
+		if (id != null){
+			if (attributeTable.containsKey(id.getText())){
+				if (attributeTable.get(id.getText()).type.equals("int")){
+					// Adicionando o nodo
+					Attribute<Boolean[]> attribute = new Attribute<>();
+					attribute.name = ctx.generic_array().getChild(0).getText();
+					attribute.type = "float[]";
+					attribute.value = null;
+					if(attributeTable.containsKey(attribute.name)) {
+						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+					}
+
+					attributeTable.put(attribute.name, attribute);
+					nodeTable.put(attribute.name, ctx);
+				} else {
+					System.out.println("Error: array index has to be of type 'int' ");	
+				}
+			} else{
+				System.out.println("Error: undeclared array index: "+id.getText());
+			}
+		}
+	}
 
 	@Override public void exitBoolean_array_declaration(VicuschiParser.Boolean_array_declarationContext ctx) { 
 		//System.out.println("exitBoolean_array_declaration");
