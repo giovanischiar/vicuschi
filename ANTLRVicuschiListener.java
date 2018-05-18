@@ -17,6 +17,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) {
 		System.out.println(attributeTable);
 		System.out.println(nodeTable);
+		System.out.println(actualType);
 	}
 
 	@Override public void exitFunction_declaration(VicuschiParser.Function_declarationContext ctx) {
@@ -62,7 +63,12 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		} else { // attribuicao de array
 			expected_type = actualType.get(ctx.attribuition_array().attribution());
 		}
-		System.out.println(expected_type);
+		
+		if(!a.type.equals(expected_type)) {
+			System.out.println("Error: cannot assign " + expected_type + " to " + a.type);
+		} else {
+			// TODO atribuir a.value
+		}
 	}
 
 	private void addAttributeAtNodeTable(String id, ParserRuleContext ctx) {
@@ -83,9 +89,61 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitAttributed(VicuschiParser.AttributedContext ctx) {
 		//String expected_type = actualType.get(ctx.attributed());
+
 		String expected_type = "meu tipo bonitinho";
+
+		if(ctx.literal() != null) {
+			expected_type = actualType.get(ctx.literal());
+		} else if(ctx.unary_expression() != null) {
+			expected_type = actualType.get(ctx.unary_expression());
+		} else if(ctx.logic_expr() != null) {
+			expected_type = actualType.get(ctx.logic_expr());
+		} else if(ctx.function_call() != null) {
+			expected_type = actualType.get(ctx.function_call());
+		} else {
+			expected_type = actualType.get(ctx.arith_expr());
+		}
+
 		actualType.put(ctx, expected_type);
 		//addAttributeAtNodeTable(id, ctx);
+	}
+
+	@Override public void exitLiteral(VicuschiParser.LiteralContext ctx) {
+		String expected_type = "meu tipo bonitinho";
+
+		if(ctx.ARRAY() != null) {
+			expected_type = "array";
+		} else if(ctx.INT_NUMBER() != null) {
+			expected_type = "int";
+		} else if(ctx.FLOAT_NUMBER() != null) {
+			expected_type = "float";
+		} else if(ctx.WORD() != null) {
+			expected_type = "string";
+		} else {
+			expected_type = "boolean";
+		}
+		actualType.put(ctx, expected_type);
+	}
+
+	@Override public void exitUnary_expression(VicuschiParser.Unary_expressionContext ctx) {
+		if(ctx.decrement() != null) {
+			String id = ctx.decrement().ID().getText();
+			if(!attributeTable.get(id)) {
+				System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
+				return;
+			} else {
+				expected_type = attributeTable.get(id).type;
+			}
+		} else {
+			String id = ctx.increment().ID().getText();
+			if(!attributeTable.get(id)) {
+				System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
+				return;
+			} else {
+				expected_type = attributeTable.get(id).type;
+			}
+		}
+		actualType.put(ctx, expected_type);
 	}
 
 	@Override public void exitGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx) {
@@ -187,7 +245,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.name = ctx.generic_array().getChild(0).getText();
 					attribute.type = "string[]";
 					attribute.value = null;
-					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
+					attribute.size = Integer.parseInt(ctx.generic_array().index().INT_NUMBER().getText());
 					//System.out.println(attribute.size);
 					if(attributeTable.containsKey(attribute.name)) {
 						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
@@ -229,7 +287,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.name = ctx.generic_array().getChild(0).getText();
 					attribute.type = "int[]";
 					attribute.value = null;
-					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
+					attribute.size = Integer.parseInt(ctx.generic_array().index().INT_NUMBER().getText());
 					//System.out.println(attribute.size);
 					if(attributeTable.containsKey(attribute.name)) {
 						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
@@ -271,7 +329,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.name = ctx.generic_array().getChild(0).getText();
 					attribute.type = "float[]";
 					attribute.value = null;
-					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
+					attribute.size = Integer.parseInt(ctx.generic_array().index().INT_NUMBER().getText());
 					//System.out.println(attribute.size);
 					if(attributeTable.containsKey(attribute.name)) {
 						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
@@ -315,7 +373,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.name = ctx.generic_array().getChild(0).getText();
 					attribute.type = "boolean[]";
 					attribute.value = null;
-					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
+					attribute.size = Integer.parseInt(ctx.generic_array().index().INT_NUMBER().getText());
 					//System.out.println(attribute.size);
 					if(attributeTable.containsKey(attribute.name)) {
 						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());

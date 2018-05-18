@@ -11,10 +11,16 @@
 //boolean b = yes;
 //float f = 2.5;
 
-int index;
-//boolean wee[99];
+// int index;
+// boolean wee[99];
 
-//wee = {no};
-index = .1;
+// wee = {no};
+// index = 10000;
 
 //boolean ola = yes;
+
+float a; 
+a = 10;
+
+int b;
+b = 10;

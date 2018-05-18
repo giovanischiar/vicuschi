@@ -68,7 +68,6 @@ declaration_params
 
 params
 	: attributed (',' WS? attributed)*
-	
 	;
 
 attributed
@@ -117,7 +116,7 @@ r_logic
 	| '!' logic_expr
 	| ID
 	| BOOL
-	| ID INDEX
+	| ID index
 	| (ID | NUMBER) comparator (ID | NUMBER) ;
 
 not_id : '!' (ID | generic_array);
@@ -170,7 +169,7 @@ boolean_array_declaration
 
 generic_array : ID index ;
 
-index : '[' ID ']' | '[' ARRAY_INDEX ']' | '[]';
+index : '[' ID ']' | '[' INT_NUMBER ']' | '[]';
 	
 generic_attribution 
 	: attribuition_array
@@ -187,7 +186,8 @@ attribuition_array
 literal 
 	: ARRAY 
 	| BOOL 
-	| NUMBER 
+	| INT_NUMBER 
+	| FLOAT_NUMBER
 	| WORD;
 
 comparator
@@ -242,13 +242,14 @@ LOGICAL_OR : '|';
 SEMICOLON : ';';
 
 
-ARRAY_INDEX : DIGIT+;
+INT_NUMBER : DIGIT+;
+FLOAT_NUMBER : '.' (DIGIT)+ | (DIGIT)+ '.' (DIGIT)*;
+
 EACH : ':';
 
 //literals;
 BOOL : 'yes' | 'no';
-NUMBER : NUMBERTYPE;
-fragment NUMBERTYPE :  DIGIT+ |'.' (DIGIT)+ | (DIGIT)+ '.' (DIGIT)* ;
+NUMBER : INT_NUMBER | FLOAT_NUMBER;
 WORD: '"' (NUMBER | LETTER | WS | SYMBOL)* '"';
 ARRAY: '{' VAR (',' WS? VAR)* '}';
 INTERVAL : INCLUSIVE_TERMINAL | NONINCLUSIVE_TERMINAL;

@@ -317,6 +317,36 @@ public interface VicuschiListener extends ParseTreeListener {
 	 */
 	void exitNot_id(VicuschiParser.Not_idContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link VicuschiParser#declaration_attribution}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiParser#declaration_attribution}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiParser#generic_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterGeneric_declaration(VicuschiParser.Generic_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiParser#generic_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitGeneric_declaration(VicuschiParser.Generic_declarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiParser#generic_unary_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiParser#generic_unary_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#integer_declaration}.
 	 * @param ctx the parse tree
 	 */
@@ -357,15 +387,15 @@ public interface VicuschiListener extends ParseTreeListener {
 	 */
 	void exitBoolean_declaration(VicuschiParser.Boolean_declarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link VicuschiParser#declaration_attribution}.
+	 * Enter a parse tree produced by {@link VicuschiParser#generic_array_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx);
+	void enterGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link VicuschiParser#declaration_attribution}.
+	 * Exit a parse tree produced by {@link VicuschiParser#generic_array_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx);
+	void exitGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#integer_array_declaration}.
 	 * @param ctx the parse tree
@@ -407,26 +437,6 @@ public interface VicuschiListener extends ParseTreeListener {
 	 */
 	void exitBoolean_array_declaration(VicuschiParser.Boolean_array_declarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link VicuschiParser#generic_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterGeneric_declaration(VicuschiParser.Generic_declarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link VicuschiParser#generic_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitGeneric_declaration(VicuschiParser.Generic_declarationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link VicuschiParser#generic_unary_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link VicuschiParser#generic_unary_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#generic_array}.
 	 * @param ctx the parse tree
 	 */
@@ -447,15 +457,15 @@ public interface VicuschiListener extends ParseTreeListener {
 	 */
 	void exitIndex(VicuschiParser.IndexContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link VicuschiParser#generic_array_declaration}.
+	 * Enter a parse tree produced by {@link VicuschiParser#generic_attribution}.
 	 * @param ctx the parse tree
 	 */
-	void enterGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx);
+	void enterGeneric_attribution(VicuschiParser.Generic_attributionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link VicuschiParser#generic_array_declaration}.
+	 * Exit a parse tree produced by {@link VicuschiParser#generic_attribution}.
 	 * @param ctx the parse tree
 	 */
-	void exitGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx);
+	void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#attribuition_id}.
 	 * @param ctx the parse tree
@@ -476,16 +486,6 @@ public interface VicuschiListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAttribuition_array(VicuschiParser.Attribuition_arrayContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link VicuschiParser#generic_attribution}.
-	 * @param ctx the parse tree
-	 */
-	void enterGeneric_attribution(VicuschiParser.Generic_attributionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link VicuschiParser#generic_attribution}.
-	 * @param ctx the parse tree
-	 */
-	void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#literal}.
 	 * @param ctx the parse tree

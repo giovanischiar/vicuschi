@@ -387,6 +387,42 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGeneric_declaration(VicuschiParser.Generic_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGeneric_declaration(VicuschiParser.Generic_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterInteger_declaration(VicuschiParser.Integer_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -435,13 +471,13 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx) { }
+	@Override public void enterGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx) { }
+	@Override public void exitGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -495,30 +531,6 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGeneric_declaration(VicuschiParser.Generic_declarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGeneric_declaration(VicuschiParser.Generic_declarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterGeneric_array(VicuschiParser.Generic_arrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -543,13 +555,13 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx) { }
+	@Override public void enterGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGeneric_array_declaration(VicuschiParser.Generic_array_declarationContext ctx) { }
+	@Override public void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -574,18 +586,6 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAttribuition_array(VicuschiParser.Attribuition_arrayContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
