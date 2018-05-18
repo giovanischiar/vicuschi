@@ -12,4 +12,9 @@
 //float f = 2.5;
 
 int index;
-boolean wee[99];
+//boolean wee[99];
+
+//wee = {no};
+index = .1;
+
+//boolean ola = yes;

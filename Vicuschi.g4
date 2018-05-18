@@ -117,10 +117,25 @@ r_logic
 	| '!' logic_expr
 	| ID
 	| BOOL
-	| generic_array
+	| ID INDEX
 	| (ID | NUMBER) comparator (ID | NUMBER) ;
 
 not_id : '!' (ID | generic_array);
+
+declaration_attribution 
+	: generic_declaration attribution;
+
+generic_declaration 
+	: generic_unary_declaration
+	| generic_array_declaration
+	;
+	
+generic_unary_declaration
+	: integer_declaration 
+	| float_declaration 
+	| string_declaration
+	| boolean_declaration 
+	;
 
 integer_declaration 
 	: INT ID
@@ -135,8 +150,11 @@ string_declaration
 boolean_declaration 
 	: BOOLEAN ID ;
 
-declaration_attribution 
-	: generic_declaration attribution;
+generic_array_declaration 
+	: integer_array_declaration
+  	| float_array_declaration
+  	| string_array_declaration
+  	| boolean_array_declaration;
 
 integer_array_declaration 
 	: INT generic_array ;
@@ -150,38 +168,20 @@ string_array_declaration
 boolean_array_declaration 
 	: BOOLEAN generic_array ;
 
-generic_declaration 
-	: generic_unary_declaration
-	| generic_array_declaration
-	;
-	
-generic_unary_declaration
-	: integer_declaration 
-	| float_declaration 
-	| string_declaration
-	| boolean_declaration 
-	;
-
 generic_array : ID index ;
 
 index : '[' ID ']' | '[' ARRAY_INDEX ']' | '[]';
-
-generic_array_declaration 
-	: integer_array_declaration
-  	| float_array_declaration
-  	| string_array_declaration
-  	| boolean_array_declaration;
+	
+generic_attribution 
+	: attribuition_array
+	| attribuition_id
+	;
 
 attribuition_id
 	: ID attribution
 	;
 attribuition_array
 	: generic_array attribution
-	;
-	
-generic_attribution 
-	: attribuition_id
-	| attribuition_array
 	;
 
 literal 
@@ -248,7 +248,7 @@ EACH : ':';
 //literals;
 BOOL : 'yes' | 'no';
 NUMBER : NUMBERTYPE;
-fragment NUMBERTYPE : '.' (DIGIT)+ | (DIGIT)+ '.' (DIGIT)* | DIGIT+;
+fragment NUMBERTYPE :  DIGIT+ |'.' (DIGIT)+ | (DIGIT)+ '.' (DIGIT)* ;
 WORD: '"' (NUMBER | LETTER | WS | SYMBOL)* '"';
 ARRAY: '{' VAR (',' WS? VAR)* '}';
 INTERVAL : INCLUSIVE_TERMINAL | NONINCLUSIVE_TERMINAL;

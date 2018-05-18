@@ -7,6 +7,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	private Map<String, Attribute> attributeTable = new HashMap<>();
 	private Map<String, ParserRuleContext> nodeTable = new HashMap<>();
 
+	private Map<ParserRuleContext, String> actualType = new HashMap<>();
+
 	@Override public void enterFunction_declaration(VicuschiParser.Function_declarationContext ctx) { 
 		String functionName = ctx.generic_unary_declaration().integer_declaration().ID().getText();
 		System.out.println(functionName);
@@ -36,6 +38,33 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		addAttributeAtNodeTable(id_name, ctx);
 	}
 
+	@Override public void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) {	
+		// buscamos o tipo pelo qual a variavel foi declarada
+
+		String id_name = "";
+		if (ctx.attribuition_id() != null){
+			id_name = ctx.attribuition_id().ID().getText();
+		} else { // atribuicao de array
+			id_name = ctx.attribuition_array().generic_array().ID().getText();
+		}
+		
+
+		Attribute a = attributeTable.get(id_name);
+
+		System.out.println(id_name+" eh do tipo: "+a.type);
+
+		actualType.put(ctx, a.type);
+
+		// agora buscamos o tipo de seu neto "attribution", para comparacao
+		String expected_type = "";
+		if (ctx.attribuition_id() != null){
+			expected_type = actualType.get(ctx.attribuition_id().attribution());
+		} else { // attribuicao de array
+			expected_type = actualType.get(ctx.attribuition_array().attribution());
+		}
+		System.out.println(expected_type);
+	}
+
 	private void addAttributeAtNodeTable(String id, ParserRuleContext ctx) {
 		//System.out.println(attributeTable);
 		if(attributeTable.containsKey(id)) {
@@ -44,6 +73,19 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		} else {
 			System.out.println("Warning: " + id + " doesn't exist at  symbol table (failed to be declared)");
 		}
+	}
+	@Override public void exitAttribution(VicuschiParser.AttributionContext ctx) {
+		String expected_type = actualType.get(ctx.attributed());
+
+		actualType.put(ctx, expected_type);
+		//addAttributeAtNodeTable(id, ctx);
+	}
+
+	@Override public void exitAttributed(VicuschiParser.AttributedContext ctx) {
+		//String expected_type = actualType.get(ctx.attributed());
+		String expected_type = "meu tipo bonitinho";
+		actualType.put(ctx, expected_type);
+		//addAttributeAtNodeTable(id, ctx);
 	}
 
 	@Override public void exitGeneric_unary_declaration(VicuschiParser.Generic_unary_declarationContext ctx) {
@@ -146,7 +188,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.type = "string[]";
 					attribute.value = null;
 					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
-					System.out.println(attribute.size);
+					//System.out.println(attribute.size);
 					if(attributeTable.containsKey(attribute.name)) {
 						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 					}
@@ -188,7 +230,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.type = "int[]";
 					attribute.value = null;
 					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
-					System.out.println(attribute.size);
+					//System.out.println(attribute.size);
 					if(attributeTable.containsKey(attribute.name)) {
 						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 					}
@@ -230,7 +272,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.type = "float[]";
 					attribute.value = null;
 					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
-					System.out.println(attribute.size);
+					//System.out.println(attribute.size);
 					if(attributeTable.containsKey(attribute.name)) {
 						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 					}
@@ -274,7 +316,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.type = "boolean[]";
 					attribute.value = null;
 					attribute.size = Integer.parseInt(ctx.generic_array().index().ARRAY_INDEX().getText());
-					System.out.println(attribute.size);
+					//System.out.println(attribute.size);
 					if(attributeTable.containsKey(attribute.name)) {
 						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 					}
