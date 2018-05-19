@@ -19,8 +19,25 @@
 
 //boolean ola = yes;
 
-float a; 
-a = 10;
+// int a; 
+// a = 10;
 
-int b;
-b = 10;
+// int b;
+// b = 10;
+
+int foo(int a, int b, string d, float c)
+	for i : [1, 2]
+		lalalala++;
+		for j : [3, 4]
+			int lalala = 3;
+		endfor;
+
+		for k : [2,4]
+			int bbbbb = 2;
+		endfor;
+	endfor;
+endf;
+
+// foo(1, 2, 3, 4);
+
+

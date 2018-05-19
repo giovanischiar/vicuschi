@@ -49,7 +49,7 @@ arith_id
 	: (UNARY_PLUS | UNARY_MINUS)? ID ;
 
 arith_number
-	: (UNARY_PLUS | UNARY_MINUS)? NUMBER;
+	: (UNARY_PLUS | UNARY_MINUS)? (INT_NUMBER | FLOAT_NUMBER);
 
 
 function_call 
@@ -82,7 +82,8 @@ attribution
 
 unary_expression 
 	: decrement
-	| increment;
+	| increment
+	| not_id;
 
 decrement
 	: DECREMENT ID | ID DECREMENT ;
@@ -97,7 +98,7 @@ while_declaration
 	: WHILE logic_expr stmt ENDWHILE;
 
 for_declaration
-	: FOR ID? ':' INTERVAL stmt ENDFOR ;
+	: FOR ID? ':' interval stmt ENDFOR ;
 
 logic_expr
 	: logic_term logic_expr_1;
@@ -117,7 +118,7 @@ r_logic
 	| ID
 	| BOOL
 	| ID index
-	| (ID | NUMBER) comparator (ID | NUMBER) ;
+	| (ID | INT_NUMBER | FLOAT_NUMBER) comparator (ID | INT_NUMBER | FLOAT_NUMBER) ;
 
 not_id : '!' (ID | generic_array);
 
@@ -172,14 +173,14 @@ generic_array : ID index ;
 index : '[' ID ']' | '[' INT_NUMBER ']' | '[]';
 	
 generic_attribution 
-	: attribuition_array
-	| attribuition_id
+	: attribution_array
+	| attribution_id
 	;
 
-attribuition_id
+attribution_id
 	: ID attribution
 	;
-attribuition_array
+attribution_array
 	: generic_array attribution
 	;
 
@@ -252,9 +253,9 @@ BOOL : 'yes' | 'no';
 NUMBER : INT_NUMBER | FLOAT_NUMBER;
 WORD: '"' (NUMBER | LETTER | WS | SYMBOL)* '"';
 ARRAY: '{' VAR (',' WS? VAR)* '}';
-INTERVAL : INCLUSIVE_TERMINAL | NONINCLUSIVE_TERMINAL;
-fragment INCLUSIVE_TERMINAL : '[' DIGIT+ ',' WS? DIGIT+ ']';
-fragment NONINCLUSIVE_TERMINAL : '[' DIGIT+ ',' WS? DIGIT+ ')';
+interval : inclusive_interval | nonInclusive_interval;
+inclusive_interval : '[' INT_NUMBER',' WS? INT_NUMBER ']';
+nonInclusive_interval : '[' INT_NUMBER ',' WS? INT_NUMBER ')';
 fragment VAR : BOOLEAN | NUMBER | ID;
 
 fragment LETTER : [a-zA-Z];

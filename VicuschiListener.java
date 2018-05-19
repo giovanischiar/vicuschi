@@ -467,25 +467,25 @@ public interface VicuschiListener extends ParseTreeListener {
 	 */
 	void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link VicuschiParser#attribuition_id}.
+	 * Enter a parse tree produced by {@link VicuschiParser#attribution_id}.
 	 * @param ctx the parse tree
 	 */
-	void enterAttribuition_id(VicuschiParser.Attribuition_idContext ctx);
+	void enterAttribution_id(VicuschiParser.Attribution_idContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link VicuschiParser#attribuition_id}.
+	 * Exit a parse tree produced by {@link VicuschiParser#attribution_id}.
 	 * @param ctx the parse tree
 	 */
-	void exitAttribuition_id(VicuschiParser.Attribuition_idContext ctx);
+	void exitAttribution_id(VicuschiParser.Attribution_idContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link VicuschiParser#attribuition_array}.
+	 * Enter a parse tree produced by {@link VicuschiParser#attribution_array}.
 	 * @param ctx the parse tree
 	 */
-	void enterAttribuition_array(VicuschiParser.Attribuition_arrayContext ctx);
+	void enterAttribution_array(VicuschiParser.Attribution_arrayContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link VicuschiParser#attribuition_array}.
+	 * Exit a parse tree produced by {@link VicuschiParser#attribution_array}.
 	 * @param ctx the parse tree
 	 */
-	void exitAttribuition_array(VicuschiParser.Attribuition_arrayContext ctx);
+	void exitAttribution_array(VicuschiParser.Attribution_arrayContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#literal}.
 	 * @param ctx the parse tree
@@ -506,4 +506,34 @@ public interface VicuschiListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComparator(VicuschiParser.ComparatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiParser#interval}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterval(VicuschiParser.IntervalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiParser#interval}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterval(VicuschiParser.IntervalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiParser#inclusive_interval}.
+	 * @param ctx the parse tree
+	 */
+	void enterInclusive_interval(VicuschiParser.Inclusive_intervalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiParser#inclusive_interval}.
+	 * @param ctx the parse tree
+	 */
+	void exitInclusive_interval(VicuschiParser.Inclusive_intervalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link VicuschiParser#nonInclusive_interval}.
+	 * @param ctx the parse tree
+	 */
+	void enterNonInclusive_interval(VicuschiParser.NonInclusive_intervalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiParser#nonInclusive_interval}.
+	 * @param ctx the parse tree
+	 */
+	void exitNonInclusive_interval(VicuschiParser.NonInclusive_intervalContext ctx);
 }

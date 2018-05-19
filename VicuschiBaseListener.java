@@ -567,25 +567,25 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttribuition_id(VicuschiParser.Attribuition_idContext ctx) { }
+	@Override public void enterAttribution_id(VicuschiParser.Attribution_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttribuition_id(VicuschiParser.Attribuition_idContext ctx) { }
+	@Override public void exitAttribution_id(VicuschiParser.Attribution_idContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttribuition_array(VicuschiParser.Attribuition_arrayContext ctx) { }
+	@Override public void enterAttribution_array(VicuschiParser.Attribution_arrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAttribuition_array(VicuschiParser.Attribuition_arrayContext ctx) { }
+	@Override public void exitAttribution_array(VicuschiParser.Attribution_arrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -610,6 +610,42 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitComparator(VicuschiParser.ComparatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInterval(VicuschiParser.IntervalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInterval(VicuschiParser.IntervalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInclusive_interval(VicuschiParser.Inclusive_intervalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInclusive_interval(VicuschiParser.Inclusive_intervalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNonInclusive_interval(VicuschiParser.NonInclusive_intervalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNonInclusive_interval(VicuschiParser.NonInclusive_intervalContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
