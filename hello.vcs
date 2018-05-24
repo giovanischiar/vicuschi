@@ -22,12 +22,24 @@
 // int a; 
 // a = 10;
 
-// int b;
-// b = 10;
+ int before;
+ before = 10;
 
-int foo(int a, int b, string d, float c)
+int foo(int a, string b[])
+	string foo;
+
+	boolean c;
+
+endf;
+
+ int abc()
+ 	int c;
+ 	c = 10;
+ endf;
+
+/*int foo(int a, int b, string d, float c)
 	for i : [1, 2]
-		lalalala++;
+		int lalala = 3;
 		for j : [3, 4]
 			int lalala = 3;
 		endfor;
@@ -37,7 +49,7 @@ int foo(int a, int b, string d, float c)
 		endfor;
 	endfor;
 endf;
-
+*/
 // foo(1, 2, 3, 4);
 
 
