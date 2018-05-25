@@ -26,13 +26,13 @@
  before = 10;
 
 int foo(int a, string b[])
-	string foo;
+	string palavra;
 
 	boolean c;
 
 endf;
 
- int abc()
+ int after()
  	int c;
  	c = 10;
  endf;

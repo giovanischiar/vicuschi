@@ -70,20 +70,102 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		scope.put(ctx, scope.get(ctx.getParent()));
 		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
 	}
-
-	@Override public void enterGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) { 
-		scope.put(ctx, scope.get(ctx.getParent()));
-		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
-	}
 	@Override public void enterDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx) { 
 		scope.put(ctx, scope.get(ctx.getParent()));
 		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
 	}
-
+	@Override public void enterGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterAttribution_id(VicuschiParser.Attribution_idContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterAttribution_array(VicuschiParser.Attribution_arrayContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
 	@Override public void enterAttribution(VicuschiParser.AttributionContext ctx) { 
 		scope.put(ctx, scope.get(ctx.getParent()));
 		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
 	}
+
+	@Override public void enterAttributed(VicuschiParser.AttributedContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+
+	@Override public void enterUnary_expression(VicuschiParser.Unary_expressionContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterDecrement(VicuschiParser.DecrementContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+
+	@Override public void enterIncrement(VicuschiParser.IncrementContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+
+	@Override public void enterLogic_expr(VicuschiParser.Logic_exprContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterLogic_expr_1(VicuschiParser.Logic_expr_1Context ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterLogic_term(VicuschiParser.Logic_termContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}	
+	@Override public void enterLogic_term_a(VicuschiParser.Logic_term_aContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterR_logic(VicuschiParser.R_logicContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterFunction_call(VicuschiParser.Function_callContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterArith_expr(VicuschiParser.Arith_exprContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterArith_expr_1(VicuschiParser.Arith_expr_1Context ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterTerm(VicuschiParser.TermContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}	
+	@Override public void enterTerm_a(VicuschiParser.Term_aContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterFactor(VicuschiParser.FactorContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}	
+	@Override public void enterFactor_a(VicuschiParser.Factor_aContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterR_arith(VicuschiParser.R_arithContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
+	@Override public void enterArith_id(VicuschiParser.Arith_idContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}	
 
 	@Override public void enterFunction_declaration(VicuschiParser.Function_declarationContext ctx) { 
 		
@@ -339,13 +421,15 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override public void exitFunction_call(VicuschiParser.Function_callContext ctx) {
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
+
 		String id = ctx.ID().getText();
-		if(!attributeTable.containsKey(id)) {
+		if(!localAttributeTable.containsKey(id)) {
 			System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
 			return;
 		}
 
-		Attribute attribute = attributeTable.get(id);
+		Attribute attribute = localAttributeTable.get(id);
 
 		if(ctx.params() != null) {
 			int nparams = ctx.params().attributed().size();
@@ -356,46 +440,48 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override public void exitUnary_expression(VicuschiParser.Unary_expressionContext ctx) {
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
+
 		String expected_type = "";
 		if(ctx.decrement() != null) {
 			String id = ctx.decrement().ID().getText();
-			if(!attributeTable.containsKey(id)) {
+			if(!localAttributeTable.containsKey(id)) {
 				System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
-			if(!attributeTable.get(id).hasValue) {
+			if(!localAttributeTable.get(id).hasValue) {
 				System.out.println("Error: " + id + " declared but has no value");
 				return;
 			}
 
-			expected_type = attributeTable.get(id).type;
+			expected_type = localAttributeTable.get(id).type;
 		} else if(ctx.increment() != null) {
 			String id = ctx.increment().ID().getText();
-			if(!attributeTable.containsKey(id)) {
+			if(!localAttributeTable.containsKey(id)) {
 				System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
-			if(!attributeTable.get(id).hasValue) {
+			if(!localAttributeTable.get(id).hasValue) {
 				System.out.println("Error: " + id + " declared but has no value");
 				return;
 			}
 
-			expected_type = attributeTable.get(id).type;
+			expected_type = localAttributeTable.get(id).type;
 		} else {
 			String id = ctx.not_id().ID().getText();
-			if(!attributeTable.containsKey(id)) {
+			if(!localAttributeTable.containsKey(id)) {
 				System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
-			if(!attributeTable.get(id).hasValue) {
+			if(!localAttributeTable.get(id).hasValue) {
 				System.out.println("Error: " + id + " declared but has no value");
 				return;
 			}
 
-			expected_type = attributeTable.get(id).type;
+			expected_type = localAttributeTable.get(id).type;
 		}
 		actualType.put(ctx, expected_type);
 	}
@@ -690,14 +776,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override
-	public void enterArith_id(VicuschiParser.Arith_idContext ctx) {
+	public void exitArith_id(VicuschiParser.Arith_idContext ctx) {
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
+
 		String id = ctx.ID().getText();
-		if(!attributeTable.containsKey(id)) {
+		if(!localAttributeTable.containsKey(id)) {
 			System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
 			return;
 		}
 
-		Attribute attribute = attributeTable.get(id);
+		Attribute attribute = localAttributeTable.get(id);
 
 		if(!attribute.hasValue) {
 			System.out.println("Error: " + id + " declared but has no value");
@@ -708,20 +796,22 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override
-	public void enterR_logic(VicuschiParser.R_logicContext ctx) {
+	public void exitR_logic(VicuschiParser.R_logicContext ctx) {
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
+
 		if(ctx.getChild(1) instanceof VicuschiParser.ComparatorContext) {
 			String[] id = {ctx.getChild(0).getText(), ctx.getChild(2).getText()};
-			if(!attributeTable.containsKey(id[0])) {
+			if(!localAttributeTable.containsKey(id[0])) {
 				System.out.println("Error: " + id[0] + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
-			if(!attributeTable.containsKey(id[1])) {
+			if(!localAttributeTable.containsKey(id[1])) {
 				System.out.println("Error: " + id[1] + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
-			Attribute[] attributes = { attributeTable.get(id[0]), attributeTable.get(id[1]) };
+			Attribute[] attributes = { localAttributeTable.get(id[0]), localAttributeTable.get(id[1]) };
 
 			if(!attributes[0].hasValue) {
 				System.out.println("Error: " + id[0] + " declared but has no value");
@@ -740,12 +830,12 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 		if(ctx.ID().size() == 1) {
 			String id_name = ctx.ID().get(0).getText();
-			if(!attributeTable.containsKey(id_name)){
+			if(!localAttributeTable.containsKey(id_name)){
 				System.out.println("Error: " + id_name + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
-			Attribute attribute = attributeTable.get(id_name);
+			Attribute attribute = localAttributeTable.get(id_name);
 
 			if(!attribute.hasValue) {
 				System.out.println("Error: " + id_name + " declared but has no value");
@@ -778,7 +868,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}*/
 		@Override
 		public String toString() {
-			return "scope: "+scope;
+			return "scope: "+scope
+					;//+", value: "+value;
 		}
 
 		@Override
