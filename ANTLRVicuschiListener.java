@@ -23,7 +23,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) {
-		System.out.println(attributeTable);
+		//System.out.println(attributeTable);
+		//System.out.println(scopeTables);
 	}
 
 	@Override public void enterStmt(VicuschiParser.StmtContext ctx) { 
@@ -134,6 +135,10 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		scope.put(ctx, scope.get(ctx.getParent()));
 		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
 	}
+	@Override public void enterParams(VicuschiParser.ParamsContext ctx) { 
+		scope.put(ctx, scope.get(ctx.getParent()));
+		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
+	}
 	@Override public void enterArith_expr(VicuschiParser.Arith_exprContext ctx) { 
 		scope.put(ctx, scope.get(ctx.getParent()));
 		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
@@ -166,7 +171,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		scope.put(ctx, scope.get(ctx.getParent()));
 		//System.out.println("Stmt symbolTable: "+scope.get(ctx));
 	}	
-
+	
 	@Override public void enterFunction_declaration(VicuschiParser.Function_declarationContext ctx) { 
 		
 		HashMap<String, Attribute> parentAttTable = scopeTables.get(scope.get(ctx.getParent()));
@@ -176,85 +181,47 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 		scopeTables.add(localAttributeTable);
 
-
-/*		Attribute<Integer> attribute = new Attribute<>();
-		attribute.name = ctx.generic_unary_declaration().integer_declaration().ID().getText();
-		attribute.type = "int";
-		attribute.value = null;
-		if(attributeTable.containsKey(attribute.name)) {
-			System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_unary_declaration().integer_declaration().ID().getSymbol().getLine() + ":" + ctx.generic_unary_declaration().integer_declaration().ID().getSymbol().getCharPositionInLine());
-		}
-
-		attributeTable.put(attribute.name, attribute);
-		nodeTable.put(attribute.name, ctx);*/
-
-		//localAttributeTable.put(attribute.name, attribute);
-
 		scope.put(ctx, scopeTables.lastIndexOf(localAttributeTable));
-
-
-/*		if (ctx.declaration_params() != null){
-			List<VicuschiParser.Generic_declarationContext> params = ctx.declaration_params().generic_declaration();
-			for (VicuschiParser.Generic_declarationContext gdc : params){
-				String id_name = "";
-				String type = "";
-				if (gdc.getChild(0).getChild(0).getChild(1) instanceof VicuschiParser.Generic_arrayContext){
-					id_name = gdc.getChild(0).getChild(0).getChild(1).getChild(0).getText();
-					type = gdc.getChild(0).getChild(0).getChild(0).getText() + "[]";
-				} else {
-					id_name = gdc.getChild(0).getChild(0).getChild(1).getText();
-					type = gdc.getChild(0).getChild(0).getChild(0).getText();
-				}
-
-				//System.out.println("nome: "+id_name+ ", tipo: "+type);
-
-				switch(type){
-					case "string":  {Attribute<String> fparam = new Attribute<String>();
-									
-									break;
-								}
-					case "int": {	Attribute<Integer> fparam = new Attribute<Integer>();
-									break;
-								}
-					case "float":{ 	Attribute<Float> fparam = new Attribute<Float>();
-									break;
-								}
-					case "boolean":{ Attribute<Boolean> fparam = new Attribute<Boolean>();
-									break;
-								}
-					case "string[]":{Attribute<String[]> fparam = new Attribute<String[]>();
-									break;
-								}
-					case "int[]": 	{Attribute<Integer[]> fparam = new Attribute<Integer[]>();
-									break;
-								}
-					case "float[]":{ Attribute<Float[]> fparam = new Attribute<Float[]>();
-									break;}
-					default : 		{Attribute<Boolean[]> fparam = new Attribute<Boolean[]>();
-									break;}
-				}
-
-			}
-		}
-
-		////////////////////////////////////////////////////////////////////////////
-		//System.out.println(localAttributeTable);
-		//System.out.println(scopeTables.size());
 		
-		/*String id_name = ctx.getChild(0).getChild(0).getChild(1).getText();
-		int nparams = ctx.declaration_params().generic_declaration().size();
-		if(!attributeTable.containsKey(id_name)){
-			System.out.println("Error: " + id_name + " doesn't exist at symbol table (failed to be declared)");
-			return;
-		}
-
-		Attribute attribute = attributeTable.get(id_name);
-		attribute.nparams = nparams;
-		attribute.hasValue = true;
-		nodeTable.put(attribute.name, ctx);
-*/
 	}
 
+	@Override public void enterWhile_declaration(VicuschiParser.While_declarationContext ctx) { 
+		
+		HashMap<String, Attribute> parentAttTable = scopeTables.get(scope.get(ctx.getParent()));
+		//parentAttTable.put();
+
+		HashMap<String, Attribute> localAttributeTable = (HashMap)parentAttTable.clone();
+
+		scopeTables.add(localAttributeTable);
+
+		scope.put(ctx, scopeTables.lastIndexOf(localAttributeTable));
+		
+	}
+
+	@Override public void enterFor_declaration(VicuschiParser.For_declarationContext ctx) { 
+		
+		HashMap<String, Attribute> parentAttTable = scopeTables.get(scope.get(ctx.getParent()));
+		//parentAttTable.put();
+
+		HashMap<String, Attribute> localAttributeTable = (HashMap)parentAttTable.clone();
+
+		scopeTables.add(localAttributeTable);
+
+		scope.put(ctx, scopeTables.lastIndexOf(localAttributeTable));
+		
+	}
+	@Override public void enterIf_declaration(VicuschiParser.If_declarationContext ctx) { 
+		
+		HashMap<String, Attribute> parentAttTable = scopeTables.get(scope.get(ctx.getParent()));
+		//parentAttTable.put();
+
+		HashMap<String, Attribute> localAttributeTable = (HashMap)parentAttTable.clone();
+
+		scopeTables.add(localAttributeTable);
+
+		scope.put(ctx, scopeTables.lastIndexOf(localAttributeTable));
+		
+	}
 	@Override
 	public void enterDeclaration_params(VicuschiParser.Declaration_paramsContext ctx){
 		scope.put(ctx, scope.get(ctx.getParent()));
@@ -270,18 +237,26 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 		parentAttTable.put(id_name, localAttTable.get(id_name));
 
-/*
-		String id_name = ctx.getChild(0).getChild(0).getChild(1).getText();
-		int nparams = ctx.declaration_params().generic_declaration().size();
-		if(!attributeTable.containsKey(id_name)){
-			System.out.println("Error: " + id_name + " doesn't exist at symbol table (failed to be declared)");
+
+		//String id_name = ctx.getChild(0).getChild(0).getChild(1).getText();
+		int nparams = 0;
+		VicuschiParser.Declaration_paramsContext param = ctx.declaration_params();
+		if (param != null){
+			List<VicuschiParser.Generic_declarationContext> params= param.generic_declaration();
+			if (params != null){
+				nparams = params.size();
+			}
+		}
+		//System.out.println("funcao "+id_name+", num params: "+nparams);
+		if(!parentAttTable.containsKey(id_name)){
+			System.out.println("Error: variable " + id_name + " doesn't exist at symbol table (failed to be declared)");
 			return;
 		}
 
-		Attribute attribute = attributeTable.get(id_name);
+		Attribute attribute = localAttTable.get(id_name);
 		attribute.nparams = nparams;
 		attribute.hasValue = true;
-		nodeTable.put(attribute.name, ctx);*/
+		nodeTable.put(attribute.name, ctx);
 
 		//System.out.println(localAttributeTable);
 		//System.out.println(scopeTables.size());
@@ -325,6 +300,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override public void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) {	
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
+
 		// buscamos o tipo pelo qual a variavel foi declarada
 
 		String id_name = "";
@@ -338,7 +315,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 
 
-		Attribute a = attributeTable.get(id_name);
+		Attribute a = localAttributeTable.get(id_name);
 
 		
 		//typeComparation(attribution, a);
@@ -359,9 +336,11 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override
 	public void exitDeclaration_attribution(VicuschiParser.Declaration_attributionContext ctx) {
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
+
 		String id_name = ctx.getChild(0).getChild(0).getChild(0).getChild(1).getText();
 		addAttributeAtNodeTable(id_name, ctx);
-		Attribute a = attributeTable.get(id_name);
+		Attribute a = localAttributeTable.get(id_name);
 		//typeComparation(ctx.attribution(), a);
 	}
 
@@ -372,7 +351,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			Attribute a = localAttributeTable.get(id);
 			nodeTable.put(a.name, ctx);
 		} else {
-			System.out.println("Warning: " + id + " doesn't exist at  symbol table (failed to be declared)");
+			System.out.println("Warning: variable " + id + " doesn't exist at  symbol table (failed to be declared)");
 		}
 	}
 	@Override public void exitAttribution(VicuschiParser.AttributionContext ctx) {
@@ -385,7 +364,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	@Override public void exitAttributed(VicuschiParser.AttributedContext ctx) {
 		//String expected_type = actualType.get(ctx.attributed());
 
-		String expected_type = "meu tipo bonitinho";
+		String expected_type = "my fluffy type";
 
 		if(ctx.literal() != null) {
 			expected_type = actualType.get(ctx.literal());
@@ -422,20 +401,25 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitFunction_call(VicuschiParser.Function_callContext ctx) {
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-
 		String id = ctx.ID().getText();
+		//System.out.println("tabela de "+id+" : \n"+localAttributeTable);
+
+
 		if(!localAttributeTable.containsKey(id)) {
-			System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
+			System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't exist at symbol table (failed to be declared)");
 			return;
 		}
 
 		Attribute attribute = localAttributeTable.get(id);
+		//System.out.println(attribute.nparams);
 
+		int nparams = 0;
 		if(ctx.params() != null) {
-			int nparams = ctx.params().attributed().size();
-			if(nparams != attribute.nparams) {
-				System.out.println("Error: number of params in function " + id + " doesn't match (was " +  nparams + ", expect " + attribute.nparams + ")");
-			}
+			nparams = ctx.params().attributed().size();
+			//System.out.println(nparams);
+		}
+		if(nparams != attribute.nparams) {
+				System.out.println("Error: number of parametres in function " + id + " at " +ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't match (encountered " +  nparams + ", expect " + attribute.nparams + ")");
 		}
 	}
 
@@ -446,12 +430,12 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		if(ctx.decrement() != null) {
 			String id = ctx.decrement().ID().getText();
 			if(!localAttributeTable.containsKey(id)) {
-				System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
+				System.out.println("Error: variable " + id + " at " + ctx.decrement().ID().getSymbol().getLine() + ":" + ctx.decrement().ID().getSymbol().getCharPositionInLine()+ " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
 			if(!localAttributeTable.get(id).hasValue) {
-				System.out.println("Error: " + id + " declared but has no value");
+				System.out.println("Error: variable " + id + " at " + ctx.decrement().ID().getSymbol().getLine() + ":" + ctx.decrement().ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
 				return;
 			}
 
@@ -459,12 +443,12 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		} else if(ctx.increment() != null) {
 			String id = ctx.increment().ID().getText();
 			if(!localAttributeTable.containsKey(id)) {
-				System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
+				System.out.println("Error: variable " + id + " at " + ctx.increment().ID().getSymbol().getLine() + ":" + ctx.increment().ID().getSymbol().getCharPositionInLine()+ " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
 			if(!localAttributeTable.get(id).hasValue) {
-				System.out.println("Error: " + id + " declared but has no value");
+				System.out.println("Error: variable " + id + " at " + ctx.increment().ID().getSymbol().getLine() + ":" + ctx.increment().ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
 				return;
 			}
 
@@ -472,12 +456,12 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		} else {
 			String id = ctx.not_id().ID().getText();
 			if(!localAttributeTable.containsKey(id)) {
-				System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
+				System.out.println("Error: variable " + id + " at " + ctx.not_id().ID().getSymbol().getLine() + ":" + ctx.not_id().ID().getSymbol().getCharPositionInLine()+ " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
 			if(!localAttributeTable.get(id).hasValue) {
-				System.out.println("Error: " + id + " declared but has no value");
+				System.out.println("Error: variable" + id + " at " + ctx.not_id().ID().getSymbol().getLine() + ":" + ctx.not_id().ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
 				return;
 			}
 
@@ -496,7 +480,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitString_declaration(VicuschiParser.String_declarationContext ctx) {
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-		System.out.println("tabela de: "+ctx.ID().getText()+" : \n"+localAttributeTable);
+		//System.out.println("tabela de "+ctx.ID().getText()+" : \n"+localAttributeTable);
 
 		Attribute<String> attribute = new Attribute<>();
 		attribute.name = ctx.ID().getText();
@@ -504,7 +488,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		attribute.value = null;
 		attribute.scope = scope.get(ctx.getParent());
 		if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
 				localAttributeTable.put(attribute.name, attribute);
 		} else {
 				localAttributeTable.put(attribute.name, attribute);
@@ -515,7 +499,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitInteger_declaration(VicuschiParser.Integer_declarationContext ctx) { 
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-		System.out.println("tabela de: "+ctx.ID().getText()+" : \n"+localAttributeTable);
+		//System.out.println("tabela de "+ctx.ID().getText()+" : \n"+localAttributeTable);
 
 		Attribute<Integer> attribute = new Attribute<>();
 		attribute.scope = scope.get(ctx.getParent());
@@ -523,7 +507,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		attribute.type = "int";
 		attribute.value = null;
 		if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
 				localAttributeTable.put(attribute.name, attribute);
 		} else {
 				localAttributeTable.put(attribute.name, attribute);
@@ -534,7 +518,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitFloat_declaration(VicuschiParser.Float_declarationContext ctx) { 
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-		System.out.println("tabela de: "+ctx.ID().getText()+" : \n"+localAttributeTable);
+		//System.out.println("tabela de "+ctx.ID().getText()+" : \n"+localAttributeTable);
 
 		Attribute<Float> attribute = new Attribute<>();
 		attribute.name = ctx.ID().getText();
@@ -542,7 +526,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		attribute.value = null;
 		attribute.scope = scope.get(ctx.getParent());
 		if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
 				localAttributeTable.put(attribute.name+attribute.scope, attribute);
 		} else {
 				localAttributeTable.put(attribute.name, attribute);
@@ -553,7 +537,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitBoolean_declaration(VicuschiParser.Boolean_declarationContext ctx) { 
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-		System.out.println("tabela de: "+ctx.ID().getText()+" : \n"+localAttributeTable);
+		//System.out.println("tabela de "+ctx.ID().getText()+" : \n"+localAttributeTable);
 		
 		Attribute<Boolean> attribute = new Attribute<>();
 		attribute.name = ctx.ID().getText();
@@ -561,7 +545,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		attribute.value = null;
 		attribute.scope = scope.get(ctx.getParent());
 		if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
 				localAttributeTable.put(attribute.name, attribute);
 		} else {
 				localAttributeTable.put(attribute.name, attribute);
@@ -580,7 +564,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitString_array_declaration(VicuschiParser.String_array_declarationContext ctx) {
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-		System.out.println("tabela de: "+ctx.generic_array().ID().getText()+" : \n"+localAttributeTable);
+		//System.out.println("tabela de "+ctx.generic_array().ID().getText()+" : \n"+localAttributeTable);
 
 		//verificação da presença da declaração do index
 		TerminalNode id = ctx.generic_array().index().ID();
@@ -596,16 +580,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.value = null;
 					attribute.scope = scope.get(ctx.getParent());
 					if(localAttributeTable.containsKey(attribute.name)) {
-						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+						System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 					}
 
 					localAttributeTable.put(attribute.name, attribute);
 					nodeTable.put(attribute.name, ctx);
 				} else {
-					System.out.println("Error: array index has to be of type 'int' ");	
+					System.out.println("Error: array index at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine()+" has to be of type 'int' ");	
 				}
 			} else{
-				System.out.println("Error: undeclared array index: "+id.getText());
+				System.out.println("Error: undeclared array index: " +id.getText() + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 			}
 		} else { // se o indice eh um numero
 			// Adicionando o nodo
@@ -622,7 +606,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			}
 			//System.out.println(attribute.size);
 			if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 			}
 
 			localAttributeTable.put(attribute.name, attribute);
@@ -632,7 +616,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitInteger_array_declaration(VicuschiParser.Integer_array_declarationContext ctx) { 
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-		System.out.println("tabela de: "+ctx.generic_array().ID().getText()+" : \n"+localAttributeTable);
+		//System.out.println("tabela de "+ctx.generic_array().ID().getText()+" : \n"+localAttributeTable);
 
 		//verificação da presença da declaração do index
 		TerminalNode id = ctx.generic_array().index().ID();
@@ -648,16 +632,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.value = null;
 					attribute.scope = scope.get(ctx.getParent());
 					if(localAttributeTable.containsKey(attribute.name)) {
-						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+						System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 					}
 
 					localAttributeTable.put(attribute.name, attribute);
 					nodeTable.put(attribute.name, ctx);
 				} else {
-					System.out.println("Error: array index has to be of type 'int' ");	
+					System.out.println("Error: array index at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine()+ " has to be of type 'int' ");	
 				}
 			} else{
-				System.out.println("Error: undeclared array index: "+id.getText());
+				System.out.println("Error: undeclared array index: " +id.getText() + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 			}
 		} else { // se o indice eh um numero
 			// Adicionando o nodo
@@ -669,7 +653,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			attribute.size = Integer.parseInt(ctx.generic_array().index().INT_NUMBER().getText());
 			//System.out.println(attribute.size);
 			if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 			}
 
 			localAttributeTable.put(attribute.name, attribute);
@@ -679,7 +663,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitFloat_array_declaration(VicuschiParser.Float_array_declarationContext ctx) {
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-		System.out.println("tabela de: "+ctx.generic_array().ID().getText()+" : \n"+localAttributeTable);
+		//System.out.println("tabela de "+ctx.generic_array().ID().getText()+" : \n"+localAttributeTable);
 
 		//verificação da presença da declaração do index
 		TerminalNode id = ctx.generic_array().index().ID();
@@ -695,16 +679,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.value = null;
 					attribute.scope = scope.get(ctx.getParent());
 					if(localAttributeTable.containsKey(attribute.name)) {
-						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+						System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 					}
 
 					localAttributeTable.put(attribute.name, attribute);
 					nodeTable.put(attribute.name, ctx);
 				} else {
-					System.out.println("Error: array index has to be of type 'int' ");	
+					System.out.println("Error: array index at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine()+ " has to be of type 'int' ");
 				}
 			} else{
-				System.out.println("Error: undeclared array index: "+id.getText());
+				System.out.println("Error: undeclared array index: " +id.getText() + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 			}
 		} else { // se o indice eh um numero
 			// Adicionando o nodo
@@ -716,7 +700,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			attribute.size = Integer.parseInt(ctx.generic_array().index().INT_NUMBER().getText());
 			//System.out.println(attribute.size);
 			if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 			}
 
 			localAttributeTable.put(attribute.name, attribute);
@@ -726,7 +710,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitBoolean_array_declaration(VicuschiParser.Boolean_array_declarationContext ctx) { 
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
-		System.out.println("tabela de: "+ctx.generic_array().ID().getText()+" : \n"+localAttributeTable);
+		//System.out.println("tabela de "+ctx.generic_array().ID().getText()+" : \n"+localAttributeTable);
 
 		//System.out.println("exitBoolean_array_declaration");
 
@@ -744,16 +728,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					attribute.value = null;
 					attribute.scope = scope.get(ctx.getParent());
 					if(localAttributeTable.containsKey(attribute.name)) {
-						System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+						System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 					}
 
 					localAttributeTable.put(attribute.name, attribute);
 					nodeTable.put(attribute.name, ctx);
 				} else {
-					System.out.println("Error: array index has to be of type 'int' ");	
+					System.out.println("Error: array index at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine()+ " has to be of type 'int' ");
 				}
 			} else{
-				System.out.println("Error: undeclared array index: "+id.getText());
+				System.out.println("Error: undeclared array index: " +id.getText() + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 			}
 		} else { // se o indice eh um numero
 			// Adicionando o nodo
@@ -765,7 +749,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			attribute.size = Integer.parseInt(ctx.generic_array().index().INT_NUMBER().getText());
 			//System.out.println(attribute.size);
 			if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
+				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.generic_array().ID().getSymbol().getLine() + ":" + ctx.generic_array().ID().getSymbol().getCharPositionInLine());
 			}
 
 			localAttributeTable.put(attribute.name, attribute);
@@ -781,14 +765,14 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 		String id = ctx.ID().getText();
 		if(!localAttributeTable.containsKey(id)) {
-			System.out.println("Error: " + id + " doesn't exist at symbol table (failed to be declared)");
+			System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
 			return;
 		}
 
 		Attribute attribute = localAttributeTable.get(id);
 
 		if(!attribute.hasValue) {
-			System.out.println("Error: " + id + " declared but has no value");
+			System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine() + " declared but has no value");
 			return;
 		}
 
@@ -797,29 +781,30 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override
 	public void exitR_logic(VicuschiParser.R_logicContext ctx) {
+		//System.out.println(scope.get(ctx));
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
 
 		if(ctx.getChild(1) instanceof VicuschiParser.ComparatorContext) {
 			String[] id = {ctx.getChild(0).getText(), ctx.getChild(2).getText()};
 			if(!localAttributeTable.containsKey(id[0])) {
-				System.out.println("Error: " + id[0] + " doesn't exist at symbol table (failed to be declared)");
+				System.out.println("Error: variable " + id[0] + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
 			if(!localAttributeTable.containsKey(id[1])) {
-				System.out.println("Error: " + id[1] + " doesn't exist at symbol table (failed to be declared)");
+				System.out.println("Error: variable " + id[1] + " at " + ctx.ID().get(1).getSymbol().getLine() + ":" + ctx.ID().get(1).getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
 			Attribute[] attributes = { localAttributeTable.get(id[0]), localAttributeTable.get(id[1]) };
 
 			if(!attributes[0].hasValue) {
-				System.out.println("Error: " + id[0] + " declared but has no value");
+				System.out.println("Error: variable " + id[0] + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " declared but has no value");
 				return;
 			}
 			
 			if(!attributes[1].hasValue) {
-				System.out.println("Error: " + id[1] + " declared but has no value");
+				System.out.println("Error: variable " + id[1] + " at " + ctx.ID().get(1).getSymbol().getLine() + ":" + ctx.ID().get(1).getSymbol().getCharPositionInLine() + " declared but has no value");
 				return;
 			}
 
@@ -831,14 +816,14 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		if(ctx.ID().size() == 1) {
 			String id_name = ctx.ID().get(0).getText();
 			if(!localAttributeTable.containsKey(id_name)){
-				System.out.println("Error: " + id_name + " doesn't exist at symbol table (failed to be declared)");
+				System.out.println("Error: variable " + id_name + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
 				return;
 			}
 
 			Attribute attribute = localAttributeTable.get(id_name);
 
 			if(!attribute.hasValue) {
-				System.out.println("Error: " + id_name + " declared but has no value");
+				System.out.println("Error: variable " + id_name + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " declared but has no value");
 				return;
 			}
 

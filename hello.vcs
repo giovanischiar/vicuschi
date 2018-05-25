@@ -26,11 +26,13 @@
  before = 10;
 
 int foo(int a, string b[])
-	string palavra;
-
-	boolean c;
-
+	while before
+		boolean c;
+	endwhile;
+	c++;
 endf;
+
+foo(before);
 
  int after()
  	int c;
