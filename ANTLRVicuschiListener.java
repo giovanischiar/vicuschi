@@ -24,7 +24,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) {
 		//System.out.println(attributeTable);
-		//System.out.println(scopeTables);
+		System.out.println(scopeTables);
 	}
 
 	@Override public void enterStmt(VicuschiParser.StmtContext ctx) { 
@@ -264,6 +264,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitFor_declaration(VicuschiParser.For_declarationContext ctx) {
 		Attribute<Integer> attribute = new Attribute<>();
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
 
 		if(ctx.ID() != null) {
 			String id = ctx.ID().getText();
@@ -285,7 +286,11 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			attribute.maxValue = Integer.parseInt(nonInclusiveInterval.INT_NUMBER().get(1).getText())-1;
 		}
 
-		attributeTable.put(attribute.name, attribute);
+		if(localAttributeTable.containsKey(attribute.name)) {
+			System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+		}
+
+		localAttributeTable.put(attribute.name, attribute);
 		addAttributeAtNodeTable(attribute.name, ctx);
 	}
 
@@ -318,7 +323,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		Attribute a = localAttributeTable.get(id_name);
 
 		
-		//typeComparation(attribution, a);
+		typeComparation(attribution, a);
 	}
 
 	public void typeComparation(VicuschiParser.AttributionContext ctx, Attribute a) {
@@ -341,7 +346,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		String id_name = ctx.getChild(0).getChild(0).getChild(0).getChild(1).getText();
 		addAttributeAtNodeTable(id_name, ctx);
 		Attribute a = localAttributeTable.get(id_name);
-		//typeComparation(ctx.attribution(), a);
+		typeComparation(ctx.attribution(), a);
 	}
 
 	private void addAttributeAtNodeTable(String id, ParserRuleContext ctx) {
@@ -419,7 +424,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			//System.out.println(nparams);
 		}
 		if(nparams != attribute.nparams) {
-				System.out.println("Error: number of parametres in function " + id + " at " +ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't match (encountered " +  nparams + ", expect " + attribute.nparams + ")");
+				System.out.println("Error: number of parameters in function " + id + " at " +ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't match (encountered " +  nparams + ", expect " + attribute.nparams + ")");
 		}
 	}
 
@@ -488,12 +493,10 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		attribute.value = null;
 		attribute.scope = scope.get(ctx.getParent());
 		if(localAttributeTable.containsKey(attribute.name)) {
-				System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
-				localAttributeTable.put(attribute.name, attribute);
-		} else {
-				localAttributeTable.put(attribute.name, attribute);
-		}
+			System.out.println("Warning: redeclaration of variable " + attribute.name + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine());
+		} 
 
+		localAttributeTable.put(attribute.name, attribute);
 		nodeTable.put(attribute.name, ctx);
 	}
 

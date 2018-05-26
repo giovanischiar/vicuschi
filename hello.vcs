@@ -22,8 +22,8 @@
 // int a; 
 // a = 10;
 
- int before;
- before = 10;
+int before;
+before = 10;
 
 int foo(int a, string b[])
 	while before
@@ -32,12 +32,28 @@ int foo(int a, string b[])
 	c++;
 endf;
 
-foo(before);
+int fooo(int a, string b[])
+	if before
+		boolean c;
+	endif;
+	c++;
+endf;
 
- int after()
- 	int c;
- 	c = 10;
- endf;
+int foooo(int a, string b[])
+	int i = 0;
+	for i : [2, 4]
+		boolean c;
+	endfor;
+	c++;
+	i++;
+endf;
+
+foo(before, before);
+
+int after()
+	int c;
+	c = 10;
+endf;
 
 /*int foo(int a, int b, string d, float c)
 	for i : [1, 2]
