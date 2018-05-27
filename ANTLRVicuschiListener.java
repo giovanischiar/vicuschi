@@ -375,7 +375,18 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		if(ctx.literal() != null) {
 			expected_type = actualType.get(ctx.literal());
 		} else if (ctx.ID() != null){
+			String id = ctx.ID().getText();
+			if(!localAttributeTable.containsKey(id)) {
+				System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't exist at symbol table (failed to be declared)");
+				return;
+			}
+
+			if(!localAttributeTable.get(id).hasValue) {
+				System.out.println("Error: variable" + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
+				return;
+			}
 			expected_type = localAttributeTable.get(ctx.ID().getText()).type;
+			
 		} else if(ctx.unary_expression() != null) {
 			expected_type = actualType.get(ctx.unary_expression());
 		} else if(ctx.logic_expr() != null) {
@@ -389,7 +400,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		//System.out.println(expected_type);
 
 		actualType.put(ctx, expected_type);
-		//addAttributeAtNodeTable(id, ctx);
+		//
+		AtNodeTable(id, ctx);
 	}
 
 	@Override public void exitLiteral(VicuschiParser.LiteralContext ctx) {
