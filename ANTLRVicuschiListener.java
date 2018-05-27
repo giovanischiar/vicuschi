@@ -367,12 +367,15 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override public void exitAttributed(VicuschiParser.AttributedContext ctx) {
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
 		//String expected_type = actualType.get(ctx.attributed());
 
 		String expected_type = "my fluffy type";
 
 		if(ctx.literal() != null) {
 			expected_type = actualType.get(ctx.literal());
+		} else if (ctx.ID() != null){
+			expected_type = localAttributeTable.get(ctx.ID().getText()).type;
 		} else if(ctx.unary_expression() != null) {
 			expected_type = actualType.get(ctx.unary_expression());
 		} else if(ctx.logic_expr() != null) {
@@ -382,6 +385,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		} else {
 			expected_type = actualType.get(ctx.arith_expr());
 		}
+
+		//System.out.println(expected_type);
 
 		actualType.put(ctx, expected_type);
 		//addAttributeAtNodeTable(id, ctx);
@@ -857,7 +862,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		@Override
 		public String toString() {
 			return "scope: "+scope
-					;//+", value: "+value;
+					+", hasValue: "+hasValue;
 		}
 
 		@Override

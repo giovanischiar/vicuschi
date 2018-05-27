@@ -27,11 +27,11 @@ before = 10;
 
 int foo(int a, string b[])
 	while before
-		boolean c;
+		boolean c = before;
 	endwhile;
 	c++;
 endf;
-
+/*
 int fooo(int a, string b[])
 	if before
 		boolean c;
@@ -48,7 +48,7 @@ int foooo(int a, string b[])
 	i++;
 endf;
 
-foo(before, before);
+foo(before, before);*/
 
 int after()
 	int c;

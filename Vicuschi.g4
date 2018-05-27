@@ -71,7 +71,8 @@ params
 	;
 
 attributed
-	: literal 
+	: literal
+	| ID 
 	| unary_expression 
 	| logic_expr 
 	| function_call 
