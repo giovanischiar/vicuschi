@@ -1,36 +1,30 @@
-//int print(string a, int b)
-//    int a1 = 2;
-//endf;
-
-//int foo()
-//	int a2 = 10;
-//endf;
-
 //print("hello world");
-
-//boolean b = yes;
-//float f = 2.5;
 
 // int index;
 // boolean wee[99];
-
 // wee = {no};
 // index = 10000;
-
-//boolean ola = yes;
-
-// int a; 
-// a = 10;
 
 int before;
 before = 10;
 
 int foo(int a, string b[])
 	while before
-		boolean c = before;
+		boolean c = before + 1;
+		//b = !a;
+		//b = foo(before, c); ***recursao impossivel (criar declaracao de funcao separada, 
+								//onde o nodo funcao cria oatributo ao inves do folha?)
 	endwhile;
 	c++;
 endf;
+
+//float f = foo(before, before);
+
+int after()
+	int c;
+	c = 10;
+endf;
+
 /*
 int fooo(int a, string b[])
 	if before
@@ -48,13 +42,6 @@ int foooo(int a, string b[])
 	i++;
 endf;
 
-foo(before, before);*/
-
-int after()
-	int c;
-	c = 10;
-endf;
-
 /*int foo(int a, int b, string d, float c)
 	for i : [1, 2]
 		int lalala = 3;
@@ -68,6 +55,3 @@ endf;
 	endfor;
 endf;
 */
-// foo(1, 2, 3, 4);
-
-

@@ -182,6 +182,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		scopeTables.add(localAttributeTable);
 
 		scope.put(ctx, scopeTables.lastIndexOf(localAttributeTable));
+
+		//parentAttTable.put(ctx.getChild(0).getChild(0).getChild(1).getText(), localAttributeTable.get(ctx.getChild(0).getChild(0).getChild(1).getText()));
 		
 	}
 
@@ -356,7 +358,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			Attribute a = localAttributeTable.get(id);
 			nodeTable.put(a.name, ctx);
 		} else {
-			System.out.println("Warning: variable " + id + " doesn't exist at  symbol table (failed to be declared)");
+			System.out.println("Error: variable " + id + " doesn't exist at  symbol table (failed to be declared)");
 		}
 	}
 	@Override public void exitAttribution(VicuschiParser.AttributionContext ctx) {
@@ -382,7 +384,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			}
 
 			if(!localAttributeTable.get(id).hasValue) {
-				System.out.println("Error: variable" + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
+				System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
 				return;
 			}
 			expected_type = localAttributeTable.get(ctx.ID().getText()).type;
@@ -400,8 +402,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		//System.out.println(expected_type);
 
 		actualType.put(ctx, expected_type);
-		//
-		AtNodeTable(id, ctx);
+		//addAttributeAtNodeTable(id, ctx);
 	}
 
 	@Override public void exitLiteral(VicuschiParser.LiteralContext ctx) {
@@ -483,7 +484,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			}
 
 			if(!localAttributeTable.get(id).hasValue) {
-				System.out.println("Error: variable" + id + " at " + ctx.not_id().ID().getSymbol().getLine() + ":" + ctx.not_id().ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
+				System.out.println("Error: variable " + id + " at " + ctx.not_id().ID().getSymbol().getLine() + ":" + ctx.not_id().ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
 				return;
 			}
 
@@ -873,8 +874,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}*/
 		@Override
 		public String toString() {
-			return "scope: "+scope
-					+", hasValue: "+hasValue;
+			return "(hasValue: "+hasValue+ ")\n";
 		}
 
 		@Override
