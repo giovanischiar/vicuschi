@@ -615,6 +615,18 @@ public class VicuschiBaseListener implements VicuschiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRet_stmt(VicuschiParser.Ret_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRet_stmt(VicuschiParser.Ret_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterInterval(VicuschiParser.IntervalContext ctx) { }
 	/**
 	 * {@inheritDoc}

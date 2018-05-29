@@ -17,7 +17,8 @@ simple_stmt
 	| generic_attribution
 	| function_declaration
 	| function_call
-	| import_declaration;
+	| import_declaration
+	| ret_stmt;
 
 import_declaration
 	: IMPORT WORD;
@@ -43,7 +44,8 @@ factor_a
 r_arith
 	: '(' arith_expr ')' 
 	| arith_id 
-	| arith_number;
+	| arith_number
+	| function_call;
 
 arith_id
 	: (UNARY_PLUS | UNARY_MINUS)? ID ;
@@ -59,7 +61,6 @@ function_call
 function_declaration
 	: generic_unary_declaration '(' declaration_params? ')' WS? stmt ENDF
 	;
-
 
 declaration_params
 	: generic_declaration (',' WS? generic_declaration)*
@@ -199,6 +200,9 @@ comparator
 	| MAJOR_EQUALS
 	| MINOR_EQUALS
 	| DIFFERENT;
+
+ret_stmt
+	: RETURN attributed?;
 
 //lex;
 

@@ -507,6 +507,16 @@ public interface VicuschiListener extends ParseTreeListener {
 	 */
 	void exitComparator(VicuschiParser.ComparatorContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link VicuschiParser#ret_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterRet_stmt(VicuschiParser.Ret_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link VicuschiParser#ret_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitRet_stmt(VicuschiParser.Ret_stmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link VicuschiParser#interval}.
 	 * @param ctx the parse tree
 	 */

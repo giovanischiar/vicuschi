@@ -1,57 +1,8 @@
-//print("hello world");
-
-// int index;
-// boolean wee[99];
-// wee = {no};
-// index = 10000;
-
-int before;
-before = 10;
-
-int foo(int a, string b[])
-	while before
-		boolean c = before + 1;
-		//b = !a;
-		//b = foo(before, c); ***recursao impossivel (criar declaracao de funcao separada, 
-								//onde o nodo funcao cria oatributo ao inves do folha?)
-	endwhile;
-	c++;
-endf;
-
-//float f = foo(before, before);
-
-int after()
-	int c;
-	c = 10;
-endf;
-
-/*
-int fooo(int a, string b[])
-	if before
-		boolean c;
-	endif;
-	c++;
-endf;
-
-int foooo(int a, string b[])
-	int i = 0;
-	for i : [2, 4]
-		boolean c;
+for i : [0, 12]
+	int j = 0;
+	for j : [1, 64)
+		int i = 0;
 	endfor;
-	c++;
-	i++;
-endf;
+endfor;
 
-/*int foo(int a, int b, string d, float c)
-	for i : [1, 2]
-		int lalala = 3;
-		for j : [3, 4]
-			int lalala = 3;
-		endfor;
-
-		for k : [2,4]
-			int bbbbb = 2;
-		endfor;
-	endfor;
-endf;
-*/
+int i = 1;
