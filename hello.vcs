@@ -1,8 +1,25 @@
-for i : [0, 12]
+/*for i : [0, 12]
 	int j = 0;
 	for j : [1, 64)
 		int i = 0;
 	endfor;
 endfor;
 
-int i = 1;
+int i = 1;*/
+
+boolean foo()
+	string s = foo();
+endf;
+/*
+int i = 0;
+i = 0;
+i = "";
+i = yes & 5 > 2;
+i = 1 + 1;
+i = foo();
+i = 1.0;
+i = i++;
+i = ++i;
+i = i--;
+i = --i;*/
+

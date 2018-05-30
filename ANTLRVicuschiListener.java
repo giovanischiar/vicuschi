@@ -328,32 +328,38 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
 
 		// buscamos o tipo pelo qual a variavel foi declarada
-
+		int line = 0;
+		int column = 0;
 		String id_name = "";
 		VicuschiParser.AttributionContext attribution;
 		if (ctx.attribution_id() != null){
 			id_name = ctx.attribution_id().ID().getText();
 			attribution = ctx.attribution_id().attribution();
+			line = ctx.attribution_id().attribution().ATTRIBUTION().getSymbol().getLine();
+			column = ctx.attribution_id().attribution().ATTRIBUTION().getSymbol().getCharPositionInLine();
+
 		} else { // atribuicao de array
 			id_name = ctx.attribution_array().generic_array().ID().getText();
 			attribution = ctx.attribution_array().attribution();
+			line = ctx.attribution_array().attribution().ATTRIBUTION().getSymbol().getLine();
+			column = ctx.attribution_array().attribution().ATTRIBUTION().getSymbol().getCharPositionInLine();
 		}
 
 
 		Attribute a = localAttributeTable.get(id_name);
 
 		
-		typeComparation(attribution, a);
+		typeComparation(attribution, a, line, column);
 	}
 
-	public void typeComparation(VicuschiParser.AttributionContext ctx, Attribute a) {
-		actualType.put(ctx, a.type);
+	public void typeComparation(VicuschiParser.AttributionContext ctx, Attribute a, int line, int column) {
 
 		// agora buscamos o tipo de seu neto "attribution", para comparacao
 		String expected_type = actualType.get(ctx);
+		//System.out.println("Actual type: "+a.type+" vs Expected type: "+expected_type);
 
 		if(!a.type.equals(expected_type)) {
-			System.out.println("Error: cannot assign " + expected_type + " to " + a.type);
+			System.out.println("Error: cannot assign " + expected_type + " to " + a.type + " at "+line+":"+column);
 		} else {
 			a.hasValue = true;
 		}
@@ -366,7 +372,9 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		String id_name = ctx.getChild(0).getChild(0).getChild(0).getChild(1).getText();
 		addAttributeAtNodeTable(id_name, ctx);
 		Attribute a = localAttributeTable.get(id_name);
-		typeComparation(ctx.attribution(), a);
+		int line = ctx.attribution().ATTRIBUTION().getSymbol().getLine();
+		int column = ctx.attribution().ATTRIBUTION().getSymbol().getCharPositionInLine();
+		typeComparation(ctx.attribution(), a, line, column);
 	}
 
 	private void addAttributeAtNodeTable(String id, ParserRuleContext ctx) {
@@ -410,12 +418,14 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		} else if(ctx.unary_expression() != null) {
 			expected_type = actualType.get(ctx.unary_expression());
 		} else if(ctx.logic_expr() != null) {
-			expected_type = actualType.get(ctx.logic_expr());
+			expected_type = "boolean";
 		} else if(ctx.function_call() != null) {
 			expected_type = actualType.get(ctx.function_call());
 		} else {
 			expected_type = actualType.get(ctx.arith_expr());
 		}
+
+		//System.out.println("Attributed Expected type: "+expected_type);
 
 		//System.out.println(expected_type);
 
@@ -442,7 +452,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override public void exitFunction_call(VicuschiParser.Function_callContext ctx) {
 		// if(!scopeTables.contains(scope.get(ctx))) {
-		// 	System.out.println("Erro desconhecido");
+		// 	System.out.println("Uknown error (recursive functions)");
 		// 	return;
 		// }
 
@@ -457,7 +467,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 
 		Attribute attribute = localAttributeTable.get(id);
-		System.out.println("attribute: " + attribute);
+		//System.out.println("attribute: " + attribute);
 
 		Integer nparams = 0;
 		if(ctx.params() != null) {
@@ -467,6 +477,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		if(nparams != attribute.nparams) {
 			System.out.println("Error: number of parameters in function " + id + " at " +ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't match (encountered " +  nparams + ", expect " + attribute.nparams + ")");
 		}
+
+		actualType.put(ctx, attribute.type);
 	}
 
 	@Override public void exitUnary_expression(VicuschiParser.Unary_expressionContext ctx) {
@@ -916,6 +928,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 
 		nodeTable.put(attribute.name, ctx);
+		actualType.put(ctx, attribute.type);
+	}
+	
+	@Override
+	public void exitArith_number(VicuschiParser.Arith_numberContext ctx) {
+		if (ctx.INT_NUMBER() != null){
+			actualType.put(ctx, "int");
+		}else { // is floating point
+			actualType.put(ctx, "float");
+		}
 	}
 
 	@Override
@@ -925,9 +947,11 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 		if(ctx.getChild(1) instanceof VicuschiParser.ComparatorContext) {
 			String[] id = {ctx.getChild(0).getText(), ctx.getChild(2).getText()};
-			if(!localAttributeTable.containsKey(id[0])) {
-				System.out.println("Error: variable " + id[0] + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
-				return;
+			if (ctx.ID().size() > 0) {
+				if(!localAttributeTable.containsKey(id[0])) {
+					System.out.println("Error: variable " + id[0] + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
+					return;
+				}
 			}
 
 			if(ctx.ID().size() > 1) {
@@ -940,10 +964,11 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 
 			Attribute[] attributes = { localAttributeTable.get(id[0]), localAttributeTable.get(id[1]) };
-
-			if(!attributes[0].hasValue) {
-				System.out.println("Error: variable " + id[0] + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " declared but has no value");
-				return;
+			if (ctx.ID().size() > 0) {
+				if(!attributes[0].hasValue) {
+					System.out.println("Error: variable " + id[0] + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " declared but has no value");
+					return;
+				}
 			}
 
 			if(ctx.ID().size() > 1) {
@@ -952,8 +977,9 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					return;
 				}
 			}
-
-			nodeTable.put(attributes[0].name, ctx);
+			if (ctx.ID().size() > 0) {
+				nodeTable.put(attributes[0].name, ctx);
+			}
 			if(ctx.ID().size() > 1) {
 				nodeTable.put(attributes[1].name, ctx);
 			}
@@ -1000,7 +1026,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}*/
 		@Override
 		public String toString() {
-			return "(scope: "+scope+ ")\n";
+			return "(type: "+type+ ")\n";
 		}
 
 		@Override
