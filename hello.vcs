@@ -10,6 +10,17 @@ int i = 1;*/
 boolean foo()
 	string s = foo();
 endf;
+
+int func()
+	int a = 1;
+endf;
+
+int i = 1;
+int j = 2;
+float k = func() + j*i;
+
+//boolean b = yes & 1 > 2 | func();
+
 /*
 int i = 0;
 i = 0;

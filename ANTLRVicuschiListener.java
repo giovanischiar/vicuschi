@@ -911,6 +911,126 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override
+	public void exitArith_expr(VicuschiParser.Arith_exprContext ctx){
+		// if term type is different to arith_expr_1 type
+		String term_type = actualType.get(ctx.term());
+		String arith_expr_1_type = actualType.get(ctx.arith_expr_1());
+		//System.out.println("expr "+ctx.term().getText()+" is type "+term_type+ ", expr "+ctx.arith_expr_1().getText()+" is type "+arith_expr_1_type);
+		if (!term_type.equals(arith_expr_1_type)){
+			actualType.put(ctx, "float");
+		} else {
+			actualType.put(ctx, term_type);
+		}
+	}
+
+	@Override
+	public void exitArith_expr_1(VicuschiParser.Arith_expr_1Context ctx){
+		// if arith_expr_1 is not empty string
+		if (ctx.getChildCount() > 0){
+			actualType.put(ctx, actualType.get(ctx.arith_expr()));	
+		} else {
+			actualType.put(ctx, "int");
+		}
+	}
+
+	@Override
+	public void exitTerm(VicuschiParser.TermContext ctx){
+		// if term_a is not empty string, and it has a division symbol, then arith_expr will be float
+/*		if (ctx.term_a().getChildCount() > 0){
+			if (ctx.term_a().getChild(0).getText().equals("/")){
+				actualType.put(ctx, "float");	
+			} else {
+				// if it is a multiplication symbol, then it can either be float or int based on children
+				if (!actualType.get(ctx.term_a()).equals(actualType.get(ctx.factor()))){
+					actualType.put(ctx, "float");
+				} else {
+					actualType.put(ctx, actualType.get(ctx.factor()));
+				}
+			}
+		} else {
+			// if there was no multiplication or division, then it stays the same
+			actualType.put(ctx, actualType.get(ctx.factor()));
+		}*/
+		String term_a_type = actualType.get(ctx.term_a());
+		String factor_type = actualType.get(ctx.factor());
+		//System.out.println("expr "+ctx.term_a().getText()+" is type "+term_a_type+ ", expr "+ctx.factor().getText()+" is type "+factor_type);
+
+		if (!term_a_type.equals(factor_type)){
+			actualType.put(ctx, "float");
+		} else {
+			//System.out.println(" term_a equal to factor type");
+			actualType.put(ctx, actualType.get(ctx.factor()));
+		}
+	}
+
+	@Override
+	public void exitTerm_a(VicuschiParser.Term_aContext ctx){
+		// if it's an empty string, then we assume int
+		if (ctx.getChildCount() > 0){
+			// if there is a division symbol, we assume it changed to float
+			if (ctx.getChild(0).getText().equals("/")){
+				actualType.put(ctx, "float");
+			} else {
+				actualType.put(ctx, actualType.get(ctx.term()));
+			}
+		} else {
+			actualType.put(ctx, "int");
+		}
+	}
+	@Override
+	public void exitFactor(VicuschiParser.FactorContext ctx){
+		// if there is an exponentiation, then type can change
+		/*if (ctx.factor_a().getChildCount() > 0){
+			// if factor_a is float, then factor will be float, else it stays the same
+			if (actualType.get(ctx.factor_a()).equals("float")){
+				actualType.put(ctx, "float");	
+			} else {
+				actualType.put(ctx, actualType.get(ctx.r_arith()));
+			}
+		} else {
+			// if there isn't, then it stays the same
+			actualType.put(ctx, actualType.get(ctx.r_arith()));
+		}*/
+		String factor_a_type = actualType.get(ctx.factor_a());
+		//System.out.println("expr "+ctx.factor_a().getText()+" is of type "+factor_a_type);
+
+		if (factor_a_type.equals("float")){
+			actualType.put(ctx, "float");	
+		} else {
+			actualType.put(ctx, actualType.get(ctx.r_arith()));
+		}
+	}
+
+	@Override
+	public void exitFactor_a(VicuschiParser.Factor_aContext ctx){
+		if (ctx.getChildCount() > 0){
+			actualType.put(ctx, actualType.get(ctx.factor()));
+		} else {
+			actualType.put(ctx, "int");
+		}
+	}
+
+	@Override
+	public void exitR_arith(VicuschiParser.R_arithContext ctx){
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
+
+		if (ctx.arith_expr() != null) {
+			actualType.put(ctx, actualType.get(ctx.arith_expr()));
+		} else if (ctx.arith_id() != null) {
+			actualType.put(ctx, actualType.get(ctx.arith_id()));
+		} else if (ctx.arith_number() != null) {
+			actualType.put(ctx, actualType.get(ctx.arith_number()));
+		} else {
+			Attribute attribute = localAttributeTable.get(ctx.function_call().ID().getText());
+			if (!attribute.type.equals("int") && !attribute.type.equals("float")){
+				System.out.println("Error: function " + attribute.name + " at " + ctx.function_call().ID().getSymbol().getLine() + ":" + ctx.function_call().ID().getSymbol().getCharPositionInLine() + " of type "+attribute.type+", expected int or float");
+				return;
+			}
+			actualType.put(ctx, attribute.type);
+		}
+	}
+
+	@Override
 	public void exitArith_id(VicuschiParser.Arith_idContext ctx) {
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
 
@@ -925,6 +1045,11 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		if(!attribute.hasValue) {
 			System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine() + " declared but has no value");
 			return;
+		}
+
+		if (!attribute.type.equals("int") && !attribute.type.equals("float")){
+			System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine() + " of type "+attribute.type+", expected int or float");
+			return;	
 		}
 
 		nodeTable.put(attribute.name, ctx);
@@ -977,6 +1102,20 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					return;
 				}
 			}
+			
+			if (ctx.ID().size() > 0) {
+				if (!attributes[0].type.equals("int") || !attributes[0].type.equals("float")){
+					System.out.println("Error: variable " + id[0] + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " of type "+attributes[0].type+", expected int or float");
+					return;
+				}
+			}
+			if(ctx.ID().size() > 1) {
+				if (!attributes[1].type.equals("int") || !attributes[1].type.equals("float")){
+					System.out.println("Error: variable " + id[1] + " at " + ctx.ID().get(1).getSymbol().getLine() + ":" + ctx.ID().get(1).getSymbol().getCharPositionInLine() + " of type "+attributes[1].type+", expected int or float");
+					return;
+				}
+			}
+
 			if (ctx.ID().size() > 0) {
 				nodeTable.put(attributes[0].name, ctx);
 			}
@@ -986,7 +1125,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			return;
 		}
 
-		if(ctx.ID().size() == 1) {
+		if(ctx.ID().size() == 1 && ctx.getChildCount() < 3) {
 			String id_name = ctx.ID().get(0).getText();
 			if(!localAttributeTable.containsKey(id_name)){
 				System.out.println("Error: variable " + id_name + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
@@ -1000,7 +1139,20 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 				return;
 			}
 
+			if (!attribute.type.equals("boolean")){
+				System.out.println("Error: variable " + id_name + " at " + ctx.ID().get(0).getSymbol().getLine() + ":" + ctx.ID().get(0).getSymbol().getCharPositionInLine() + " of type "+attribute.type+", expected boolean");
+				return;
+			}
+
 			nodeTable.put(attribute.name, ctx);
+			return;
+		}
+		if (ctx.function_call() != null){
+			Attribute attribute = localAttributeTable.get(ctx.function_call().ID().getText());
+			String id_name = attribute.name;
+			if (!actualType.get(ctx.function_call()).equals("boolean")){
+				System.out.println("Error: function call " + id_name + " at " + ctx.function_call().ID().getSymbol().getLine() + ":" + ctx.function_call().ID().getSymbol().getCharPositionInLine() + " of type "+attribute.type+", expected boolean");
+			}
 		}
 	}
 

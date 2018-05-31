@@ -5,7 +5,7 @@
 ANTLR4 Java compiler for Vicuschi programming language.
 
 
-	Terminal commands for ANTLR4 usage:
+Terminal commands for ANTLR4 usage:
 
 	 export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
 
@@ -13,14 +13,17 @@ ANTLR4 Java compiler for Vicuschi programming language.
 	 
 	 alias grun='java org.antlr.v4.gui.TestRig'
 
-	Terminal commands for running our code:
-	 	When generating code from grammar:
-	 		antlr4 VicuschiLex.g4 ;and javac *.java ;and java Main hello.vcs
-	 	When not modifying grammar:
-	 		javac *.java ;and java Main hello.vcs	
-
+Terminal commands for running our code:
+	
+	When generating code from grammar:
+		antlr4 VicuschiLex.g4 ;and javac *.java ;and java Main hello.vcs
+	
+	When not modifying grammar:
+		javac *.java ;and java Main hello.vcs	
+	
 	For generating parse tree:
-	 	grun Vicuschi r -gui hello.vcs
+		grun Vicuschi r -gui hello.vcs
 
-	In these examples, hello.vcs is the code file
-	Text, code and documentation in English.
+
+In these examples, hello.vcs is the code file
+Text, code and documentation in English.

@@ -120,6 +120,7 @@ r_logic
 	| ID
 	| BOOL
 	| ID index
+	| function_call
 	| (ID | INT_NUMBER | FLOAT_NUMBER) comparator (ID | INT_NUMBER | FLOAT_NUMBER) ;
 
 not_id : '!' (ID | generic_array);
