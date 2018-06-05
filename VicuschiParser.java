@@ -1189,15 +1189,15 @@ public class VicuschiParser extends Parser {
 		public LiteralContext literal() {
 			return getRuleContext(LiteralContext.class,0);
 		}
+		public Function_callContext function_call() {
+			return getRuleContext(Function_callContext.class,0);
+		}
 		public TerminalNode ID() { return getToken(VicuschiParser.ID, 0); }
 		public Unary_expressionContext unary_expression() {
 			return getRuleContext(Unary_expressionContext.class,0);
 		}
 		public Logic_exprContext logic_expr() {
 			return getRuleContext(Logic_exprContext.class,0);
-		}
-		public Function_callContext function_call() {
-			return getRuleContext(Function_callContext.class,0);
 		}
 		public Arith_exprContext arith_expr() {
 			return getRuleContext(Arith_exprContext.class,0);
@@ -1234,28 +1234,28 @@ public class VicuschiParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(215);
-				match(ID);
+				function_call();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(216);
-				unary_expression();
+				match(ID);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(217);
-				logic_expr();
+				unary_expression();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(218);
-				function_call();
+				logic_expr();
 				}
 				break;
 			case 6:
@@ -3280,8 +3280,8 @@ public class VicuschiParser extends Parser {
 		"\7\67\2\2\u00d0\u00cf\3\2\2\2\u00d0\u00d1\3\2\2\2\u00d1\u00d2\3\2\2\2"+
 		"\u00d2\u00d4\5$\23\2\u00d3\u00ce\3\2\2\2\u00d4\u00d7\3\2\2\2\u00d5\u00d3"+
 		"\3\2\2\2\u00d5\u00d6\3\2\2\2\u00d6#\3\2\2\2\u00d7\u00d5\3\2\2\2\u00d8"+
-		"\u00df\5b\62\2\u00d9\u00df\7\64\2\2\u00da\u00df\5(\25\2\u00db\u00df\5"+
-		"\64\33\2\u00dc\u00df\5\34\17\2\u00dd\u00df\5\n\6\2\u00de\u00d8\3\2\2\2"+
+		"\u00df\5b\62\2\u00d9\u00df\5\34\17\2\u00da\u00df\7\64\2\2\u00db\u00df"+
+		"\5(\25\2\u00dc\u00df\5\64\33\2\u00dd\u00df\5\n\6\2\u00de\u00d8\3\2\2\2"+
 		"\u00de\u00d9\3\2\2\2\u00de\u00da\3\2\2\2\u00de\u00db\3\2\2\2\u00de\u00dc"+
 		"\3\2\2\2\u00de\u00dd\3\2\2\2\u00df%\3\2\2\2\u00e0\u00e1\7$\2\2\u00e1\u00e2"+
 		"\5$\23\2\u00e2\'\3\2\2\2\u00e3\u00e7\5*\26\2\u00e4\u00e7\5,\27\2\u00e5"+

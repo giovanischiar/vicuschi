@@ -204,6 +204,15 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			List<VicuschiParser.Generic_declarationContext> params = param.generic_declaration();
 			if (params != null){
 				nparams = params.size();
+				for (int i = 0; i < nparams; i++){
+					VicuschiParser.Generic_declarationContext gdc = params.get(i);
+					String param_type = gdc.getChild(0).getChild(0).getChild(0).getText();
+					if (gdc.generic_array_declaration() != null){
+						param_type += "[]";
+					}
+					//System.out.println("[DEBUG]: "+param_type);
+					attribute.parameterTypes.add(param_type);	
+				}
 			}
 		}
 
@@ -322,6 +331,12 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 		
 		addAttributeAtNodeTable(id_name, ctx);
+
+		if (ctx.generic_unary_declaration() != null){
+			actualType.put(ctx, actualType.get(ctx.generic_unary_declaration()));
+		} else {
+			actualType.put(ctx, actualType.get(ctx.generic_array_declaration()));
+		}
 	}
 
 	@Override public void exitGeneric_attribution(VicuschiParser.Generic_attributionContext ctx) {	
@@ -475,6 +490,25 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 		if(nparams != attribute.nparams) {
 			System.out.println("Error: number of parameters in function " + id + " at " +ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't match (encountered " +  nparams + ", expect " + attribute.nparams + ")");
+			return;
+		}
+
+		if(ctx.params() != null){
+			for (int i = 0; i < ctx.params().attributed().size(); i++){
+				VicuschiParser.AttributedContext ac = ctx.params().attributed().get(i);
+				String call_type = actualType.get(ac);
+
+				//System.out.println(call_type);
+
+				String param_type = (String) attribute.parameterTypes.get(i);
+
+				//System.out.println(attribute.parameterTypes);
+
+				if (!call_type.equals(param_type)){
+					System.out.println("Error: call parameter " + ac.getText() + " at " + ac.getStart().getLine() + ":" + ac.getStart().getCharPositionInLine() + " of type "+call_type+", expected "+param_type);
+				}
+
+			}
 		}
 
 		actualType.put(ctx, attribute.type);
@@ -531,6 +565,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		String id = ctx.getChild(0).getChild(1).getText();
 		//System.out.println("generic_unary_declaration: "+id);
 		addAttributeAtNodeTable(id, ctx);
+
+		if (ctx.integer_declaration() != null){
+			actualType.put(ctx, "int");
+		} else if (ctx.float_declaration() != null){
+			actualType.put(ctx, "float");
+		} else if (ctx.string_declaration() != null){
+			actualType.put(ctx, "string");
+		} else {
+			actualType.put(ctx, "boolean");
+		}
 		//System.out.println("tipo passado para cima: "+a.type);
 		//System.out.println("generic_unary_declaration: "+id+". Nodo: "+ctx);
 	}
@@ -558,6 +602,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		if(!isFunction) {
 			localAttributeTable.put(attribute.name, attribute);
 		}
+
 		nodeTable.put(attribute.name, ctx);
 	}
 
@@ -646,6 +691,19 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		String id = ctx.getChild(0).getChild(1).getChild(0).getText();
 		//System.out.println("generic_array_declaration: "+id);
 		addAttributeAtNodeTable(id, ctx);
+
+
+		if (ctx.integer_array_declaration() != null){
+			actualType.put(ctx, "int[]");
+		} else if (ctx.float_array_declaration() != null){
+			actualType.put(ctx, "float[]");
+		} else if (ctx.string_array_declaration() != null){
+			actualType.put(ctx, "string[]");
+		} else {
+			actualType.put(ctx, "boolean[]");
+		}
+
+
 		//System.out.println("tipo passado para cima: "+a.type);
 		//System.out.println("generic_unary_declaration: "+id+". Nodo: "+ctx);	
 	}
@@ -1164,6 +1222,9 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		public Integer nparams;
 		public Integer maxValue;
 		public Integer scope;
+
+		// those attributes that are functions have their parameter types listed in order here
+		public ArrayList<String> parameterTypes = new ArrayList<String>();
 /*
 		@Override
 		public String toString() {

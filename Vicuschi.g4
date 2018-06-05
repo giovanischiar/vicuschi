@@ -73,10 +73,10 @@ params
 
 attributed
 	: literal
+	| function_call 
 	| ID 
 	| unary_expression 
 	| logic_expr 
-	| function_call 
 	| arith_expr;
 
 attribution
