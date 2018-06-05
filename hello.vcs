@@ -1,36 +1,28 @@
-/*for i : [0, 12]
-	int j = 0;
-	for j : [1, 64)
-		int i = 0;
-	endfor;
-endfor;
+int variavelGlobal = 5;
 
-int i = 1;*/
+string metodoDeSegundoEscopo()
 
-boolean foo()
-	string s = foo();
+    string variavelEscopoDoMetodo = "metodo";
+    
+    while yes
+
+        string variavelEscopoDoLoop = "while";
+    endwhile;
 endf;
+    
 
-int func()
-	int a = 1;
-endf;
 
-int i = 1;
-int j = 2;
-float k = func() + j*i;
+// Testes gerais:
 
-//boolean b = yes & 1 > 2 | func();
+int a = "palavra";     // Não é o mesmo tipo
 
-/*
-int i = 0;
-i = 0;
-i = "";
-i = yes & 5 > 2;
-i = 1 + 1;
-i = foo();
-i = 1.0;
-i = i++;
-i = ++i;
-i = i--;
-i = --i;*/
+b = 20;             // Não declarada
 
+int c = 15;
+string c = "nova";    // Variável redeclarada
+
+int d = e * f;        // Uso de variável não declarada
+
+int d = c + 1;        // Variável do tipo errado em expressão
+
+metodoDeSegundoEscopo(1, 2); // Não compatível o número de parâmetros

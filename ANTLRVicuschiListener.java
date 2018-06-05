@@ -345,15 +345,14 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			column = ctx.attribution_array().attribution().ATTRIBUTION().getSymbol().getCharPositionInLine();
 		}
 
-
 		Attribute a = localAttributeTable.get(id_name);
-
-		
 		typeComparation(attribution, a, line, column);
 	}
 
 	public void typeComparation(VicuschiParser.AttributionContext ctx, Attribute a, int line, int column) {
-
+		if(a == null) {
+			return;
+		}
 		// agora buscamos o tipo de seu neto "attribution", para comparacao
 		String expected_type = actualType.get(ctx);
 		//System.out.println("Actual type: "+a.type+" vs Expected type: "+expected_type);
