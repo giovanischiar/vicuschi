@@ -9,10 +9,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, FileNotFoundException, UnsupportedEncodingException {
 		if(args.length == 0) {
 			System.out.println("Sem arquivo de entrada!");
 			return; 
