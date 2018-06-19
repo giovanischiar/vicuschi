@@ -15,10 +15,22 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	private Map<ParserRuleContext, String> actualType = new HashMap<>();
 
+	String code = ".class public lalala\\n.super java/lang/Object\\n";
+
 	@Override public void enterProgram(VicuschiParser.ProgramContext ctx) { 
 		HashMap<String, Attribute> rootAttributeTable = new HashMap<>();
 		scopeTables.add(rootAttributeTable);
 		scope.put(ctx, 0);
+
+		String mainCode = nodeCode(ctx.getChild(0));
+
+		code 	+=System.lineSeparator() + ".method public static main([Ljava/lang/String;)V"
+				+ System.lineSeparator() + "	.limit stack 100"
+				+ System.lineSeparator() + "	.limit locals 100"
+				+ System.lineSeparator() + mainCode
+				+ System.lineSeparator() + "return" 
+				+ System.lineSeparator() + ".end method";
+
 	}
 
 	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) {
@@ -233,6 +245,15 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		scopeTables.add(localAttributeTable);
 
 		scope.put(ctx, scopeTables.lastIndexOf(localAttributeTable));
+
+
+		// Code generation
+		String funCode = "";
+		if(attribute.name.equals("println")){
+			funCode += "getstatic java/lang/System/out Ljava/io/PrintStream;\\n ldc \""+param.getText()+"\"\\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
+		}
+
+		nodeCode.put(ctx, funCode);
 
 	}
 
