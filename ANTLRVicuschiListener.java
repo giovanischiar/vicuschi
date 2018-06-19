@@ -2,7 +2,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringBuilder;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
@@ -16,23 +15,13 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	private Map<ParserRuleContext, String> actualType = new HashMap<>();
 
-	private StringBuilder codeBuilder = new StringBuilder();
-	private StringBuilder dataBuilder = new StringBuilder();
-
 	@Override public void enterProgram(VicuschiParser.ProgramContext ctx) { 
 		HashMap<String, Attribute> rootAttributeTable = new HashMap<>();
 		scopeTables.add(rootAttributeTable);
 		scope.put(ctx, 0);
-		codeBuilder
-		.append(".text\\n")
-		.append(".globl main\\n")
-		.append("main: ");
 	}
 
 	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) {
-		codeBuilder.prepend(dataBuilder.toString());
-		codeBuilder.insert(0, ".data");
-		System.out.println(codeBuilder.toString());
 	}
 
 	@Override public void enterStmt(VicuschiParser.StmtContext ctx) { 
@@ -454,11 +443,6 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 		actualType.put(ctx, expected_type);
 		//addAttributeAtNodeTable(id, ctx);
-		//generateDataCode( , ctx.literal().getText());
-	}
-
-	public void generateDataCode(String name, String value) {
-		dataBuilder.append(ctx.literal());
 	}
  
 	@Override public void exitLiteral(VicuschiParser.LiteralContext ctx) {

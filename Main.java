@@ -14,19 +14,22 @@ import java.io.UnsupportedEncodingException;
 public class Main {
 
 	public static void main(String[] args) throws IOException, FileNotFoundException, UnsupportedEncodingException {
-		if(args.length == 0) {
-			System.out.println("Sem arquivo de entrada!");
-			return; 
-		}
+		// if(args.length == 0) {
+		// 	System.out.println("Sem arquivo de entrada!");
+		// 	return; 
+		// }
 
-		CharStream input = CharStreams.fromFileName(args[0]);
-	    VicuschiLexer lexer = new VicuschiLexer(input);
-	    CommonTokenStream tokens = new CommonTokenStream(lexer);
-	    VicuschiParser parser = new VicuschiParser(tokens);
-	    ParseTree programContext = parser.program();
-	    ParseTreeWalker walker = new ParseTreeWalker();
-	    ANTLRVicuschiListener listener = new ANTLRVicuschiListener();
+		// CharStream input = CharStreams.fromFileName(args[0]);
+	 //    VicuschiLexer lexer = new VicuschiLexer(input);
+	 //    CommonTokenStream tokens = new CommonTokenStream(lexer);
+	 //    VicuschiParser parser = new VicuschiParser(tokens);
+	 //    ParseTree programContext = parser.program();
+	 //    ParseTreeWalker walker = new ParseTreeWalker();
+	 //    ANTLRVicuschiListener listener = new ANTLRVicuschiListener();
 
-	    walker.walk(listener, programContext);
+	 //    walker.walk(listener, programContext);
+		String programName = args[0];
+		String code = ".class public " + programName + "\n.super java/lang/Object\n\n.method public static main([Ljava/lang/String;)V\n    .limit stack 100\n    .limit locals 100\n    getstatic java/lang/System/out Ljava/io/PrintStream;\n    ldc 42\n    invokevirtual java/io/PrintStream/println(I)V\n    return\n.end method";
+		System.out.println(code);
 	}
 }
