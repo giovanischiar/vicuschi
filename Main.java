@@ -20,7 +20,7 @@ public class Main {
 		// 	System.out.println("Sem arquivo de entrada!");
 		// 	return; 
 		// }
-		CharStream input = CharStreams.fromFileName(args[0]);
+		CharStream input = CharStreams.fromFileName(args[0]+".vcs");
 	    VicuschiLexer lexer = new VicuschiLexer(input);
 	    CommonTokenStream tokens = new CommonTokenStream(lexer);
 	    VicuschiParser parser = new VicuschiParser(tokens);

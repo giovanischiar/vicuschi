@@ -36,7 +36,11 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) {
-		String mainCode = nodeCode.get(ctx.stmt().simple_stmt().get(0).function_call());
+		String mainCode = "";
+		for (VicuschiParser.Simple_stmtContext prc : ctx.stmt().simple_stmt()){
+			mainCode += nodeCode.get(prc.function_call());
+		}
+
 		code +=System.lineSeparator() + ".method public static main([Ljava/lang/String;)V"
 			 + System.lineSeparator() + "	.limit stack 100"
 			 + System.lineSeparator() + "	.limit locals 100"
@@ -538,8 +542,10 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		// Code generation
 		String funCode = "";
 		if(id.equals("print")){
-			funCode += "getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + ctx.params().getText() +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
+			funCode += "getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + ctx.params().getText() +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n\n";
 		}
+
+		//System.out.println(funCode);
 
 		nodeCode.put(ctx, funCode);
 	}
