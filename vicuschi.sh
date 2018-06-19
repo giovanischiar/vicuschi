@@ -1,9 +1,13 @@
-if [ -e $@.j ]
+IFS='.' read -r -a files <<< "${@}"
+file=${files[0]}
+
+if [ -e "${file}.j" ]
 then
-	rm $@.j
+	rm "${file}.j"
 fi
-if [ -e $@.class ]
+if [ -e "${file}.class" ]
 then
-	rm $@.class
+	rm "${file}.class"
 fi
-java Main $@ >> $@.j && java -jar jasmin.jar $@.j && java $@
+
+java Main $@ >> ${file}.j && java -jar jasmin.jar ${file}.j && java ${file}

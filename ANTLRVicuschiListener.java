@@ -5,6 +5,8 @@ import java.util.List;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
+import java.lang.Exception;
+import java.io.PrintWriter;
 
 public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	private ArrayList<HashMap<String, Attribute>> scopeTables = new ArrayList<>();
@@ -15,25 +17,32 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	private Map<ParserRuleContext, String> actualType = new HashMap<>();
 
-	String code = ".class public lalala\\n.super java/lang/Object\\n";
+	private Map<ParserRuleContext, String> nodeCode = new HashMap<>();
+
+	private String code = "";
+
+	public void setFileName(String fileName) {
+		code = ".class public " + fileName + "\n.super java/lang/Object\n";
+	}
+
+	public String getGeneratedCode() {
+		return code;
+	}
 
 	@Override public void enterProgram(VicuschiParser.ProgramContext ctx) { 
 		HashMap<String, Attribute> rootAttributeTable = new HashMap<>();
 		scopeTables.add(rootAttributeTable);
 		scope.put(ctx, 0);
-
-		String mainCode = nodeCode(ctx.getChild(0));
-
-		code 	+=System.lineSeparator() + ".method public static main([Ljava/lang/String;)V"
-				+ System.lineSeparator() + "	.limit stack 100"
-				+ System.lineSeparator() + "	.limit locals 100"
-				+ System.lineSeparator() + mainCode
-				+ System.lineSeparator() + "return" 
-				+ System.lineSeparator() + ".end method";
-
 	}
 
 	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) {
+		String mainCode = nodeCode.get(ctx.stmt().simple_stmt().get(0).function_call());
+		code +=System.lineSeparator() + ".method public static main([Ljava/lang/String;)V"
+			 + System.lineSeparator() + "	.limit stack 100"
+			 + System.lineSeparator() + "	.limit locals 100"
+			 + System.lineSeparator() + mainCode
+			 + System.lineSeparator() + "return" 
+			 + System.lineSeparator() + ".end method";
 	}
 
 	@Override public void enterStmt(VicuschiParser.StmtContext ctx) { 
@@ -245,15 +254,6 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		scopeTables.add(localAttributeTable);
 
 		scope.put(ctx, scopeTables.lastIndexOf(localAttributeTable));
-
-
-		// Code generation
-		String funCode = "";
-		if(attribute.name.equals("println")){
-			funCode += "getstatic java/lang/System/out Ljava/io/PrintStream;\\n ldc \""+param.getText()+"\"\\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
-		}
-
-		nodeCode.put(ctx, funCode);
 
 	}
 
@@ -493,44 +493,55 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		String id = ctx.ID().getText();
 		//System.out.println("tabela de "+id+" : \n"+localAttributeTable);
 
+		if(!id.equals("print")) {
 
-		if(!localAttributeTable.containsKey(id)) {
-			System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't exist at symbol table (failed to be declared)");
-			return;
-		}
-
-		Attribute attribute = localAttributeTable.get(id);
-		//System.out.println("attribute: " + attribute);
-
-		Integer nparams = 0;
-		if(ctx.params() != null) {
-			nparams = ctx.params().attributed().size();
-			//System.out.println(nparams);
-		}
-		if(nparams != attribute.nparams) {
-			System.out.println("Error: number of parameters in function " + id + " at " +ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't match (encountered " +  nparams + ", expect " + attribute.nparams + ")");
-			return;
-		}
-
-		if(ctx.params() != null){
-			for (int i = 0; i < ctx.params().attributed().size(); i++){
-				VicuschiParser.AttributedContext ac = ctx.params().attributed().get(i);
-				String call_type = actualType.get(ac);
-
-				//System.out.println(call_type);
-
-				String param_type = (String) attribute.parameterTypes.get(i);
-
-				//System.out.println(attribute.parameterTypes);
-
-				if (!call_type.equals(param_type)){
-					System.out.println("Error: call parameter " + ac.getText() + " at " + ac.getStart().getLine() + ":" + ac.getStart().getCharPositionInLine() + " of type "+call_type+", expected "+param_type);
-				}
-
+			if(!localAttributeTable.containsKey(id)) {
+				System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't exist at symbol table (failed to be declared)");
+				return;
 			}
+
+			Attribute attribute = localAttributeTable.get(id);
+			//System.out.println("attribute: " + attribute);
+
+			Integer nparams = 0;
+			if(ctx.params() != null) {
+				nparams = ctx.params().attributed().size();
+				//System.out.println(nparams);
+			}
+			if(nparams != attribute.nparams) {
+				System.out.println("Error: number of parameters in function " + id + " at " +ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't match (encountered " +  nparams + ", expect " + attribute.nparams + ")");
+				return;
+			}
+
+			if(ctx.params() != null){
+				for (int i = 0; i < ctx.params().attributed().size(); i++){
+					VicuschiParser.AttributedContext ac = ctx.params().attributed().get(i);
+					String call_type = actualType.get(ac);
+
+					//System.out.println(call_type);
+
+					String param_type = (String) attribute.parameterTypes.get(i);
+
+					//System.out.println(attribute.parameterTypes);
+
+					if (!call_type.equals(param_type)){
+						System.out.println("Error: call parameter " + ac.getText() + " at " + ac.getStart().getLine() + ":" + ac.getStart().getCharPositionInLine() + " of type "+call_type+", expected "+param_type);
+					}
+
+				}
+			}
+
+			actualType.put(ctx, attribute.type);
+
 		}
 
-		actualType.put(ctx, attribute.type);
+		// Code generation
+		String funCode = "";
+		if(id.equals("print")){
+			funCode += "getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + ctx.params().getText() +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
+		}
+
+		nodeCode.put(ctx, funCode);
 	}
 
 	@Override public void exitUnary_expression(VicuschiParser.Unary_expressionContext ctx) {

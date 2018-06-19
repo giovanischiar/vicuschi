@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.io.FileInputStream;
+import java.lang.StringBuilder;
 
 public class Main {
 
@@ -18,18 +20,21 @@ public class Main {
 		// 	System.out.println("Sem arquivo de entrada!");
 		// 	return; 
 		// }
+		CharStream input = CharStreams.fromFileName(args[0]);
+	    VicuschiLexer lexer = new VicuschiLexer(input);
+	    CommonTokenStream tokens = new CommonTokenStream(lexer);
+	    VicuschiParser parser = new VicuschiParser(tokens);
+	    ParseTree programContext = parser.program();
+	    ParseTreeWalker walker = new ParseTreeWalker();
+	    ANTLRVicuschiListener listener = new ANTLRVicuschiListener();
+	    String fileNameWithoutExtenstion = args[0].split("\\.")[0];
+	    listener.setFileName(fileNameWithoutExtenstion);
+	    walker.walk(listener, programContext);
 
-		// CharStream input = CharStreams.fromFileName(args[0]);
-	 //    VicuschiLexer lexer = new VicuschiLexer(input);
-	 //    CommonTokenStream tokens = new CommonTokenStream(lexer);
-	 //    VicuschiParser parser = new VicuschiParser(tokens);
-	 //    ParseTree programContext = parser.program();
-	 //    ParseTreeWalker walker = new ParseTreeWalker();
-	 //    ANTLRVicuschiListener listener = new ANTLRVicuschiListener();
 
-	 //    walker.walk(listener, programContext);
-		String programName = args[0];
-		String code = ".class public " + programName + "\n.super java/lang/Object\n\n.method public static main([Ljava/lang/String;)V\n    .limit stack 100\n    .limit locals 100\n    getstatic java/lang/System/out Ljava/io/PrintStream;\n    ldc \"hello\"\n    invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n    return\n.end method";
-		System.out.println(code);
+
+		// String programName = args[0];
+		// String code = ".class public " + programName + "\n.super java/lang/Object\n\n.method public static main([Ljava/lang/String;)V\n    .limit stack 100\n    .limit locals 100\n    getstatic java/lang/System/out Ljava/io/PrintStream;\n    ldc \"hello\"\n    invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n    return\n.end method";
+		System.out.println(listener.getGeneratedCode());
 	}
 }
