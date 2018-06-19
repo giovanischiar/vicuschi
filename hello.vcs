@@ -14,6 +14,9 @@ string metodoDeSegundoEscopo()
     endwhile;
 endf;
     
+int teste(int d)
+	d++;
+endf;
 
 
 // Testes gerais:
@@ -30,10 +33,6 @@ int d = e * f;        // Uso de variável não declarada
 int d = c + 1;        // Variável do tipo errado em expressão
 
 metodoDeSegundoEscopo(1, 2); // Não compatível o número de parâmetros
-
-int teste(int d)
-	d++;
-endf;
 
 metodoParametrosDiferentes(1, 2.0); // Incompatibilidade entre parametros direta
 

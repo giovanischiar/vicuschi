@@ -24,6 +24,14 @@ Terminal commands for running our code:
 	For generating parse tree:
 		grun Vicuschi r -gui hello.vcs
 
+Terminal commands for code generation:
 
-In these examples, hello.vcs is the code file
+	If not yet compiled:
+		javac *.java
+
+	After compiling:
+		bash vicuschi.sh file_name
+
+
+In these examples, hello.vcs is the code file and class_name is the name of the executable file to be generated
 Text, code and documentation in English.

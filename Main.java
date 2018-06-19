@@ -29,7 +29,7 @@ public class Main {
 
 	 //    walker.walk(listener, programContext);
 		String programName = args[0];
-		String code = ".class public " + programName + "\n.super java/lang/Object\n\n.method public static main([Ljava/lang/String;)V\n    .limit stack 100\n    .limit locals 100\n    getstatic java/lang/System/out Ljava/io/PrintStream;\n    ldc 42\n    invokevirtual java/io/PrintStream/println(I)V\n    return\n.end method";
+		String code = ".class public " + programName + "\n.super java/lang/Object\n\n.method public static main([Ljava/lang/String;)V\n    .limit stack 100\n    .limit locals 100\n    getstatic java/lang/System/out Ljava/io/PrintStream;\n    ldc \"hello\"\n    invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n    return\n.end method";
 		System.out.println(code);
 	}
 }
