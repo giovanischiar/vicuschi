@@ -4,7 +4,7 @@
 
 ANTLR4 Java code analyser with Jasmin code generator for Vicuschi programming language.
 
-###Terminal commands for ANTLR4 usage:
+Terminal commands for ANTLR4 usage:
 
 	 export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
 
@@ -12,25 +12,24 @@ ANTLR4 Java code analyser with Jasmin code generator for Vicuschi programming la
 	 
 	 alias grun='java org.antlr.v4.gui.TestRig'
 
-###Terminal commands for running our code:
+Terminal commands for running our code:
 	
-####When generating code from grammar:
+	 When generating code from grammar:
 		antlr4 VicuschiLex.g4 ;and javac *.java ;and java Main hello.vcs
 	
-####When not modifying grammar:
+	When not modifying grammar:
 		javac *.java ;and java Main hello.vcs	
 	
-####For generating parse tree:
+	For generating parse tree:
 		grun Vicuschi r -gui hello.vcs
 
-###Terminal commands for code generation:
+Terminal commands for code generation:
 
-####If not yet compiled:
+	If not yet compiled:
 		javac *.java
 
-####After compiling:
+	After compiling:
 		bash vicuschi.sh file_name
-
 
 In these examples, hello.vcs is the code file and file_name is the name of the .vcs file to be compiled (without extension. Ex.: lala.vcs would be $bash vicuschi.sh lala)
 Text, code and documentation in English.
