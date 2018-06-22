@@ -1,12 +1,45 @@
-print("Hello, world!");
+boolean nota()
+	return yes;
+endf;
+
+string nota1()
+	return "vamos";
+endf;
+
+float nota2()
+	return 10.0;
+endf;
+
+int nota3()
+	return 10;
+endf;
+
+string exclamacao()
+	return "!!!";
+endf;
+
+print(nota(), ", ", nota1(), " tirar", " ", nota2(), "/", nota3(), exclamacao());
+
+/*print("Hello, world!");
 print("Meu");
 print("primeiro");
 print("programa");
 print("vcs");
 print("!!!");
 
-int foo()
-	return 5;
+boolean foo1()
+	return yes;
 endf;
 
-print(foo());
+boolean foo2()
+	return foo1();
+endf;
+
+int foo3()
+	return 10;
+endf;
+
+print(foo2(), foo3());*/
+
+
+

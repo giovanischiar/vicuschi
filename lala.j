@@ -5,31 +5,43 @@
 	.limit stack 100
 	.limit locals 100
 getstatic java/lang/System/out Ljava/io/PrintStream;
- ldc "Hello, world!"
- invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+ ldc "yes"
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
 getstatic java/lang/System/out Ljava/io/PrintStream;
- ldc "Meu"
- invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+ ldc ", "
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
 getstatic java/lang/System/out Ljava/io/PrintStream;
- ldc "primeiro"
- invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+ ldc "vamos"
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
 getstatic java/lang/System/out Ljava/io/PrintStream;
- ldc "programa"
- invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+ ldc " tirar"
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
 getstatic java/lang/System/out Ljava/io/PrintStream;
- ldc "vcs"
- invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+ ldc " "
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ ldc "10.0"
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ ldc "/"
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ ldc "10"
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
 getstatic java/lang/System/out Ljava/io/PrintStream;
  ldc "!!!"
- invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 
 getstatic java/lang/System/out Ljava/io/PrintStream;
- ldc "5"
+ ldc " "
  invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 
 

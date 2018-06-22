@@ -25,19 +25,6 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	private Map<ParserRuleContext, StringPair> nodeValues = new HashMap<>();
 
-	class StringPair {
-		public String literalName; 
-		public String typeName;
-		public StringPair(String literalName, String typeName){
-			this.literalName = literalName;
-			this.typeName = typeName;
-		}
-
-		@Override
-		public String toString() {
-			return "(" + literalName + ", " + typeName + ")";
-		}
-	}
 
 	public void setFileName(String fileName) {
 		codeBuilder.append(".class public " + fileName + "\n.super java/lang/Object\n");
@@ -527,6 +514,15 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			case "int":
 				attribute.value = Integer.parseInt(nodeValues.get(retCtx).literalName);
 				break;
+			case "float":
+				attribute.value = Double.parseDouble(nodeValues.get(retCtx).literalName);
+				break;
+			case "boolean":
+				attribute.value = nodeValues.get(retCtx).literalName + "";
+				break;
+			case "string":
+				attribute.value = nodeValues.get(retCtx).literalName;
+				break;
 			default:
 				return;
 		}
@@ -592,15 +588,21 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		if(id.equals("print")){
 			String valueToPrint = "";
 
-			if(ctx.params().attributed().get(0).function_call() == null) {
-				valueToPrint = ctx.params().attributed().get(0).getText();
-			} else {
-				Attribute attribute = localAttributeTable.get(ctx.params().attributed().get(0).function_call().ID().getText());
-				valueToPrint = "\"" + attribute.value.toString() + "\"";
+			for (VicuschiParser.AttributedContext parameter : ctx.params().attributed()){
+				if(parameter.function_call() == null) {
+					valueToPrint = parameter.getText();
+				} else {
+					Attribute attribute = localAttributeTable.get(parameter.function_call().ID().getText());
+					if (!attribute.type.equals("string")){
+						valueToPrint = "\"" + attribute.value.toString() + "\"";
+					} else {
+						valueToPrint = attribute.value.toString();
+					}
+				}
+				funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + valueToPrint +"\n invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V\n\n");
 			}
-
-
-			funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + valueToPrint +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n\n");
+			//valueToPrint += "\"";
+			funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + "\" \"" +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n\n");
 		}
 
 		//System.out.println(funCode);
@@ -1309,7 +1311,14 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	@Override
 	public void exitRet_stmt(VicuschiParser.Ret_stmtContext ctx) {
-		nodeValues.put(ctx, new StringPair(ctx.attributed().getText(), actualType.get(ctx.attributed())));
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
+		if (ctx.attributed().function_call() != null){
+			Attribute function = localAttributeTable.get(ctx.attributed().function_call().ID().getText());
+			String function_return = function.value + "";
+			nodeValues.put(ctx, new StringPair(function_return, actualType.get(ctx.attributed())));	
+		} else {
+			nodeValues.put(ctx, new StringPair(ctx.attributed().getText(), actualType.get(ctx.attributed())));	
+		}
 	}
 
 	class Attribute<T> implements Comparable<Attribute> {
@@ -1343,6 +1352,20 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		@Override
 		public int compareTo(ANTLRVicuschiListener.Attribute other) {
 			return this.name.equals(other.name) ? 1 : 0;
+		}
+	}
+
+	class StringPair {
+		public String literalName; 
+		public String typeName;
+		public StringPair(String literalName, String typeName){
+			this.literalName = literalName;
+			this.typeName = typeName;
+		}
+
+		@Override
+		public String toString() {
+			return "(" + literalName + ", " + typeName + ")";
 		}
 	}
 }
