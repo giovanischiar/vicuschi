@@ -28,6 +28,10 @@ getstatic java/lang/System/out Ljava/io/PrintStream;
  ldc "!!!"
  invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ ldc "5"
+ invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+
 
 return
 .end method

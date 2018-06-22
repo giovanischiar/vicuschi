@@ -19,14 +19,32 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 	private Map<ParserRuleContext, String> nodeCode = new HashMap<>();
 
+	private StringBuilder codeBuilder = new StringBuilder();
+
 	private String code = "";
 
+	private Map<ParserRuleContext, StringPair> nodeValues = new HashMap<>();
+
+	class StringPair {
+		public String literalName; 
+		public String typeName;
+		public StringPair(String literalName, String typeName){
+			this.literalName = literalName;
+			this.typeName = typeName;
+		}
+
+		@Override
+		public String toString() {
+			return "(" + literalName + ", " + typeName + ")";
+		}
+	}
+
 	public void setFileName(String fileName) {
-		code = ".class public " + fileName + "\n.super java/lang/Object\n";
+		codeBuilder.append(".class public " + fileName + "\n.super java/lang/Object\n");
 	}
 
 	public String getGeneratedCode() {
-		return code;
+		return codeBuilder.toString();
 	}
 
 	@Override public void enterProgram(VicuschiParser.ProgramContext ctx) { 
@@ -36,17 +54,19 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	}
 
 	@Override public void exitProgram(VicuschiParser.ProgramContext ctx) {
-		String mainCode = "";
-		for (VicuschiParser.Simple_stmtContext prc : ctx.stmt().simple_stmt()){
-			mainCode += nodeCode.get(prc.function_call());
+		StringBuilder mainCodeBuilder = new StringBuilder();
+		for (VicuschiParser.Simple_stmtContext prc : ctx.stmt().simple_stmt()) {
+			if(prc.function_call() != null) {
+				mainCodeBuilder.append(nodeCode.get(prc.function_call()));
+			}
 		}
 
-		code +=System.lineSeparator() + ".method public static main([Ljava/lang/String;)V"
+		codeBuilder.append(System.lineSeparator() + ".method public static main([Ljava/lang/String;)V"
 			 + System.lineSeparator() + "	.limit stack 100"
 			 + System.lineSeparator() + "	.limit locals 100"
-			 + System.lineSeparator() + mainCode
+			 + System.lineSeparator() + mainCodeBuilder.toString()
 			 + System.lineSeparator() + "return" 
-			 + System.lineSeparator() + ".end method";
+			 + System.lineSeparator() + ".end method");
 	}
 
 	@Override public void enterStmt(VicuschiParser.StmtContext ctx) { 
@@ -487,6 +507,33 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		actualType.put(ctx, expected_type);
 	}
 
+	@Override public void exitFunction_declaration(VicuschiParser.Function_declarationContext ctx) {
+		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx.getParent()));
+
+		VicuschiParser.Ret_stmtContext retCtx = ctx.stmt().simple_stmt().get(0).ret_stmt();
+		int i = 1;
+		while(retCtx == null || i != ctx.stmt().simple_stmt().size()) {
+			retCtx = ctx.stmt().simple_stmt().get(i++).ret_stmt();
+		}
+
+		if(retCtx == null) {
+			System.out.println("Function without return statement");
+			return;
+		}
+
+		Attribute attribute = localAttributeTable.get(ctx.generic_unary_declaration().getChild(0).getChild(1).getText());
+
+		switch(nodeValues.get(retCtx).typeName) {
+			case "int":
+				attribute.value = Integer.parseInt(nodeValues.get(retCtx).literalName);
+				break;
+			default:
+				return;
+		}
+
+		nodeCode.put(ctx, "");
+	}
+
 	@Override public void exitFunction_call(VicuschiParser.Function_callContext ctx) {
 		// if(!scopeTables.contains(scope.get(ctx))) {
 		// 	System.out.println("Uknown error (recursive functions)");
@@ -504,7 +551,6 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 				return;
 			}
 
-			Attribute attribute = localAttributeTable.get(id);
 			//System.out.println("attribute: " + attribute);
 
 			Integer nparams = 0;
@@ -512,6 +558,8 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 				nparams = ctx.params().attributed().size();
 				//System.out.println(nparams);
 			}
+			Attribute attribute = localAttributeTable.get(id);
+
 			if(nparams != attribute.nparams) {
 				System.out.println("Error: number of parameters in function " + id + " at " +ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't match (encountered " +  nparams + ", expect " + attribute.nparams + ")");
 				return;
@@ -540,14 +588,24 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 
 		// Code generation
-		String funCode = "";
+		StringBuilder funCodeBuilder = new StringBuilder();
 		if(id.equals("print")){
-			funCode += "getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + ctx.params().getText() +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n\n";
+			String valueToPrint = "";
+
+			if(ctx.params().attributed().get(0).function_call() == null) {
+				valueToPrint = ctx.params().attributed().get(0).getText();
+			} else {
+				Attribute attribute = localAttributeTable.get(ctx.params().attributed().get(0).function_call().ID().getText());
+				valueToPrint = "\"" + attribute.value.toString() + "\"";
+			}
+
+
+			funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + valueToPrint +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n\n");
 		}
 
 		//System.out.println(funCode);
 
-		nodeCode.put(ctx, funCode);
+		nodeCode.put(ctx, funCodeBuilder.toString());
 	}
 
 	@Override public void exitUnary_expression(VicuschiParser.Unary_expressionContext ctx) {
@@ -1247,6 +1305,11 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 				System.out.println("Error: function call " + id_name + " at " + ctx.function_call().ID().getSymbol().getLine() + ":" + ctx.function_call().ID().getSymbol().getCharPositionInLine() + " of type "+attribute.type+", expected boolean");
 			}
 		}
+	}
+
+	@Override
+	public void exitRet_stmt(VicuschiParser.Ret_stmtContext ctx) {
+		nodeValues.put(ctx, new StringPair(ctx.attributed().getText(), actualType.get(ctx.attributed())));
 	}
 
 	class Attribute<T> implements Comparable<Attribute> {

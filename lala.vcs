@@ -4,3 +4,9 @@ print("primeiro");
 print("programa");
 print("vcs");
 print("!!!");
+
+int foo()
+	return 5;
+endf;
+
+print(foo());
