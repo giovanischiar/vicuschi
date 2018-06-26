@@ -20,7 +20,7 @@ public class Main {
 		// 	System.out.println("Sem arquivo de entrada!");
 		// 	return; 
 		// }
-		CharStream input = CharStreams.fromFileName(args[0]+".vcs");
+		CharStream input = CharStreams.fromFileName(args[0]);
 	    VicuschiLexer lexer = new VicuschiLexer(input);
 	    CommonTokenStream tokens = new CommonTokenStream(lexer);
 	    VicuschiParser parser = new VicuschiParser(tokens);
@@ -35,6 +35,10 @@ public class Main {
 
 		// String programName = args[0];
 		// String code = ".class public " + programName + "\n.super java/lang/Object\n\n.method public static main([Ljava/lang/String;)V\n    .limit stack 100\n    .limit locals 100\n    getstatic java/lang/System/out Ljava/io/PrintStream;\n    ldc \"hello\"\n    invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n    return\n.end method";
-		System.out.println(listener.getGeneratedCode());
+		String generatedCode = listener.getGeneratedCode();
+		if(generatedCode.length() != 0) {
+			System.out.println(generatedCode);
+		}
+		
 	}
 }

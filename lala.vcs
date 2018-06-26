@@ -1,5 +1,9 @@
-boolean nota()
+boolean foo()
 	return yes;
+endf;
+
+boolean nota()
+	return foo();
 endf;
 
 string nota1()
@@ -19,27 +23,6 @@ string exclamacao()
 endf;
 
 print(nota(), ", ", nota1(), " tirar", " ", nota2(), "/", nota3(), exclamacao());
-
-/*print("Hello, world!");
-print("Meu");
-print("primeiro");
-print("programa");
-print("vcs");
-print("!!!");
-
-boolean foo1()
-	return yes;
-endf;
-
-boolean foo2()
-	return foo1();
-endf;
-
-int foo3()
-	return 10;
-endf;
-
-print(foo2(), foo3());*/
 
 
 
