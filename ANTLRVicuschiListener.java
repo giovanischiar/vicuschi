@@ -6,7 +6,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 import java.lang.Exception;
-import java.io.PrintWriter;
+
 
 public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	private ArrayList<HashMap<String, Attribute>> scopeTables = new ArrayList<>();
@@ -465,11 +465,11 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 			expected_type = actualType.get(ctx.literal());
 		} else if (ctx.ID() != null){
 			String id = ctx.ID().getText();
-			if(!localAttributeTable.containsKey(id)) {
+/*			if(!localAttributeTable.containsKey(id)) {
 				System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " doesn't exist at symbol table (failed to be declared)");
 				hasErrors = true;
 				return;
-			}
+			}*/
 
 			if(!localAttributeTable.get(id).hasValue) {
 				System.out.println("Error: variable " + id + " at " + ctx.ID().getSymbol().getLine() + ":" + ctx.ID().getSymbol().getCharPositionInLine()+ " declared but has no value");
@@ -528,6 +528,12 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		}
 
 		Attribute attribute = localAttributeTable.get(ctx.generic_unary_declaration().getChild(0).getChild(1).getText());
+
+
+		if (nodeValues.get(retCtx) == null){
+			System.out.println("Error: no valid return statements for function "+attribute.name);
+			return;
+		}
 
 		switch(nodeValues.get(retCtx).typeName) {
 			case "int":
@@ -615,6 +621,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					valueToPrint = parameter.getText();
 				} else {
 					Attribute attribute = localAttributeTable.get(parameter.function_call().ID().getText());
+
+					if (attribute == null){
+						System.out.println("Error: function " + attribute.name + " at " + parameter.function_call().ID().getSymbol().getLine() + ":" + parameter.function_call().ID().getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
+						return;
+					}
+					if (attribute.value == null){
+						System.out.println("Error: function " + attribute.name + " at " + parameter.function_call().ID().getSymbol().getLine() + ":" + parameter.function_call().ID().getSymbol().getCharPositionInLine() + " declared but has no value");
+						return;
+					}
+
 					if (!attribute.type.equals("string")){
 						valueToPrint = "\"" + attribute.value.toString() + "\"";
 					} else {
@@ -1372,7 +1388,13 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 	public void exitRet_stmt(VicuschiParser.Ret_stmtContext ctx) {
 		Map<String, Attribute> localAttributeTable = scopeTables.get(scope.get(ctx));
 		if (ctx.attributed().function_call() != null){
-			Attribute function = localAttributeTable.get(ctx.attributed().function_call().ID().getText());
+			String funcName = ctx.attributed().function_call().ID().getText();
+			Attribute function = localAttributeTable.get(funcName);
+			if (function == null){
+				/*System.out.println("Error: variable " + funcName + " at " + ctx.attributed().function_call().ID().getSymbol().getLine() + ":" + ctx.attributed().function_call().ID().getSymbol().getCharPositionInLine() + " doesn't exist at symbol table (failed to be declared)");
+				hasErrors = true;*/
+				return;
+			}
 			String function_return = function.value + "";
 			nodeValues.put(ctx, new StringPair(function_return, actualType.get(ctx.attributed())));	
 		} else {

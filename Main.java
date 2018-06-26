@@ -13,6 +13,8 @@ import java.io.UnsupportedEncodingException;
 import java.io.FileInputStream;
 import java.lang.StringBuilder;
 
+import java.io.PrintWriter;
+
 public class Main {
 
 	public static void main(String[] args) throws IOException, FileNotFoundException, UnsupportedEncodingException {
@@ -33,12 +35,12 @@ public class Main {
 
 
 
-		// String programName = args[0];
-		// String code = ".class public " + programName + "\n.super java/lang/Object\n\n.method public static main([Ljava/lang/String;)V\n    .limit stack 100\n    .limit locals 100\n    getstatic java/lang/System/out Ljava/io/PrintStream;\n    ldc \"hello\"\n    invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n    return\n.end method";
 		String generatedCode = listener.getGeneratedCode();
-		if(generatedCode.length() != 0) {
-			System.out.println(generatedCode);
-		}
 		
+		if (generatedCode.length() > 0){
+			PrintWriter writer = new PrintWriter(fileNameWithoutExtenstion+".j", "UTF-8");
+			writer.println(generatedCode);
+			writer.close();
+		}
 	}
 }

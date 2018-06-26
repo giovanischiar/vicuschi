@@ -10,4 +10,4 @@ then
 	rm "${file}.class"
 fi
 
-java Main $@ >> ${file}.j && java -jar jasmin.jar ${file}.j && java ${file}
+java Main $@ && java -jar jasmin.jar ${file}.j && java ${file}

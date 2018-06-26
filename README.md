@@ -21,7 +21,7 @@ Terminal commands for running our code:
 		javac *.java ;and java Main hello.vcs	
 	
 	For generating parse tree:
-		grun Vicuschi r -gui hello.vcs
+		grun Vicuschi program -gui hello.vcs
 
 Terminal commands for code generation:
 
