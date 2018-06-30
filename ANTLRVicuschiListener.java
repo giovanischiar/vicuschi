@@ -623,6 +623,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		StringBuilder funCodeBuilder = new StringBuilder();
 		if(id.equals("print")){
 			String valueToPrint = "";
+			String newValueToPrint = "\"";
 
 			for (VicuschiParser.AttributedContext parameter : ctx.params().attributed()){
 				if(parameter.function_call() == null) {
@@ -641,8 +642,18 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 							valueToPrint = "\"" + attribute.value.toString() + "\"";
 						}
+
+						newValueToPrint += attribute.value.toString();
 					} else { //literal
 						valueToPrint = parameter.getText();
+
+						/*if (valueToPrint.charAt(valueToPrint.length()-1) == ' '){
+							newValueToPrint += parameter.getText().replace('\"', ' ') + " ";	
+						} else {
+							newValueToPrint += parameter.getText().replace('\"', ' ').trim();
+						}*/
+
+						newValueToPrint += parameter.getText().split("\"")[1];
 					}
 
 				} else {
@@ -662,12 +673,15 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					} else {
 						valueToPrint = attribute.value.toString();
 					}
+
+					newValueToPrint += attribute.value.toString().replace('\"', ' ').trim();
+					//newValueToPrint += attribute.value.toString().split("\"")[0];
 				}
-				funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + valueToPrint +"\n invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V\n\n");
+				//funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + valueToPrint +"\n invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V\n\n");
 				//funCodeBuilder.append(valueToPrint);
 			}
 			//valueToPrint += "\"";
-			funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + "\" \"" +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n\n");
+			funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + newValueToPrint + "\"" +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n\n");
 		}
 
 		//System.out.println(funCode);

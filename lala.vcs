@@ -22,7 +22,7 @@ string exclamacao()
 	return "!!!";
 endf;
 
-print(nota(), ", ", nota1(), " tirar", " ", nota2(), "/", nota3(), exclamacao());
+print(nota(), ", ", nota1(), " tirar ", nota2(), "/", nota3(), exclamacao());
 
 int a = 9;
 
