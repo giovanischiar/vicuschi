@@ -44,6 +44,18 @@ getstatic java/lang/System/out Ljava/io/PrintStream;
  ldc " "
  invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ ldc "isso mesmo, "
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ ldc "10"
+ invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ ldc " "
+ invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+
 
 return
 .end method

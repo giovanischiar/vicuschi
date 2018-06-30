@@ -430,10 +430,18 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 		int column = ctx.attribution().ATTRIBUTION().getSymbol().getCharPositionInLine();
 		typeComparation(ctx.attribution(), a, line, column);
 
-		//code generation;
-		String declaration = nodeCode.get(ctx.generic_declaration().generic_unary_declaration().integer_declaration());
+		//code generation
 
-		String declAttCode = declaration + "\n" + "putfield " + a.name + " I = " + ctx.attribution().attributed().getText() + ";";
+		/*String declAttCode = "ldc ";
+		if (a.type.equals("string")){
+			declAttCode += ctx.attribution().attributed().getText();	
+		} else {
+			declAttCode += "\"" + ctx.attribution().attributed().getText() + "\"";
+		}
+		declAttCode += "\n";*/
+
+		a.value = ctx.attribution().attributed().getText() + "";
+		String declAttCode = "";
 		nodeCode.put(ctx, declAttCode);
 	}
 
@@ -618,7 +626,25 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 
 			for (VicuschiParser.AttributedContext parameter : ctx.params().attributed()){
 				if(parameter.function_call() == null) {
-					valueToPrint = parameter.getText();
+					Attribute attribute = localAttributeTable.get(parameter.getText());
+					if (attribute != null){
+						if (attribute.value instanceof String){
+							//valueToPrint = parameter.getText();
+							if (attribute.value.toString().charAt(0) == '\"'){
+								valueToPrint = attribute.value.toString();	
+							} else {
+								valueToPrint = "\"" + attribute.value.toString() + "\"";
+							}
+							
+						} else {
+							//valueToPrint = "\"" + parameter.getText() + "\"";
+
+							valueToPrint = "\"" + attribute.value.toString() + "\"";
+						}
+					} else { //literal
+						valueToPrint = parameter.getText();
+					}
+
 				} else {
 					Attribute attribute = localAttributeTable.get(parameter.function_call().ID().getText());
 
@@ -638,6 +664,7 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 					}
 				}
 				funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + valueToPrint +"\n invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V\n\n");
+				//funCodeBuilder.append(valueToPrint);
 			}
 			//valueToPrint += "\"";
 			funCodeBuilder.append("getstatic java/lang/System/out Ljava/io/PrintStream;\n ldc " + "\" \"" +"\n invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n\n");
@@ -680,6 +707,16 @@ public class ANTLRVicuschiListener extends VicuschiBaseListener {
 				hasErrors = true;
 				return;
 			}
+
+			Attribute a = localAttributeTable.get(id);
+
+			String value = a.value.toString();
+
+			Integer valueInt = Integer.parseInt(value);
+			
+			valueInt++;
+
+			a.value = valueInt;
 
 			expected_type = localAttributeTable.get(id).type;
 		} else {
